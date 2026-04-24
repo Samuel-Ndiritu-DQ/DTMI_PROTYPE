@@ -1,0 +1,121 @@
+@import "tailwindcss";
+
+@layer base {
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background-color: #f8f9fb;
+    color: #1a1a2e;
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  }
+  ::-webkit-scrollbar { width: 4px; height: 4px; }
+  ::-webkit-scrollbar-track { background: #e8eaf0; }
+  ::-webkit-scrollbar-thumb { background: #e8500a; border-radius: 2px; }
+}
+
+/* ── Brand tokens ── */
+:root {
+  --brand-navy:    #0d1b3e;
+  --brand-navy2:   #132044;
+  --brand-teal:    #0a7ea4;
+  --brand-orange:  #e8500a;
+  --brand-orange2: #ff6b2b;
+  --brand-light:   #f8f9fb;
+  --brand-border:  #e2e6ef;
+  --brand-muted:   #6b7280;
+  --brand-dark:    #111827;
+}
+
+@keyframes ticker-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: ticker-scroll 60s linear infinite;
+}
+.ticker-track:hover { animation-play-state: paused; }
+
+.live-blink { animation: blink 1s step-start infinite; }
+.fade-in    { animation: fadeSlideIn 0.35s ease forwards; }
+.slide-down { animation: slideDown 0.2s ease forwards; }
+
+/* Image overlay */
+.img-overlay {
+  background: linear-gradient(to top, rgba(13,27,62,0.92) 0%, rgba(13,27,62,0.4) 55%, transparent 100%);
+}
+
+/* Section label accent */
+.section-label::before {
+  content: '';
+  display: inline-block;
+  width: 3px;
+  height: 1em;
+  background: var(--brand-orange);
+  margin-right: 7px;
+  vertical-align: middle;
+  border-radius: 1px;
+}
+
+.card-hover { transition: transform 0.18s ease, box-shadow 0.18s ease; }
+.card-hover:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(13,27,62,0.12); }
+
+/* Nav underline */
+.nav-link { position: relative; white-space: nowrap; }
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; left: 0; right: 0;
+  height: 2px;
+  background: var(--brand-orange);
+  transform: scaleX(0);
+  transition: transform 0.2s ease;
+}
+.nav-link:hover::after,
+.nav-link.active::after { transform: scaleX(1); }
+
+/* Mega menu */
+.mega-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 100;
+  background: var(--brand-navy);
+  border-top: 2px solid var(--brand-orange);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.35);
+  animation: slideDown 0.18s ease forwards;
+}
+
+/* Orange CTA button */
+.btn-orange {
+  background: var(--brand-orange);
+  color: white;
+  font-weight: 700;
+  transition: background 0.15s ease;
+}
+.btn-orange:hover { background: var(--brand-orange2); }
+
+/* Severity badges — light theme */
+.sev-critical { background:#fef2f2; color:#b91c1c; border:1px solid #fecaca; }
+.sev-high     { background:#fff7ed; color:#c2410c; border:1px solid #fed7aa; }
+.sev-medium   { background:#fffbeb; color:#b45309; border:1px solid #fde68a; }
+.sev-low      { background:#f0fdf4; color:#15803d; border:1px solid #bbf7d0; }
+
+/* Dark card */
+.dark-card {
+  background: var(--brand-navy);
+  border: 1px solid rgba(255,255,255,0.07);
+}
