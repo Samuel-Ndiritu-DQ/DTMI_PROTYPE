@@ -18,6 +18,9 @@ import ArticlePage      from './views/ArticlePage';
 import VideoPage        from './views/VideoPage';
 import PodcastPage      from './views/PodcastPage';
 import AdminDashboard   from './views/admin/AdminDashboard';
+import LoginPage        from './views/LoginPage';
+import RegisterPage     from './views/RegisterPage';
+import ForgotPasswordPage from './views/ForgotPasswordPage';
 
 import { topStories, emergingTech, executiveBriefings, videoContent, insightCards } from './data/mockData';
 import SectionLabel from './components/SectionLabel';
@@ -136,10 +139,19 @@ const SECTION_ROUTES = {
   'D6': () => <DomainPage domain="D6" />,
 };
 
+// auth modal states
+const AUTH_NONE     = null;
+const AUTH_LOGIN    = 'login';
+const AUTH_REGISTER = 'register';
+const AUTH_FORGOT   = 'forgot';
+
 function AppInner() {
   const [activeSection, setActiveSection] = useState('Latest');
   const [showAdmin, setShowAdmin] = useState(false);
+  const [authModal, setAuthModal] = useState(AUTH_NONE);
   const { page } = useNav();
+
+  const closeAuth = () => setAuthModal(AUTH_NONE);
 
   // Admin dashboard — full screen, no nav/footer
   if (showAdmin) {
@@ -149,23 +161,32 @@ function AppInner() {
   // If a content page is open, render it instead of the section
   if (page?.type === 'article') return (
     <>
-      <TopBar activeSection={activeSection} setActiveSection={setActiveSection} onAdmin={() => setShowAdmin(true)} />
+      <TopBar activeSection={activeSection} setActiveSection={setActiveSection} onAdmin={() => setShowAdmin(true)} onSignIn={() => setAuthModal(AUTH_LOGIN)} />
       <ArticlePage />
       <Footer />
+      {authModal === AUTH_LOGIN    && <LoginPage        onClose={closeAuth} onGoRegister={() => setAuthModal(AUTH_REGISTER)} onGoForgot={() => setAuthModal(AUTH_FORGOT)} />}
+      {authModal === AUTH_REGISTER && <RegisterPage     onClose={closeAuth} onGoLogin={() => setAuthModal(AUTH_LOGIN)} />}
+      {authModal === AUTH_FORGOT   && <ForgotPasswordPage onClose={closeAuth} onGoLogin={() => setAuthModal(AUTH_LOGIN)} />}
     </>
   );
   if (page?.type === 'video') return (
     <>
-      <TopBar activeSection={activeSection} setActiveSection={setActiveSection} onAdmin={() => setShowAdmin(true)} />
+      <TopBar activeSection={activeSection} setActiveSection={setActiveSection} onAdmin={() => setShowAdmin(true)} onSignIn={() => setAuthModal(AUTH_LOGIN)} />
       <VideoPage />
       <Footer />
+      {authModal === AUTH_LOGIN    && <LoginPage        onClose={closeAuth} onGoRegister={() => setAuthModal(AUTH_REGISTER)} onGoForgot={() => setAuthModal(AUTH_FORGOT)} />}
+      {authModal === AUTH_REGISTER && <RegisterPage     onClose={closeAuth} onGoLogin={() => setAuthModal(AUTH_LOGIN)} />}
+      {authModal === AUTH_FORGOT   && <ForgotPasswordPage onClose={closeAuth} onGoLogin={() => setAuthModal(AUTH_LOGIN)} />}
     </>
   );
   if (page?.type === 'podcast') return (
     <>
-      <TopBar activeSection={activeSection} setActiveSection={setActiveSection} onAdmin={() => setShowAdmin(true)} />
+      <TopBar activeSection={activeSection} setActiveSection={setActiveSection} onAdmin={() => setShowAdmin(true)} onSignIn={() => setAuthModal(AUTH_LOGIN)} />
       <PodcastPage />
       <Footer />
+      {authModal === AUTH_LOGIN    && <LoginPage        onClose={closeAuth} onGoRegister={() => setAuthModal(AUTH_REGISTER)} onGoForgot={() => setAuthModal(AUTH_FORGOT)} />}
+      {authModal === AUTH_REGISTER && <RegisterPage     onClose={closeAuth} onGoLogin={() => setAuthModal(AUTH_LOGIN)} />}
+      {authModal === AUTH_FORGOT   && <ForgotPasswordPage onClose={closeAuth} onGoLogin={() => setAuthModal(AUTH_LOGIN)} />}
     </>
   );
 
@@ -183,11 +204,16 @@ function AppInner() {
 
   return (
     <div className="min-h-screen" style={{ background: 'var(--brand-light)' }}>
-      <TopBar activeSection={activeSection} setActiveSection={setActiveSection} onAdmin={() => setShowAdmin(true)} />
+      <TopBar activeSection={activeSection} setActiveSection={setActiveSection} onAdmin={() => setShowAdmin(true)} onSignIn={() => setAuthModal(AUTH_LOGIN)} />
       <BreakingBanner />
       <TickerBar />
       {renderSection()}
       <Footer />
+
+      {/* Auth modals */}
+      {authModal === AUTH_LOGIN    && <LoginPage        onClose={closeAuth} onGoRegister={() => setAuthModal(AUTH_REGISTER)} onGoForgot={() => setAuthModal(AUTH_FORGOT)} />}
+      {authModal === AUTH_REGISTER && <RegisterPage     onClose={closeAuth} onGoLogin={() => setAuthModal(AUTH_LOGIN)} />}
+      {authModal === AUTH_FORGOT   && <ForgotPasswordPage onClose={closeAuth} onGoLogin={() => setAuthModal(AUTH_LOGIN)} />}
     </div>
   );
 }
