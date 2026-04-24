@@ -1,4 +1,4 @@
-// ─── BREAKING NEWS BANNER ────────────────────────────────────────────────────
+// --- BREAKING NEWS BANNER ----------------------------------------------------
 export const breakingNews = [
   "BREAKING: Global AI Adoption Index surges to record 61% — fastest quarterly growth in history",
   "LIVE UPDATES: EU AI Act enforcement begins Q3 2026 — non-compliant firms face 6% revenue fines",
@@ -6,7 +6,7 @@ export const breakingNews = [
   "DEVELOPING: Economy 4.0 projected to add $4.2 trillion to global GDP by 2028, IMF report says",
 ];
 
-// ─── TICKER ITEMS ────────────────────────────────────────────────────────────
+// --- TICKER ITEMS ------------------------------------------------------------
 export const tickerItems = [
   { label: "DTI GLOBAL INDEX", value: "4,821", change: "+2.5%", up: true },
   { label: "AI ADOPTION", value: "61%", change: "+4.1%", up: true },
@@ -18,7 +18,7 @@ export const tickerItems = [
   { label: "ECONOMY 4.0 GROWTH", value: "+5%", change: "YoY", up: true },
 ];
 
-// ─── NAV STRUCTURE (mega-menu) ───────────────────────────────────────────────
+// --- NAV STRUCTURE (mega-menu) -----------------------------------------------
 // Top-level items. items with `children` render a mega-menu dropdown.
 export const navItems = [
   { label: "Home",       key: "Latest" },
@@ -153,7 +153,7 @@ export const navSections = navItems.flatMap(item =>
     : [item.key]
 );
 
-// ─── HERO STORY ──────────────────────────────────────────────────────────────
+// --- HERO STORY --------------------------------------------------------------
 export const heroStory = {
   id: "hero-1",
   category: "AI & AUTOMATION",
@@ -167,7 +167,7 @@ export const heroStory = {
   tag: "MUST READ",
 };
 
-// ─── HERO SIDEBAR STORIES ────────────────────────────────────────────────────
+// --- HERO SIDEBAR STORIES ----------------------------------------------------
 export const heroSideStories = [
   {
     id: "side-1",
@@ -203,19 +203,19 @@ export const heroSideStories = [
   },
 ];
 
-// ─── LIVE UPDATES FEED ───────────────────────────────────────────────────────
+// --- LIVE UPDATES FEED -------------------------------------------------------
 export const liveUpdates = [
-  { id: 1, time: "Just now", text: "AI Adoption Index hits new record: 61% global enterprise penetration", hot: true },
-  { id: 2, time: "4 min ago", text: "DTMI Transformation Velocity score rises to 42% — highest since Q2 2024" },
-  { id: 3, time: "9 min ago", text: "EU AI Act enforcement team confirms first compliance audits begin July 2026" },
-  { id: 4, time: "14 min ago", text: "Cybersecurity threat surface expands 31% following rapid SaaS adoption wave" },
-  { id: 5, time: "21 min ago", text: "Cloud migration reaches 67% completion across Fortune 500 — hybrid model dominates" },
-  { id: 6, time: "33 min ago", text: "Quantum computing readiness: only 12% of enterprises have active strategies" },
-  { id: 7, time: "41 min ago", text: "DCO framework adopted by 55% of G20 governments — new global benchmark set" },
-  { id: 8, time: "58 min ago", text: "Digital Business Platforms market reaches $180B valuation milestone" },
+  { id: 1, time: "Just now",  text: "AI Adoption Index hits new record: 61% global enterprise penetration", hot: true },
+  { id: 2, time: "4 min ago", text: "DTMI Transformation Velocity score rises to 42% — highest since Q2 2024", hot: false },
+  { id: 3, time: "9 min ago", text: "EU AI Act enforcement team confirms first compliance audits begin July 2026", hot: false },
+  { id: 4, time: "14 min ago",text: "Cybersecurity threat surface expands 31% following rapid SaaS adoption wave", hot: false },
+  { id: 5, time: "21 min ago",text: "Cloud migration reaches 67% completion across Fortune 500 — hybrid model dominates", hot: false },
+  { id: 6, time: "33 min ago",text: "Quantum computing readiness: only 12% of enterprises have active strategies", hot: false },
+  { id: 7, time: "41 min ago",text: "DCO framework adopted by 55% of G20 governments — new global benchmark set", hot: false },
+  { id: 8, time: "58 min ago",text: "Digital Business Platforms market reaches $180B valuation milestone", hot: false },
 ];
 
-// ─── SECTION: TOP STORIES ────────────────────────────────────────────────────
+// --- SECTION: TOP STORIES ----------------------------------------------------
 export const topStories = [
   {
     id: "ts-1",
@@ -260,7 +260,7 @@ export const topStories = [
   },
 ];
 
-// ─── SECTION: EXECUTIVE BRIEFINGS ────────────────────────────────────────────
+// --- SECTION: EXECUTIVE BRIEFINGS --------------------------------------------
 export const executiveBriefings = [
   {
     id: "eb-1",
@@ -290,7 +290,7 @@ export const executiveBriefings = [
   },
 ];
 
-// ─── SECTION: EMERGING TECH ──────────────────────────────────────────────────
+// --- SECTION: EMERGING TECH --------------------------------------------------
 export const emergingTech = [
   {
     id: "et-1",
@@ -322,7 +322,7 @@ export const emergingTech = [
   },
 ];
 
-// ─── SECTION: OPINION / ANALYSIS ─────────────────────────────────────────────
+// --- SECTION: OPINION / ANALYSIS ---------------------------------------------
 export const opinionPieces = [
   {
     id: "op-1",
@@ -350,7 +350,7 @@ export const opinionPieces = [
   },
 ];
 
-// ─── SECTION: VIDEO ──────────────────────────────────────────────────────────
+// --- SECTION: VIDEO ----------------------------------------------------------
 export const videoContent = [
   {
     id: "v-1",
@@ -378,7 +378,7 @@ export const videoContent = [
   },
 ];
 
-// ─── SIDEBAR: MOST READ ──────────────────────────────────────────────────────
+// --- SIDEBAR: MOST READ ------------------------------------------------------
 export const mostRead = [
   { rank: 1, headline: "AI adoption accelerates by 15% — what it means for your workforce", category: "AI" },
   { rank: 2, headline: "EU AI Act: the compliance checklist every executive needs now", category: "GOVERNANCE" },
@@ -387,7 +387,7 @@ export const mostRead = [
   { rank: 5, headline: "Economy 4.0: the $4.2 trillion opportunity hiding in plain sight", category: "DIGITAL ECONOMY" },
 ];
 
-// ─── SEVERITY COLORS ─────────────────────────────────────────────────────────
+// --- SEVERITY COLORS ---------------------------------------------------------
 export const severityColors = {
   Low:      { bg: "bg-emerald-100", text: "text-emerald-700", dot: "bg-emerald-500" },
   Medium:   { bg: "bg-amber-100",   text: "text-amber-700",   dot: "bg-amber-500"   },
@@ -395,7 +395,7 @@ export const severityColors = {
   Critical: { bg: "bg-red-100",     text: "text-red-700",     dot: "bg-red-600"     },
 };
 
-// ─── INTELLIGENCE FEED TICKER (with severity) ────────────────────────────────
+// --- INTELLIGENCE FEED TICKER (with severity) --------------------------------
 export const intelligenceFeedItems = [
   { id: 1,  text: "AI-powered workforce tools adoption surges 10% globally in Q1 2026", severity: "High",     category: "AI" },
   { id: 2,  text: "Cloud migration accelerates: 67% of Fortune 500 complete hybrid transition", severity: "Medium",   category: "Cloud" },
@@ -418,7 +418,7 @@ export const severityBadge = {
   Critical: { bg: "#7f1d1d", text: "#f87171", border: "#991b1b" },
 };
 
-// ─── INSIGHT CARDS ───────────────────────────────────────────────────────────
+// --- INSIGHT CARDS -----------------------------------------------------------
 export const insightCards = [
   {
     id: "ic-1", category: "AI",
@@ -488,7 +488,7 @@ export const insightCards = [
 
 export const insightCategories = ["All", "AI", "Cloud", "Cybersecurity", "Digital Economy", "DCO", "Governance", "Emerging Tech"];
 
-// ─── TREND RADAR ─────────────────────────────────────────────────────────────
+// --- TREND RADAR -------------------------------------------------------------
 export const trendRadarItems = [
   { id: 1, name: "Generative AI",          adoption: 61, disruption: 45, readiness: 58, ring: "Adopt",  quadrant: "AI & Automation",  color: "#8b5cf6" },
   { id: 2, name: "Zero-Trust Security",    adoption: 54, disruption: 40, readiness: 62, ring: "Adopt",  quadrant: "Security",          color: "#ef4444" },
@@ -507,7 +507,7 @@ export const trendRadarRings = {
   Hold:   { color: "#6b7280", label: "Hold",   desc: "Proceed with caution, reassess in 12–18 months" },
 };
 
-// ─── AI ENGINE RESPONSES ─────────────────────────────────────────────────────
+// --- AI ENGINE RESPONSES -----------------------------------------------------
 export const aiResponses = {
   default: {
     title: "Emerging Risks in Digital Transformation",
@@ -597,7 +597,7 @@ export const aiSuggestedQueries = [
   "Generate an executive summary for the board",
 ];
 
-// ─── 6xD FRAMEWORK ───────────────────────────────────────────────────────────
+// --- 6xD FRAMEWORK -----------------------------------------------------------
 export const sixDFramework = {
   pillars: [
     {
@@ -699,7 +699,7 @@ export const sixDFramework = {
   ],
 };
 
-// ─── MULTIMEDIA ──────────────────────────────────────────────────────────────
+// --- MULTIMEDIA --------------------------------------------------------------
 export const podcastEpisodes = [
   {
     id: "pod-1",

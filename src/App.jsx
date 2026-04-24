@@ -17,6 +17,7 @@ import About            from './views/About';
 import ArticlePage      from './views/ArticlePage';
 import VideoPage        from './views/VideoPage';
 import PodcastPage      from './views/PodcastPage';
+import AdminDashboard   from './views/admin/AdminDashboard';
 
 import { topStories, emergingTech, executiveBriefings, videoContent, insightCards } from './data/mockData';
 import SectionLabel from './components/SectionLabel';
@@ -137,26 +138,32 @@ const SECTION_ROUTES = {
 
 function AppInner() {
   const [activeSection, setActiveSection] = useState('Latest');
+  const [showAdmin, setShowAdmin] = useState(false);
   const { page } = useNav();
+
+  // Admin dashboard — full screen, no nav/footer
+  if (showAdmin) {
+    return <AdminDashboard onExit={() => setShowAdmin(false)} />;
+  }
 
   // If a content page is open, render it instead of the section
   if (page?.type === 'article') return (
     <>
-      <TopBar activeSection={activeSection} setActiveSection={setActiveSection} />
+      <TopBar activeSection={activeSection} setActiveSection={setActiveSection} onAdmin={() => setShowAdmin(true)} />
       <ArticlePage />
       <Footer />
     </>
   );
   if (page?.type === 'video') return (
     <>
-      <TopBar activeSection={activeSection} setActiveSection={setActiveSection} />
+      <TopBar activeSection={activeSection} setActiveSection={setActiveSection} onAdmin={() => setShowAdmin(true)} />
       <VideoPage />
       <Footer />
     </>
   );
   if (page?.type === 'podcast') return (
     <>
-      <TopBar activeSection={activeSection} setActiveSection={setActiveSection} />
+      <TopBar activeSection={activeSection} setActiveSection={setActiveSection} onAdmin={() => setShowAdmin(true)} />
       <PodcastPage />
       <Footer />
     </>
@@ -176,7 +183,7 @@ function AppInner() {
 
   return (
     <div className="min-h-screen" style={{ background: 'var(--brand-light)' }}>
-      <TopBar activeSection={activeSection} setActiveSection={setActiveSection} />
+      <TopBar activeSection={activeSection} setActiveSection={setActiveSection} onAdmin={() => setShowAdmin(true)} />
       <BreakingBanner />
       <TickerBar />
       {renderSection()}

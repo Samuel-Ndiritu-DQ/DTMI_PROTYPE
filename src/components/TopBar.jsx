@@ -36,7 +36,7 @@ function MegaMenu({ item, onNavigate }) {
   );
 }
 
-export default function TopBar({ activeSection, setActiveSection }) {
+export default function TopBar({ activeSection, setActiveSection, onAdmin }) {
   const [menuOpen,    setMenuOpen]    = useState(false);
   const [openMega,    setOpenMega]    = useState(null);
   const [scrolled,    setScrolled]    = useState(false);
@@ -89,6 +89,12 @@ export default function TopBar({ activeSection, setActiveSection }) {
             </span>
           </div>
           <div className="flex items-center gap-3">
+            <button
+              onClick={onAdmin}
+              className="text-[#94a3b8] text-[11px] hover:text-white transition-colors font-semibold"
+            >
+              Admin
+            </button>
             <button className="text-[#94a3b8] text-[11px] hover:text-white transition-colors">Sign In</button>
             <button className="btn-orange text-[11px] px-3 py-1 rounded-sm uppercase tracking-wide">
               Subscribe

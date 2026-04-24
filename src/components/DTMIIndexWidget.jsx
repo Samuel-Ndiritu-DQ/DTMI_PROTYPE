@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { AreaChart, Area, ResponsiveContainer } from 'recharts';
+import { AreaChart, Area } from 'recharts';
 import { TrendingUp } from 'lucide-react';
 
 const generateSparkline = (base, points = 12) =>
@@ -51,18 +51,16 @@ export default function DTMIIndexWidget() {
                 </span>
               </div>
             </div>
-            <div className="w-16 h-8">
-              <ResponsiveContainer width="100%" height="100%">
-                <AreaChart data={idx.sparkline}>
-                  <defs>
-                    <linearGradient id={`g-${idx.name.replace(/\s/g,'')}`} x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%"  stopColor={idx.change >= 0 ? '#16a34a' : '#dc2626'} stopOpacity={0.25} />
-                      <stop offset="95%" stopColor={idx.change >= 0 ? '#16a34a' : '#dc2626'} stopOpacity={0} />
-                    </linearGradient>
-                  </defs>
-                  <Area type="monotone" dataKey="v" stroke={idx.change >= 0 ? '#16a34a' : '#dc2626'} strokeWidth={1.5} fill={`url(#g-${idx.name.replace(/\s/g,'')})`} dot={false} />
-                </AreaChart>
-              </ResponsiveContainer>
+            <div style={{ width: 64, height: 32, flexShrink: 0 }}>
+              <AreaChart width={64} height={32} data={idx.sparkline}>
+                <defs>
+                  <linearGradient id={`g-${idx.name.replace(/\s/g,'')}`} x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%"  stopColor={idx.change >= 0 ? '#16a34a' : '#dc2626'} stopOpacity={0.25} />
+                    <stop offset="95%" stopColor={idx.change >= 0 ? '#16a34a' : '#dc2626'} stopOpacity={0} />
+                  </linearGradient>
+                </defs>
+                <Area type="monotone" dataKey="v" stroke={idx.change >= 0 ? '#16a34a' : '#dc2626'} strokeWidth={1.5} fill={`url(#g-${idx.name.replace(/\s/g,'')})`} dot={false} />
+              </AreaChart>
             </div>
           </div>
         ))}

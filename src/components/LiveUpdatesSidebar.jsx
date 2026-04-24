@@ -15,7 +15,7 @@ export default function LiveUpdatesSidebar() {
     let i = 0;
     const t = setInterval(() => {
       if (i < pool.length) {
-        setUpdates(prev => [pool[i], ...prev.slice(0, 7)]);
+        setUpdates(prev => [{ ...pool[i], hot: true }, ...prev.slice(0, 7)]);
         setLastRefresh(new Date());
         i++;
       }
@@ -37,17 +37,17 @@ export default function LiveUpdatesSidebar() {
       </div>
       <div className="divide-y" style={{ divideColor: 'var(--brand-border)' }}>
         {updates.map((item, i) => (
-          <div key={`${item.id}-${i}`} className="px-3 py-2.5 cursor-pointer hover:bg-gray-50 transition-colors">
+          <div key={`${item?.id ?? i}-${i}`} className="px-3 py-2.5 cursor-pointer hover:bg-gray-50 transition-colors">
             <div className="flex items-start gap-2">
-              {item.hot && (
+              {item?.hot && (
                 <span className="shrink-0 mt-0.5 text-white text-[9px] font-black px-1 py-0.5 rounded-sm uppercase" style={{ background: 'var(--brand-orange)' }}>
                   New
                 </span>
               )}
-              <p className="text-[12px] leading-snug flex-1" style={{ color: 'var(--brand-navy)' }}>{item.text}</p>
+              <p className="text-[12px] leading-snug flex-1" style={{ color: 'var(--brand-navy)' }}>{item?.text}</p>
             </div>
             <p className="text-[10px] mt-1 flex items-center gap-1" style={{ color: 'var(--brand-muted)' }}>
-              <Clock size={8} /> {item.time}
+              <Clock size={8} /> {item?.time}
             </p>
           </div>
         ))}
