@@ -1,5 +1,27 @@
-import { Clock, Play } from 'lucide-react';
+import { Clock, Play, BarChart2, Mic } from 'lucide-react';
 import { useNav } from '../context/NavContext';
+
+/* CNN-style content type badge */
+function ContentTypeBadge({ label, isVideo }) {
+  if (!label && !isVideo) return null;
+  const type = label || (isVideo ? 'VIDEO' : null);
+  if (!type) return null;
+
+  const styles = {
+    VIDEO:     { bg: 'rgba(0,0,0,0.75)', icon: <Play size={8} className="inline mr-0.5" fill="white" /> },
+    ANALYSIS:  { bg: '#1d4ed8', icon: <BarChart2 size={8} className="inline mr-0.5" /> },
+    PODCAST:   { bg: '#7c3aed', icon: <Mic size={8} className="inline mr-0.5" /> },
+    EXCLUSIVE: { bg: 'var(--brand-orange)', icon: null },
+    'MUST READ':{ bg: 'var(--brand-orange)', icon: null },
+  };
+  const s = styles[type.toUpperCase()] || { bg: 'var(--brand-orange)', icon: null };
+
+  return (
+    <span className="text-white text-[9px] font-black px-2 py-0.5 uppercase tracking-wider rounded-sm inline-flex items-center" style={{ background: s.bg }}>
+      {s.icon}{type}
+    </span>
+  );
+}
 
 export default function StoryCard({ story, size = 'md', showImage = true, horizontal = false }) {
   const { openArticle, openVideo } = useNav();
@@ -23,7 +45,7 @@ export default function StoryCard({ story, size = 'md', showImage = true, horizo
           {story.category && (
             <p className="text-[10px] font-black uppercase tracking-wider mb-1" style={{ color: 'var(--brand-orange)' }}>{story.category}</p>
           )}
-          <h3 className={`font-bold leading-snug transition-colors line-clamp-2 ${size === 'sm' ? 'text-[11px]' : 'text-[12px]'}`} style={{ color: 'var(--brand-navy)' }}>
+          <h3 className={`font-bold leading-snug transition-colors line-clamp-2 group-hover:opacity-70 ${size === 'sm' ? 'text-[11px]' : 'text-[12px]'}`} style={{ color: 'var(--brand-navy)' }}>
             {story.headline}
           </h3>
           {story.timestamp && (
@@ -46,23 +68,20 @@ export default function StoryCard({ story, size = 'md', showImage = true, horizo
             className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-400"
             loading="lazy"
           />
-          {story.label && (
-            <div className="absolute top-2 left-2">
-              <span
-                className="text-white text-[10px] font-black px-2 py-0.5 uppercase tracking-wider rounded-sm"
-                style={{ background: story.label === 'VIDEO' ? 'rgba(0,0,0,0.75)' : 'var(--brand-orange)' }}
-              >
-                {story.label === 'VIDEO' && <Play size={8} className="inline mr-1" fill="white" />}
-                {story.label}
+          {/* CNN-style content type badge top-left */}
+          <div className="absolute top-2 left-2 flex items-center gap-1.5">
+            <ContentTypeBadge label={story.label} isVideo={isVideo} />
+            {story.tag && !story.label && (
+              <span className="text-white text-[9px] font-black px-2 py-0.5 uppercase tracking-wider rounded-sm" style={{ background: 'var(--brand-orange)' }}>
+                {story.tag}
               </span>
-            </div>
-          )}
+            )}
+          </div>
           {story.duration && (
             <div className="absolute bottom-2 right-2 bg-black/75 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-sm">
               {story.duration}
             </div>
           )}
-          {/* Play overlay for videos */}
           {isVideo && (
             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/20">
               <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: 'var(--brand-orange)' }}>
@@ -73,9 +92,17 @@ export default function StoryCard({ story, size = 'md', showImage = true, horizo
         </div>
       )}
       <div>
-        {story.category && (
-          <p className="text-[10px] font-black uppercase tracking-wider mb-1" style={{ color: 'var(--brand-orange)' }}>{story.category}</p>
-        )}
+        {/* Category + content type inline — McKinsey style */}
+        <div className="flex items-center gap-2 mb-1 flex-wrap">
+          {story.category && (
+            <p className="text-[10px] font-black uppercase tracking-wider" style={{ color: 'var(--brand-orange)' }}>{story.category}</p>
+          )}
+          {story.label && story.label !== 'VIDEO' && !showImage && (
+            <span className="text-[9px] font-black uppercase tracking-wider px-1.5 py-0.5 rounded-sm" style={{ background: '#fff7ed', color: 'var(--brand-orange)' }}>
+              {story.label}
+            </span>
+          )}
+        </div>
         <h3
           className={`font-bold leading-snug group-hover:opacity-70 transition-opacity ${
             size === 'lg' ? 'text-[15px]' : size === 'sm' ? 'text-[11px]' : 'text-[13px]'

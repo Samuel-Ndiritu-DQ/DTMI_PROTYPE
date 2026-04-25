@@ -49,7 +49,7 @@ export default function Footer() {
               <button key={item} className="hover:text-white transition-colors">{item}</button>
             ))}
           </div>
-          <p className="text-[#374151] text-[11px]">© 2026 DigitalQatalyst · DTMI Prototype · Mock Data Mode</p>
+          <p className="text-[#374151] text-[11px]">© {new Date().getFullYear()} DigitalQatalyst · DTMI Prototype · Mock Data Mode</p>
         </div>
       </div>
     </footer>

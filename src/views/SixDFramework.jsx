@@ -1,200 +1,177 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { sixDFramework, severityBadge } from '../data/mockData';
-import { TrendingUp, Building2, Brain, Layers, Shield, BarChart2, Clock, ArrowRight } from 'lucide-react';
+import { TrendingUp, Building2, Brain, Layers, Shield, BarChart2, Clock, ArrowRight, ChevronRight } from 'lucide-react';
 import { useNav } from '../context/NavContext';
 import PageSearch from '../components/PageSearch';
+import SectionNav from '../components/SectionNav';
 
 const iconMap = { TrendingUp, Building2, Brain, Layers, Shield, BarChart2 };
+const sevColors = { Critical: '#ef4444', High: '#f59e0b', Medium: '#06b6d4', Low: '#10b981' };
 
-function SeverityDot({ level }) {
-  const s = severityBadge[level];
-  return <span className="w-2 h-2 rounded-full shrink-0" style={{ background: s.text }} />;
-}
-
-export default function SixDFramework() {
+export default function SixDFramework({ onNavigate }) {
   const [activePillar, setActivePillar] = useState(sixDFramework.pillars[0]);
   const [searchQuery, setSearchQuery]   = useState('');
   const { openArticle } = useNav();
 
-  return (
-    <div className="bg-[#0a0a0a] min-h-screen">
-      <div className="max-w-[1280px] mx-auto px-4 py-6">
+  const filteredArticles = activePillar.articles.filter(a =>
+    !searchQuery || a.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
-        {/* Header */}
-        <div className="mb-6 pb-4 border-b border-[#1a1a1a]">
-          <h1 className="text-white text-2xl font-black uppercase tracking-wide mb-1">6xD Framework</h1>
-          <p className="text-[#666] text-[12px]">
-            DTMI's six-pillar model for digital transformation — Economy 4.0, DCO, AI-Driven Organizations, Digital Business Platforms, Cyber Resilience, and Data & Intelligence
+  return (
+    <div style={{ background: 'var(--brand-light)' }} className="min-h-screen">
+
+      {/* Hero */}
+      <div style={{ background: 'var(--brand-navy)' }} className="border-b border-white/5">
+        <div className="max-w-[1280px] mx-auto px-4 py-10">
+          <p className="text-[11px] font-black uppercase tracking-widest mb-2" style={{ color: 'var(--brand-orange)' }}>
+            DTMI Intelligence Framework
+          </p>
+          <h1 className="text-[30px] sm:text-[38px] font-black leading-tight text-white mb-3">
+            The 6xD Framework
+          </h1>
+          <p className="text-[14px] leading-relaxed max-w-[600px]" style={{ color: '#94a3b8' }}>
+            DTMI's six-pillar model for digital transformation â€” the strategic architecture that defines how organizations compete, operate, and lead in Economy 4.0.
           </p>
         </div>
+      </div>
 
-        {/* Pillar selector — horizontal cards */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 mb-8">
-          {sixDFramework.pillars.map(pillar => {
-            const Icon = iconMap[pillar.icon];
-            const isActive = activePillar.id === pillar.id;
-            return (
-              <button
-                key={pillar.id}
-                onClick={() => { setActivePillar(pillar); setSearchQuery(''); }}
-                className={`p-3 border text-left transition-all duration-150 group ${
-                  isActive
-                    ? 'border-[#cc0000]/60 bg-[#cc0000]/5'
-                    : 'border-[#1a1a1a] bg-[#0d0d0d] hover:border-[#333]'
-                }`}
-              >
-                <div
-                  className="w-8 h-8 flex items-center justify-center rounded-sm mb-2"
-                  style={{ background: pillar.color + '22', border: `1px solid ${pillar.color}44` }}
+      {/* Section nav with Glossary link */}
+      {onNavigate && <SectionNav activeKey="6xD Framework" onNavigate={onNavigate} />}
+
+      {/* Pillar tab bar */}
+      <div style={{ background: 'var(--brand-navy)', borderBottom: '1px solid rgba(255,255,255,0.08)' }}>
+        <div className="max-w-[1280px] mx-auto px-4">
+          <div className="flex overflow-x-auto">
+            {sixDFramework.pillars.map(pillar => {
+              const Icon = iconMap[pillar.icon];
+              const isActive = activePillar.id === pillar.id;
+              return (
+                <button
+                  key={pillar.id}
+                  onClick={() => { setActivePillar(pillar); setSearchQuery(''); }}
+                  className="flex items-center gap-2 px-5 py-4 text-[12px] font-bold whitespace-nowrap border-b-2 transition-all shrink-0"
+                  style={{ borderColor: isActive ? pillar.color : 'transparent', color: isActive ? 'white' : '#64748b' }}
                 >
-                  {Icon && <Icon size={15} style={{ color: pillar.color }} />}
-                </div>
-                <p className="text-[#555] text-[9px] font-black uppercase tracking-wider">{pillar.code}</p>
-                <p className={`text-[12px] font-black leading-tight mt-0.5 ${isActive ? 'text-white' : 'text-[#888] group-hover:text-white'} transition-colors`}>
+                  {Icon && <Icon size={13} style={{ color: isActive ? pillar.color : '#64748b' }} />}
+                  <span className="text-[10px] font-black uppercase tracking-wider mr-1" style={{ color: isActive ? pillar.color : '#475569' }}>{pillar.code}</span>
                   {pillar.name}
-                </p>
-              </button>
-            );
-          })}
+                </button>
+              );
+            })}
+          </div>
         </div>
+      </div>
 
-        {/* Active pillar detail */}
-        {activePillar && (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      {/* Content */}
+      {activePillar && (
+        <div className="max-w-[1280px] mx-auto px-4 py-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
-            {/* Left: pillar info */}
-            <div className="space-y-4">
-              <div className="bg-[#0d0d0d] border border-[#1a1a1a] p-5">
-                {/* Icon + name */}
-                <div className="flex items-center gap-3 mb-4">
-                  <div
-                    className="w-10 h-10 flex items-center justify-center rounded-sm"
-                    style={{ background: activePillar.color + '22', border: `1px solid ${activePillar.color}44` }}
-                  >
-                    {iconMap[activePillar.icon] && (() => {
-                      const Icon = iconMap[activePillar.icon];
-                      return <Icon size={18} style={{ color: activePillar.color }} />;
-                    })()}
+            {/* Sidebar */}
+            <aside className="space-y-5">
+              <div className="rounded-sm border overflow-hidden" style={{ borderColor: 'var(--brand-border)' }}>
+                <div className="px-5 py-5" style={{ background: activePillar.color }}>
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 rounded-sm flex items-center justify-center bg-white/20">
+                      {(() => { const Icon = iconMap[activePillar.icon]; return Icon ? <Icon size={18} className="text-white" /> : null; })()}
+                    </div>
+                    <div>
+                      <p className="text-white/70 text-[10px] font-black uppercase tracking-widest">{activePillar.code}</p>
+                      <h2 className="text-white text-[17px] font-black leading-tight">{activePillar.name}</h2>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-[#555] text-[10px] font-black uppercase tracking-wider">{activePillar.code}</p>
-                    <h2 className="text-white text-[16px] font-black">{activePillar.name}</h2>
-                  </div>
+                  <p className="text-white/80 text-[12px] italic">"{activePillar.tagline}"</p>
                 </div>
-
-                <p className="text-[#cc0000] text-[11px] font-bold italic mb-3">"{activePillar.tagline}"</p>
-                <p className="text-[#888] text-[12px] leading-relaxed mb-4">{activePillar.description}</p>
-
-                {/* Key stat */}
-                <div
-                  className="p-3 border text-center"
-                  style={{ borderColor: activePillar.color + '44', background: activePillar.color + '11' }}
-                >
-                  <div className="text-3xl font-black" style={{ color: activePillar.color }}>
-                    {activePillar.stat}
+                <div className="p-5 bg-white">
+                  <p className="text-[13px] leading-relaxed mb-5" style={{ color: 'var(--brand-muted)' }}>{activePillar.description}</p>
+                  <div className="rounded-sm p-4 text-center border" style={{ background: activePillar.color + '0d', borderColor: activePillar.color + '33' }}>
+                    <p className="text-[32px] font-black leading-none mb-1" style={{ color: activePillar.color }}>{activePillar.stat}</p>
+                    <p className="text-[11px] font-semibold" style={{ color: 'var(--brand-muted)' }}>{activePillar.statLabel}</p>
                   </div>
-                  <div className="text-[#666] text-[10px] mt-1">{activePillar.statLabel}</div>
                 </div>
               </div>
 
-              {/* All pillars quick nav */}
-              <div className="bg-[#0d0d0d] border border-[#1a1a1a] p-4">
-                <p className="text-[#444] text-[10px] font-black uppercase tracking-wider mb-3">All Pillars</p>
+              <div className="rounded-sm border bg-white p-4" style={{ borderColor: 'var(--brand-border)' }}>
+                <p className="text-[10px] font-black uppercase tracking-widest mb-3" style={{ color: 'var(--brand-muted)' }}>All 6 Pillars</p>
                 {sixDFramework.pillars.map(p => {
-                  const Icon = iconMap[p.icon];
+                  const isActive = activePillar.id === p.id;
                   return (
-                    <button
-                      key={p.id}
-                      onClick={() => { setActivePillar(p); setSearchQuery(''); }}
-                      className={`w-full flex items-center gap-2 py-2 border-b border-[#111] last:border-0 text-left transition-colors ${
-                        activePillar.id === p.id ? 'text-white' : 'text-[#555] hover:text-white'
-                      }`}
-                    >
-                      <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: p.color }} />
-                      <span className="text-[10px] font-black">{p.code}</span>
-                      <span className="text-[11px]">{p.name}</span>
-                      {activePillar.id === p.id && <ArrowRight size={10} className="ml-auto text-[#cc0000]" />}
+                    <button key={p.id} onClick={() => { setActivePillar(p); setSearchQuery(''); }}
+                      className="w-full flex items-center gap-3 py-2.5 border-b last:border-0 text-left transition-colors"
+                      style={{ borderColor: 'var(--brand-border)' }}>
+                      <span className="w-2 h-2 rounded-full shrink-0" style={{ background: p.color }} />
+                      <span className="text-[10px] font-black uppercase tracking-wider w-6 shrink-0" style={{ color: p.color }}>{p.code}</span>
+                      <span className="text-[12px] font-semibold flex-1" style={{ color: isActive ? 'var(--brand-navy)' : 'var(--brand-muted)' }}>{p.name}</span>
+                      {isActive && <ChevronRight size={12} style={{ color: 'var(--brand-orange)' }} />}
                     </button>
                   );
                 })}
               </div>
-            </div>
+            </aside>
 
-            {/* Right: articles */}
-            <div className="lg:col-span-2 space-y-4">
-              <div className="flex items-center justify-between pb-2 border-b border-[#1a1a1a]">
-                <h3 className="text-white text-[13px] font-black uppercase tracking-wide">
-                  Latest: {activePillar.name}
+            {/* Articles */}
+            <div className="lg:col-span-2 space-y-5">
+              <div className="flex items-center justify-between pb-3 border-b-2" style={{ borderColor: activePillar.color }}>
+                <h3 className="text-[15px] font-black" style={{ color: 'var(--brand-navy)' }}>
+                  Latest Intelligence Â· {activePillar.name}
                 </h3>
-                <button className="text-[#cc0000] text-[11px] font-bold hover:underline">See all →</button>
+                <span className="text-[11px]" style={{ color: 'var(--brand-muted)' }}>{filteredArticles.length} articles</span>
               </div>
 
-              {/* Search bar */}
-              <PageSearch
-                value={searchQuery}
-                onChange={setSearchQuery}
+              <PageSearch value={searchQuery} onChange={setSearchQuery}
                 placeholder={`Search ${activePillar.name} articles...`}
-                resultCount={searchQuery ? activePillar.articles.filter(a =>
-                  a.title.toLowerCase().includes(searchQuery.toLowerCase())
-                ).length : undefined}
-                totalCount={activePillar.articles.length}
-                dark
-              />
+                resultCount={searchQuery ? filteredArticles.length : undefined}
+                totalCount={activePillar.articles.length} />
 
-              {activePillar.articles
-                .filter(article => !searchQuery || article.title.toLowerCase().includes(searchQuery.toLowerCase()))
-                .map((article, i) => {
-                const s = severityBadge[article.severity];
-                return (
-                  <div
-                    key={i}
+              <div className="space-y-3">
+                {filteredArticles.length > 0 ? filteredArticles.map((article, i) => (
+                  <div key={i}
                     onClick={() => openArticle({ id: `6xd-${activePillar.id}-${i}`, headline: article.title, summary: activePillar.description, category: activePillar.name.toUpperCase(), image: '', author: 'DTMI Research', timestamp: article.timestamp, readTime: article.readTime })}
-                    className="bg-[#0d0d0d] border border-[#1a1a1a] hover:border-[#cc0000]/30 transition-colors cursor-pointer group p-4"
-                  >
-                    <div className="flex items-start gap-3">
-                      <div className="flex-1">
-                        <div className="flex items-center gap-2 mb-2">
-                          <SeverityDot level={article.severity} />
-                          <span
-                            className="text-[9px] font-black uppercase px-1.5 py-0.5 rounded-sm"
-                            style={{ background: s.bg, color: s.text, border: `1px solid ${s.border}` }}
-                          >
+                    className="bg-white border rounded-sm p-4 cursor-pointer group card-hover" style={{ borderColor: 'var(--brand-border)' }}>
+                    <div className="flex items-start gap-4">
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 mb-2 flex-wrap">
+                          <span className="text-[9px] font-black uppercase px-2 py-0.5 rounded-sm"
+                            style={{ background: sevColors[article.severity] + '18', color: sevColors[article.severity], border: `1px solid ${sevColors[article.severity]}33` }}>
                             {article.severity}
                           </span>
-                          <span className="text-[#444] text-[10px]">{article.readTime} read</span>
+                          <span className="text-[10px] flex items-center gap-1" style={{ color: 'var(--brand-muted)' }}>
+                            <Clock size={9} /> {article.readTime} read
+                          </span>
+                          <span className="text-[10px]" style={{ color: 'var(--brand-muted)' }}>{article.timestamp}</span>
                         </div>
-                        <h4 className="text-white text-[14px] font-bold leading-snug group-hover:text-[#ccc] transition-colors">
+                        <h4 className="text-[14px] font-bold leading-snug group-hover:opacity-70 transition-opacity" style={{ color: 'var(--brand-navy)' }}>
                           {article.title}
                         </h4>
-                        <div className="flex items-center gap-2 mt-2 text-[#444] text-[10px]">
-                          <Clock size={9} />
-                          <span>{article.timestamp}</span>
-                        </div>
                       </div>
-                      <ArrowRight size={14} className="text-[#333] group-hover:text-[#cc0000] transition-colors shrink-0 mt-1" />
+                      <ArrowRight size={15} className="shrink-0 mt-1 group-hover:translate-x-0.5 transition-transform" style={{ color: 'var(--brand-orange)' }} />
                     </div>
                   </div>
-                );
-              })}
+                )) : (
+                  <div className="text-center py-10">
+                    <p className="text-[13px]" style={{ color: 'var(--brand-muted)' }}>No articles match your search.</p>
+                  </div>
+                )}
+              </div>
 
-              {/* DTMI AI insight for this pillar */}
-              <div className="bg-[#0d0d0d] border border-[#1a1a1a] p-4">
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="bg-[#cc0000] text-white text-[9px] font-black px-2 py-0.5 uppercase tracking-wider rounded-sm">
-                    AI Insight
-                  </span>
+              {/* AI Insight */}
+              <div className="rounded-sm border p-5" style={{ background: 'var(--brand-navy)', borderColor: 'rgba(255,255,255,0.07)' }}>
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="text-[9px] font-black uppercase px-2 py-0.5 rounded-sm text-white" style={{ background: 'var(--brand-orange)' }}>AI Insight</span>
+                  <span className="text-[11px]" style={{ color: '#64748b' }}>DTMI Intelligence Engine</span>
                 </div>
-                <p className="text-[#aaa] text-[12px] leading-relaxed">
-                  <strong className="text-white">{activePillar.name}</strong> is one of the highest-priority transformation pillars in Q2 2026.
+                <p className="text-[13px] leading-relaxed" style={{ color: '#94a3b8' }}>
+                  <span className="text-white font-semibold">{activePillar.name}</span> is a high-priority transformation pillar in Q2 2026.
                   Organizations that have fully adopted this framework report{' '}
-                  <strong style={{ color: activePillar.color }}>{activePillar.stat}</strong> {activePillar.statLabel.toLowerCase()}.
-                  {' '}The DTMI AI Engine recommends prioritizing this pillar in your next executive strategy review.
+                  <span className="font-bold" style={{ color: activePillar.color }}>{activePillar.stat}</span>{' '}
+                  {activePillar.statLabel.toLowerCase()}. The DTMI AI Engine recommends prioritizing this pillar in your next executive strategy review.
                 </p>
               </div>
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }
+

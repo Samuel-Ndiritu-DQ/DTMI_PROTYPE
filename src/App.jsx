@@ -19,6 +19,9 @@ import VideoPage        from './views/VideoPage';
 import PodcastPage      from './views/PodcastPage';
 import BooksPage        from './views/BooksPage';
 import ResearchPage     from './views/ResearchPage';
+import SectorsPage      from './views/SectorsPage';
+import TechnologyPage   from './views/TechnologyPage';
+import GlossaryPage     from './views/GlossaryPage';
 import AdminDashboard   from './views/admin/AdminDashboard';
 import LoginPage        from './views/LoginPage';
 import RegisterPage     from './views/RegisterPage';
@@ -135,7 +138,8 @@ const SECTION_ROUTES = {
   'Insight Cards':     (p) => <InsightCards />,
   'Trend Radar':       (p) => <TrendRadar />,
   'AI Engine':         (p) => <AIEngine />,
-  '6xD Framework':     (p) => <SixDFramework />,
+  '6xD Framework':     (p) => <SixDFramework onNavigate={p.onNavigate} />,
+  '6xd':               (p) => <SixDFramework onNavigate={p.onNavigate} />,
   'Multimedia':        (p) => <Multimedia />,
   'About':             (p) => <About />,
   'Signal':            (p) => <IntelligenceLayerPage layer="Signal" />,
@@ -143,6 +147,11 @@ const SECTION_ROUTES = {
   'Deep Analysis':     (p) => <IntelligenceLayerPage layer="Deep Analysis" />,
   'Books':             (p) => <BooksPage onSignIn={p.onSignIn} />,
   'Research':          (p) => <ResearchPage onSignIn={p.onSignIn} />,
+  'Glossary':          (p) => <GlossaryPage />,
+  'Sectors':           (p) => <SectorsPage onNavigate={p.onNavigate} />,
+  'sectors':           (p) => <SectorsPage onNavigate={p.onNavigate} />,
+  'Technology':        (p) => <TechnologyPage onNavigate={p.onNavigate} />,
+  'technology':        (p) => <TechnologyPage onNavigate={p.onNavigate} />,
   'D1': (p) => <DomainPage domain="D1" />,
   'D2': (p) => <DomainPage domain="D2" />,
   'D3': (p) => <DomainPage domain="D3" />,
@@ -204,7 +213,7 @@ function AppInner() {
 
   const renderSection = () => {
     const route = SECTION_ROUTES[activeSection];
-    if (route) return route({ onSignIn: () => setAuthModal(AUTH_LOGIN) });
+    if (route) return route({ onSignIn: () => setAuthModal(AUTH_LOGIN), onNavigate: setActiveSection });
     return (
       <GenericPage
         title={activeSection}

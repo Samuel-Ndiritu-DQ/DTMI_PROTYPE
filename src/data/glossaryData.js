@@ -1,0 +1,63 @@
+// DTMI Glossary of Terms
+export const glossaryTerms = [
+  // ── Economy 4.0 ──────────────────────────────────────────────────────────
+  { term: 'Economy 4.0', category: 'Digital Economy', definition: 'The fourth wave of economic transformation driven by the convergence of AI, cloud computing, platform business models, and the digitization of physical assets. Economy 4.0 redefines value creation, labor markets, and competitive dynamics across all sectors.' },
+  { term: 'Platform Economy', category: 'Digital Economy', definition: 'An economic model where value is created through digital platforms that facilitate interactions between producers and consumers. Platform businesses benefit from network effects, near-zero marginal costs, and data compounding.' },
+  { term: 'Digital Labor Market', category: 'Digital Economy', definition: 'Labor markets transformed by digital technologies, enabling remote work, gig economy models, AI-augmented roles, and global talent pools. Characterized by skills-based hiring over credential-based hiring.' },
+  { term: 'Network Effects', category: 'Digital Economy', definition: 'The phenomenon where a product or service becomes more valuable as more people use it. A core driver of platform business model dominance in Economy 4.0.' },
+  { term: 'Value Chain Digitization', category: 'Digital Economy', definition: 'The process of embedding digital technologies across every step of a value chain — from procurement to delivery — to increase speed, reduce cost, and improve visibility.' },
+
+  // ── DCO ──────────────────────────────────────────────────────────────────
+  { term: 'Digital Cognitive Organization (DCO)', category: 'DCO', definition: 'An organization where digital intelligence is embedded into every decision, process, and interaction. DCO is defined by five characteristics: data-native, AI-augmented, platform-oriented, ecosystem-connected, and continuously adaptive.' },
+  { term: 'DCO Maturity Model', category: 'DCO', definition: 'A five-level framework for assessing an organization\'s digital cognitive capability — from Level 1 (Digitally Aware) to Level 5 (Cognitively Native). Each level defines specific capabilities, behaviors, and measurable outcomes.' },
+  { term: 'Digital Maturity', category: 'DCO', definition: 'The degree to which an organization has embedded digital capabilities into its strategy, operations, culture, and technology. Measured across multiple dimensions including data, AI, talent, and governance.' },
+  { term: 'Cognitive Enterprise', category: 'DCO', definition: 'An organization that uses AI and data to continuously learn, adapt, and make intelligent decisions at scale. The cognitive enterprise treats intelligence as infrastructure, not a tool.' },
+  { term: 'Operating Model', category: 'DCO', definition: 'The blueprint that defines how an organization delivers value — covering structure, processes, people, technology, and governance. Digital transformation requires a fundamental redesign of the operating model.' },
+
+  // ── AI & Automation ───────────────────────────────────────────────────────
+  { term: 'Generative AI (GenAI)', category: 'AI & Automation', definition: 'AI systems capable of generating new content — text, images, code, audio — based on patterns learned from training data. GenAI is transforming knowledge work, creative processes, and software development.' },
+  { term: 'Agentic AI', category: 'AI & Automation', definition: 'AI systems that can autonomously plan, execute, and adapt multi-step tasks with minimal human intervention. Agentic AI represents the next evolution beyond conversational AI.' },
+  { term: 'AI Governance', category: 'AI & Automation', definition: 'The frameworks, policies, and processes that ensure AI systems are developed and deployed responsibly, ethically, and in compliance with regulations. Organizations with formal AI governance achieve 3.2x better AI ROI.' },
+  { term: 'Large Language Model (LLM)', category: 'AI & Automation', definition: 'A type of AI model trained on vast amounts of text data to understand and generate human language. LLMs are the foundation of most modern generative AI applications.' },
+  { term: 'AI Adoption Index', category: 'AI & Automation', definition: 'DTMI\'s quarterly measure of enterprise AI deployment across 12 dimensions: strategy, governance, talent, infrastructure, data readiness, use case deployment, ROI measurement, ethics, vendor management, integration, change management, and executive sponsorship.' },
+  { term: 'Hyperautomation', category: 'AI & Automation', definition: 'The disciplined, business-driven approach to rapidly identifying, vetting, and automating as many business and IT processes as possible using AI, ML, RPA, and other automation technologies.' },
+
+  // ── Cybersecurity ─────────────────────────────────────────────────────────
+  { term: 'Zero-Trust Architecture', category: 'Cybersecurity', definition: 'A security model based on the principle "never trust, always verify." Zero-trust requires continuous authentication and authorization for every user, device, and application — regardless of network location.' },
+  { term: 'Cyber Resilience', category: 'Cybersecurity', definition: 'The organizational capability to anticipate, withstand, recover from, and adapt to cyber threats while maintaining business continuity. Resilience goes beyond protection to include response and recovery.' },
+  { term: 'OT/IT Convergence', category: 'Cybersecurity', definition: 'The integration of Operational Technology (OT) systems — industrial control systems, SCADA — with Information Technology (IT) networks. This convergence creates significant new attack surfaces.' },
+  { term: 'Attack Surface', category: 'Cybersecurity', definition: 'The total sum of different points where an unauthorized user can try to enter or extract data from an environment. Cloud adoption, remote work, and IoT have dramatically expanded enterprise attack surfaces.' },
+  { term: 'CISO Mandate', category: 'Cybersecurity', definition: 'The evolving role of the Chief Information Security Officer — expanding from technical security management to strategic business risk leadership, board-level communication, and regulatory compliance.' },
+  { term: 'Supply Chain Security', category: 'Cybersecurity', definition: 'The practice of protecting the integrity of software and hardware components sourced from third-party vendors. Supply chain attacks have become one of the most impactful threat vectors.' },
+
+  // ── Cloud & Infrastructure ────────────────────────────────────────────────
+  { term: 'Multi-Cloud Strategy', category: 'Cloud', definition: 'The use of cloud services from multiple providers (AWS, Azure, GCP) to avoid vendor lock-in, optimize costs, and improve resilience. Organizations with mature multi-cloud strategies report 18% lower operational costs.' },
+  { term: 'FinOps', category: 'Cloud', definition: 'A financial management discipline for cloud that enables organizations to maximize business value by helping engineering, finance, and business teams collaborate on data-driven cloud spending decisions.' },
+  { term: 'Cloud-Native', category: 'Cloud', definition: 'An approach to building and running applications that fully exploits the advantages of cloud computing — using microservices, containers, serverless functions, and continuous delivery pipelines.' },
+  { term: 'Edge Computing', category: 'Cloud', definition: 'A distributed computing paradigm that brings computation and data storage closer to the sources of data — reducing latency, bandwidth usage, and dependency on centralized cloud infrastructure.' },
+  { term: 'Hybrid Cloud', category: 'Cloud', definition: 'An IT architecture that combines on-premises infrastructure with public and private cloud services, allowing data and applications to move between environments based on cost, performance, and compliance requirements.' },
+
+  // ── Digital Business Platforms ────────────────────────────────────────────
+  { term: 'Digital Experience Platform (DXP)', category: 'Technology', definition: 'An integrated set of technologies that enables organizations to deliver personalized, connected digital experiences across all customer and employee touchpoints — web, mobile, IoT, and beyond.' },
+  { term: 'Digital Workspace Platform (DWS)', category: 'Technology', definition: 'The technology layer that powers internal operations, collaboration, and productivity — including ERP, HRMS, collaboration tools, and back-office systems.' },
+  { term: 'Digital Intelligence & Analytics (DIA)', category: 'Technology', definition: 'The platform layer that transforms raw data into actionable intelligence — covering data architecture, analytics, AI/ML models, and real-time decision engines.' },
+  { term: 'Secure Digital Operations (SDO)', category: 'Technology', definition: 'The foundational layer providing cloud infrastructure, cybersecurity, interoperability, and digital IT services that underpin all other platform layers.' },
+  { term: 'API-First Architecture', category: 'Technology', definition: 'A design approach where APIs are treated as first-class products — designed before implementation, documented thoroughly, and built for reuse. Enables composable, scalable digital platforms.' },
+  { term: 'Composable Architecture', category: 'Technology', definition: 'An approach to enterprise technology that assembles business capabilities from interchangeable building blocks (packaged business capabilities) that can be rapidly reconfigured to meet changing needs.' },
+
+  // ── Governance & Compliance ───────────────────────────────────────────────
+  { term: 'EU AI Act', category: 'Governance', definition: 'The European Union\'s comprehensive regulatory framework for artificial intelligence, classifying AI systems by risk level and imposing obligations on developers and deployers. Non-compliance carries fines up to 6% of global annual revenue.' },
+  { term: 'Digital Sovereignty', category: 'Governance', definition: 'The right and ability of individuals, organizations, and nations to control their own digital data, infrastructure, and technology. Increasingly important as data residency regulations proliferate globally.' },
+  { term: 'Data Governance', category: 'Governance', definition: 'The overall management of data availability, usability, integrity, and security in an organization. Includes policies, standards, and processes for data ownership, quality, and lifecycle management.' },
+  { term: 'ESG in Digital Transformation', category: 'Governance', definition: 'The integration of Environmental, Social, and Governance considerations into digital transformation strategy — covering energy efficiency of AI/cloud, digital inclusion, and algorithmic fairness.' },
+  { term: 'Digital Risk Management', category: 'Governance', definition: 'The identification, assessment, and mitigation of risks arising from digital technologies and transformation initiatives — including cyber risk, AI risk, data risk, and third-party technology risk.' },
+
+  // ── Future of Work ────────────────────────────────────────────────────────
+  { term: 'Digital Worker', category: 'Future of Work', definition: 'A knowledge worker whose role is fundamentally shaped by digital tools, AI collaboration, and data-driven decision-making. By 2030, 85% of jobs will require digital fluency as a baseline competency.' },
+  { term: 'Human-AI Partnership', category: 'Future of Work', definition: 'A model of work where humans and AI systems collaborate as genuine partners — each contributing complementary capabilities. Human-AI partnership models outperform pure automation by 31%.' },
+  { term: 'Digital Fluency', category: 'Future of Work', definition: 'The ability to use digital tools effectively, understand data, collaborate with AI systems, and continuously learn new technologies. The baseline competency requirement for the digital workforce of 2030.' },
+  { term: 'Reskilling', category: 'Future of Work', definition: 'The process of learning new skills to perform a different job or role, typically in response to automation or digital transformation. Organizations investing in reskilling report 34% lower attrition.' },
+  { term: 'Talent Intelligence', category: 'Future of Work', definition: 'The use of data and AI to understand, predict, and optimize workforce capabilities — including skills mapping, succession planning, and learning pathway personalization.' },
+];
+
+export const glossaryCategories = ['All', 'Digital Economy', 'DCO', 'AI & Automation', 'Cybersecurity', 'Cloud', 'Technology', 'Governance', 'Future of Work'];

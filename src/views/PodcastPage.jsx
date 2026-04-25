@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from 'react';
+﻿import { useRef, useState, useEffect } from 'react';
 import { useNav } from '../context/NavContext';
 import { podcastEpisodes } from '../data/mockData';
 import { ArrowLeft, Play, Pause, SkipBack, SkipForward, Volume2, VolumeX, Clock, Users, Headphones, Link, Bookmark, Share2 } from 'lucide-react';
@@ -169,15 +169,15 @@ function RelatedEpisodeCard({ ep, onOpen }) {
     <button
       onClick={() => onOpen(ep)}
       className="w-full text-left group flex gap-3 py-3 border-b last:border-0"
-      style={{ borderColor: '#1a1a1a' }}
+      style={{ borderColor: 'var(--brand-border)' }}
     >
       <div className="relative shrink-0 w-16 h-16 overflow-hidden rounded-sm">
         <img src={ep.image} alt={ep.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" />
       </div>
       <div className="flex-1 min-w-0">
-        <p className="text-[9px] font-black uppercase tracking-wider mb-0.5" style={{ color: 'var(--brand-orange)' }}>{ep.episode} · {ep.category}</p>
+        <p className="text-[9px] font-black uppercase tracking-wider mb-0.5" style={{ color: 'var(--brand-orange)' }}>{ep.episode} Â· {ep.category}</p>
         <p className="text-[12px] font-bold leading-snug line-clamp-2 text-white group-hover:text-[#ccc] transition-colors">{ep.title}</p>
-        <p className="text-[10px] mt-0.5 text-[#64748b] flex items-center gap-1"><Clock size={8} /> {ep.duration} · {ep.plays} plays</p>
+        <p className="text-[10px] mt-0.5 text-[#64748b] flex items-center gap-1"><Clock size={8} /> {ep.duration} Â· {ep.plays} plays</p>
       </div>
     </button>
   );
@@ -199,10 +199,10 @@ export default function PodcastPage() {
   };
 
   return (
-    <div style={{ background: '#0a0a0a' }} className="min-h-screen">
+    <div style={{ background: 'var(--brand-light)' }} className="min-h-screen">
 
-      {/* ── BACK BAR ── */}
-      <div className="border-b sticky top-0 z-40" style={{ background: '#111', borderColor: '#1a1a1a' }}>
+      {/* â”€â”€ BACK BAR â”€â”€ */}
+      <div className="border-b sticky top-0 z-40" style={{ background: 'white', borderColor: 'var(--brand-border)' }}>
         <div className="max-w-[1280px] mx-auto px-4 h-11 flex items-center justify-between">
           <button
             onClick={goBack}
@@ -224,7 +224,7 @@ export default function PodcastPage() {
       <div className="max-w-[1280px] mx-auto px-4 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
-          {/* ── MAIN (2/3) ── */}
+          {/* â”€â”€ MAIN (2/3) â”€â”€ */}
           <div className="lg:col-span-2 space-y-6">
 
             {/* Player */}
@@ -250,14 +250,14 @@ export default function PodcastPage() {
                 {item.title}
               </h1>
 
-              <div className="flex items-center justify-between flex-wrap gap-3 pb-4 mb-5 border-b" style={{ borderColor: '#1a1a1a' }}>
+              <div className="flex items-center justify-between flex-wrap gap-3 pb-4 mb-5 border-b" style={{ borderColor: 'var(--brand-border)' }}>
                 <div className="flex items-center gap-3 text-[#64748b] text-[12px]">
                   <span className="text-white font-semibold">{item.host}</span>
-                  <span>·</span>
+                  <span>Â·</span>
                   <span>Guest: {item.guest}</span>
-                  <span>·</span>
+                  <span>Â·</span>
                   <span className="flex items-center gap-1"><Clock size={10} /> {item.duration}</span>
-                  <span>·</span>
+                  <span>Â·</span>
                   <span className="flex items-center gap-1"><Users size={10} /> {item.plays} plays</span>
                 </div>
                 <div className="flex gap-2">
@@ -274,7 +274,7 @@ export default function PodcastPage() {
             </div>
 
             {/* Episode notes */}
-            <div className="border rounded-sm p-5" style={{ borderColor: '#1a1a1a', background: '#111' }}>
+            <div className="border rounded-sm p-5" style={{ borderColor: 'var(--brand-border)', background: 'white' }}>
               <p className="text-[11px] font-black uppercase tracking-wider mb-4" style={{ color: 'var(--brand-orange)' }}>Episode Notes</p>
               <div className="space-y-4 text-[#94a3b8] text-[14px] leading-relaxed">
                 <p>In this episode, {item.host} sits down with {item.guest} to explore the most pressing questions facing digital transformation leaders today.</p>
@@ -286,7 +286,7 @@ export default function PodcastPage() {
                     'What separates digital leaders from laggards in 2026',
                     'Practical frameworks for executive decision-making',
                     'The role of governance in sustainable transformation',
-                    'Predictions for the next 12–18 months',
+                    'Predictions for the next 12â€“18 months',
                   ].map((point, i) => (
                     <li key={i} className="flex items-start gap-2">
                       <span className="mt-2 w-1.5 h-1.5 rounded-full shrink-0" style={{ background: 'var(--brand-orange)' }} />
@@ -294,15 +294,15 @@ export default function PodcastPage() {
                     </li>
                   ))}
                 </ul>
-                <p className="text-[12px] text-[#64748b]">Published: {item.date} · Duration: {item.duration}</p>
+                <p className="text-[12px] text-[#64748b]">Published: {item.date} Â· Duration: {item.duration}</p>
               </div>
             </div>
           </div>
 
-          {/* ── SIDEBAR (1/3) ── */}
+          {/* â”€â”€ SIDEBAR (1/3) â”€â”€ */}
           <aside className="space-y-5">
-            <div className="border rounded-sm p-4" style={{ borderColor: '#1a1a1a', background: '#111' }}>
-              <h3 className="text-[12px] font-black uppercase tracking-wider mb-3 pb-2 border-b text-white" style={{ borderColor: '#1a1a1a' }}>
+            <div className="border rounded-sm p-4" style={{ borderColor: 'var(--brand-border)', background: 'white' }}>
+              <h3 className="text-[12px] font-black uppercase tracking-wider mb-3 pb-2 border-b text-white" style={{ borderColor: 'var(--brand-border)' }}>
                 More Episodes
               </h3>
               {related.map(ep => (

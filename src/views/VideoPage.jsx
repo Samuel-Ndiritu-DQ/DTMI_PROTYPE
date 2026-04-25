@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from 'react';
+﻿import { useRef, useState, useEffect } from 'react';
 import { useNav } from '../context/NavContext';
 import { videoEpisodes, videoContent, topStories } from '../data/mockData';
 import { ArrowLeft, Play, Pause, Volume2, VolumeX, Maximize, Clock, Users, Share2, Bookmark, Link } from 'lucide-react';
@@ -188,10 +188,10 @@ export default function VideoPage() {
   };
 
   return (
-    <div style={{ background: '#0a0a0a' }} className="min-h-screen">
+    <div style={{ background: 'var(--brand-light)' }} className="min-h-screen">
 
-      {/* ── BACK BAR ── */}
-      <div className="border-b sticky top-0 z-40" style={{ background: '#111', borderColor: '#1a1a1a' }}>
+      {/* â”€â”€ BACK BAR â”€â”€ */}
+      <div className="border-b sticky top-0 z-40" style={{ background: 'white', borderColor: 'var(--brand-border)' }}>
         <div className="max-w-[1280px] mx-auto px-4 h-11 flex items-center justify-between">
           <button
             onClick={goBack}
@@ -213,7 +213,7 @@ export default function VideoPage() {
       <div className="max-w-[1280px] mx-auto px-4 py-6">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
-          {/* ── MAIN (2/3) ── */}
+          {/* â”€â”€ MAIN (2/3) â”€â”€ */}
           <div className="lg:col-span-2">
 
             {/* Video player */}
@@ -235,13 +235,13 @@ export default function VideoPage() {
               {title}
             </h1>
 
-            <div className="flex items-center justify-between flex-wrap gap-3 pb-4 mb-5 border-b" style={{ borderColor: '#1a1a1a' }}>
+            <div className="flex items-center justify-between flex-wrap gap-3 pb-4 mb-5 border-b" style={{ borderColor: 'var(--brand-border)' }}>
               <div className="flex items-center gap-3 text-[#64748b] text-[12px]">
-                <span className="text-white font-semibold">{host}</span>
-                <span>·</span>
+                <span className="font-semibold">{host}</span>
+                <span>Â·</span>
                 <span className="flex items-center gap-1"><Clock size={10} /> {date}</span>
-                {duration && <><span>·</span><span>{duration}</span></>}
-                {views && <><span>·</span><span className="flex items-center gap-1"><Users size={10} /> {views} views</span></>}
+                {duration && <><span>Â·</span><span>{duration}</span></>}
+                {views && <><span>Â·</span><span className="flex items-center gap-1"><Users size={10} /> {views} views</span></>}
               </div>
               <div className="flex gap-2">
                 <button className="flex items-center gap-1.5 text-[11px] font-semibold px-3 py-1.5 border rounded-sm transition-colors text-[#0077b5] hover:bg-white/5" style={{ borderColor: '#333' }}>
@@ -259,7 +259,7 @@ export default function VideoPage() {
             )}
 
             {/* Key points */}
-            <div className="border rounded-sm p-4" style={{ borderColor: '#1a1a1a', background: '#111' }}>
+            <div className="border rounded-sm p-4" style={{ borderColor: 'var(--brand-border)', background: 'white' }}>
               <p className="text-[11px] font-black uppercase tracking-wider mb-3" style={{ color: 'var(--brand-orange)' }}>Key Points Covered</p>
               <ul className="space-y-2">
                 {[
@@ -267,7 +267,7 @@ export default function VideoPage() {
                   'Key frameworks and methodologies driving successful transformation',
                   'Common failure patterns and how to avoid them',
                   'Practical recommendations for executive leaders',
-                  'What the data says about the next 12–18 months',
+                  'What the data says about the next 12â€“18 months',
                 ].map((point, i) => (
                   <li key={i} className="flex items-start gap-2 text-[13px] text-[#94a3b8]">
                     <span className="mt-1.5 w-1.5 h-1.5 rounded-full shrink-0" style={{ background: 'var(--brand-orange)' }} />
@@ -278,10 +278,10 @@ export default function VideoPage() {
             </div>
           </div>
 
-          {/* ── SIDEBAR (1/3) ── */}
+          {/* â”€â”€ SIDEBAR (1/3) â”€â”€ */}
           <aside className="space-y-5">
-            <div className="border rounded-sm p-4" style={{ borderColor: '#1a1a1a', background: '#111' }}>
-              <h3 className="text-[12px] font-black uppercase tracking-wider mb-3 pb-2 border-b text-white" style={{ borderColor: '#1a1a1a' }}>
+            <div className="border rounded-sm p-4" style={{ borderColor: 'var(--brand-border)', background: 'white' }}>
+              <h3 className="text-[12px] font-black uppercase tracking-wider mb-3 pb-2 border-b text-white" style={{ borderColor: 'var(--brand-border)' }}>
                 More Videos
               </h3>
               {related.map(ep => (

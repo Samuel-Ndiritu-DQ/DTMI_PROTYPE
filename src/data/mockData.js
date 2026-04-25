@@ -34,12 +34,12 @@ export const navItems = [
           { label: "Deep Analysis", key: "Deep Analysis",desc: "Whitepapers, essays & research" },
           { label: "Research",      key: "Research",     desc: "Reports, whitepapers & policy briefs" },
           { label: "Books",         key: "Books",        desc: "DTMB flagship research volumes" },
+          { label: "Glossary",      key: "Glossary",     desc: "A–Z digital transformation terms" },
         ],
       },
       {
         heading: "Live Tools",
         links: [
-          { label: "Intelligence Feed", key: "Intelligence Feed", desc: "Real-time transformation signals" },
           { label: "Trend Radar",       key: "Trend Radar",       desc: "Tech adoption & disruption map" },
           { label: "AI Engine",         key: "AI Engine",         desc: "Query DTMI AI for insights" },
         ],
