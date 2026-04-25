@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { intelligenceFeedItems, severityBadge, tickerItems } from '../data/mockData';
 import { Clock, Pause, Play, Filter } from 'lucide-react';
+import PageSearch from '../components/PageSearch';
 
 const SEV_ORDER = { Critical: 0, High: 1, Medium: 2, Low: 3 };
 
@@ -43,6 +44,7 @@ export default function IntelligenceFeed() {
   const [feed, setFeed] = useState([...intelligenceFeedItems].sort((a, b) => SEV_ORDER[a.severity] - SEV_ORDER[b.severity]));
   const [paused, setPaused] = useState(false);
   const [filter, setFilter] = useState('All');
+  const [searchQuery, setSearchQuery] = useState('');
   const [newIds, setNewIds] = useState(new Set());
   const [indices, setIndices] = useState(tickerItems);
   const counterRef = useRef(20);
@@ -82,7 +84,12 @@ export default function IntelligenceFeed() {
   }, []);
 
   const categories = ['All', 'AI', 'Cloud', 'Cybersecurity', 'Governance', 'DCO', 'Digital Economy', 'Emerging Tech'];
-  const filtered = filter === 'All' ? feed : feed.filter(i => i.category === filter);
+  const filtered = feed.filter(i => {
+    const catOk    = filter === 'All' || i.category === filter;
+    const q        = searchQuery.toLowerCase();
+    const searchOk = !searchQuery || i.text.toLowerCase().includes(q) || i.category.toLowerCase().includes(q);
+    return catOk && searchOk;
+  });
 
   const counts = { Critical: 0, High: 0, Medium: 0, Low: 0 };
   feed.forEach(i => counts[i.severity]++);
@@ -109,6 +116,18 @@ export default function IntelligenceFeed() {
           >
             {paused ? <><Play size={13} /> Resume</> : <><Pause size={13} /> Pause Feed</>}
           </button>
+        </div>
+
+        {/* Search bar */}
+        <div className="w-full mb-6">
+          <PageSearch
+            value={searchQuery}
+            onChange={setSearchQuery}
+            placeholder="Search signals, categories, topics..."
+            resultCount={searchQuery ? filtered.length : undefined}
+            totalCount={feed.length}
+            dark
+          />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">

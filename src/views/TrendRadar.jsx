@@ -4,6 +4,7 @@ import {
   RadarChart, Radar, PolarGrid, PolarAngleAxis, ResponsiveContainer,
   BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, Cell
 } from 'recharts';
+import PageSearch from '../components/PageSearch';
 
 const CustomTooltip = ({ active, payload, label }) => {
   if (active && payload?.length) {
@@ -22,8 +23,17 @@ const CustomTooltip = ({ active, payload, label }) => {
 export default function TrendRadar() {
   const [selected, setSelected] = useState(trendRadarItems[0]);
   const [activeRing, setActiveRing] = useState('All');
+  const [searchQuery, setSearchQuery] = useState('');
 
-  const filtered = activeRing === 'All' ? trendRadarItems : trendRadarItems.filter(i => i.ring === activeRing);
+  const filtered = trendRadarItems.filter(i => {
+    const ringOk   = activeRing === 'All' || i.ring === activeRing;
+    const q        = searchQuery.toLowerCase();
+    const searchOk = !searchQuery ||
+      i.name.toLowerCase().includes(q) ||
+      i.quadrant.toLowerCase().includes(q) ||
+      i.ring.toLowerCase().includes(q);
+    return ringOk && searchOk;
+  });
 
   const radarData = selected ? [
     { subject: 'Adoption',     value: selected.adoption    },
@@ -49,6 +59,18 @@ export default function TrendRadar() {
         <div className="mb-6 pb-4 border-b border-[#1a1a1a]">
           <h1 className="text-white text-2xl font-black uppercase tracking-wide mb-1">Technology Trend Radar</h1>
           <p className="text-[#666] text-[12px]">Emerging technology adoption, disruption signals, and organizational readiness — Q2 2026</p>
+        </div>
+
+        {/* Search bar */}
+        <div className="w-full mb-5">
+          <PageSearch
+            value={searchQuery}
+            onChange={setSearchQuery}
+            placeholder="Search technologies, quadrants, adoption rings..."
+            resultCount={searchQuery ? filtered.length : undefined}
+            totalCount={trendRadarItems.length}
+            dark
+          />
         </div>
 
         {/* Ring filter */}

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { sixDFramework, severityBadge } from '../data/mockData';
 import { TrendingUp, Building2, Brain, Layers, Shield, BarChart2, Clock, ArrowRight } from 'lucide-react';
 import { useNav } from '../context/NavContext';
+import PageSearch from '../components/PageSearch';
 
 const iconMap = { TrendingUp, Building2, Brain, Layers, Shield, BarChart2 };
 
@@ -12,6 +13,7 @@ function SeverityDot({ level }) {
 
 export default function SixDFramework() {
   const [activePillar, setActivePillar] = useState(sixDFramework.pillars[0]);
+  const [searchQuery, setSearchQuery]   = useState('');
   const { openArticle } = useNav();
 
   return (
@@ -34,7 +36,7 @@ export default function SixDFramework() {
             return (
               <button
                 key={pillar.id}
-                onClick={() => setActivePillar(pillar)}
+                onClick={() => { setActivePillar(pillar); setSearchQuery(''); }}
                 className={`p-3 border text-left transition-all duration-150 group ${
                   isActive
                     ? 'border-[#cc0000]/60 bg-[#cc0000]/5'
@@ -103,7 +105,7 @@ export default function SixDFramework() {
                   return (
                     <button
                       key={p.id}
-                      onClick={() => setActivePillar(p)}
+                      onClick={() => { setActivePillar(p); setSearchQuery(''); }}
                       className={`w-full flex items-center gap-2 py-2 border-b border-[#111] last:border-0 text-left transition-colors ${
                         activePillar.id === p.id ? 'text-white' : 'text-[#555] hover:text-white'
                       }`}
@@ -127,7 +129,21 @@ export default function SixDFramework() {
                 <button className="text-[#cc0000] text-[11px] font-bold hover:underline">See all →</button>
               </div>
 
-              {activePillar.articles.map((article, i) => {
+              {/* Search bar */}
+              <PageSearch
+                value={searchQuery}
+                onChange={setSearchQuery}
+                placeholder={`Search ${activePillar.name} articles...`}
+                resultCount={searchQuery ? activePillar.articles.filter(a =>
+                  a.title.toLowerCase().includes(searchQuery.toLowerCase())
+                ).length : undefined}
+                totalCount={activePillar.articles.length}
+                dark
+              />
+
+              {activePillar.articles
+                .filter(article => !searchQuery || article.title.toLowerCase().includes(searchQuery.toLowerCase()))
+                .map((article, i) => {
                 const s = severityBadge[article.severity];
                 return (
                   <div

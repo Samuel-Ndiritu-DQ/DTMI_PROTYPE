@@ -50,7 +50,7 @@ export default function HeroSection() {
           </div>
 
           {/* ── SIDE STORIES (right 1/3) ── */}
-          <div className="flex flex-col grid grid-cols-2 lg:grid-cols-1 gap-px" style={{ background: 'rgba(255,255,255,0.06)' }}>
+          <div className="grid grid-cols-2 lg:grid-cols-1 gap-px" style={{ background: 'rgba(255,255,255,0.06)' }}>
             {heroSideStories.map((story) => (
               <div key={story.id} className="flex gap-3 p-3 cursor-pointer group" style={{ background: 'var(--brand-navy)' }} onClick={() => openArticle({ ...story, headline: story.headline })}>
                 <div className="flex-1 min-w-0 flex flex-col justify-between">

@@ -17,6 +17,8 @@ import About            from './views/About';
 import ArticlePage      from './views/ArticlePage';
 import VideoPage        from './views/VideoPage';
 import PodcastPage      from './views/PodcastPage';
+import BooksPage        from './views/BooksPage';
+import ResearchPage     from './views/ResearchPage';
 import AdminDashboard   from './views/admin/AdminDashboard';
 import LoginPage        from './views/LoginPage';
 import RegisterPage     from './views/RegisterPage';
@@ -25,25 +27,69 @@ import ForgotPasswordPage from './views/ForgotPasswordPage';
 import { topStories, emergingTech, executiveBriefings, videoContent, insightCards } from './data/mockData';
 import SectionLabel from './components/SectionLabel';
 import StoryCard from './components/StoryCard';
+import PageSearch from './components/PageSearch';
 
 function GenericPage({ title, subtitle, stories }) {
   const { openArticle } = useNav();
-  const display = stories.length > 0 ? stories : [...topStories, ...emergingTech].slice(0, 6);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const pool    = stories.length > 0 ? stories : [...topStories, ...emergingTech].slice(0, 6);
+  const display = pool.filter(story => {
+    if (!searchQuery) return true;
+    const q = searchQuery.toLowerCase();
+    return (
+      (story.headline || story.title || '').toLowerCase().includes(q) ||
+      (story.summary  || '').toLowerCase().includes(q) ||
+      (story.category || '').toLowerCase().includes(q) ||
+      (story.author   || '').toLowerCase().includes(q) ||
+      (story.tags     || []).some(t => t.toLowerCase().includes(q))
+    );
+  });
+
   return (
     <div style={{ background: 'var(--brand-light)' }} className="min-h-screen">
       <div className="max-w-[1280px] mx-auto px-4 py-8">
+        {/* Page header */}
         <div className="mb-6 pb-4 border-b" style={{ borderColor: 'var(--brand-border)' }}>
           <p className="text-[11px] font-black uppercase tracking-widest mb-1" style={{ color: 'var(--brand-orange)' }}>DTMI Intelligence</p>
           <h1 className="text-2xl font-black" style={{ color: 'var(--brand-navy)' }}>{title}</h1>
           {subtitle && <p className="text-[13px] mt-1" style={{ color: 'var(--brand-muted)' }}>{subtitle}</p>}
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-          {display.map(story => (
-            <div key={story.id} onClick={() => openArticle(story)} className="cursor-pointer">
-              <StoryCard story={story} />
-            </div>
-          ))}
+
+        {/* Search bar */}
+        <div className="w-full mb-6">
+          <PageSearch
+            value={searchQuery}
+            onChange={setSearchQuery}
+            placeholder={`Search ${title} articles, topics, authors...`}
+            resultCount={searchQuery ? display.length : undefined}
+            totalCount={pool.length}
+          />
         </div>
+
+        {/* Results */}
+        {display.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+            {display.map(story => (
+              <div key={story.id} onClick={() => openArticle(story)} className="cursor-pointer">
+                <StoryCard story={story} />
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-16">
+            <p className="text-[14px]" style={{ color: 'var(--brand-muted)' }}>
+              No results for "<strong style={{ color: 'var(--brand-navy)' }}>{searchQuery}</strong>"
+            </p>
+            <button
+              onClick={() => setSearchQuery('')}
+              className="mt-3 text-[13px] font-bold hover:opacity-70 transition-opacity"
+              style={{ color: 'var(--brand-orange)' }}
+            >
+              Clear search
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -65,42 +111,7 @@ function IntelligenceLayerPage({ layer }) {
   }));
 
   if (layer === 'Books') {
-    return (
-      <div style={{ background: 'var(--brand-light)' }} className="min-h-screen">
-        <div className="max-w-[1280px] mx-auto px-4 py-8">
-          <div className="mb-8 pb-4 border-b" style={{ borderColor: 'var(--brand-border)' }}>
-            <p className="text-[11px] font-black uppercase tracking-widest mb-1" style={{ color: 'var(--brand-orange)' }}>DTMB Books</p>
-            <h1 className="text-2xl font-black" style={{ color: 'var(--brand-navy)' }}>Flagship Research Volumes</h1>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              { id: 'book-1', title: "Economy 4.0: The New Economic Paradigm", vol: "Vol. 1", color: "#8b5cf6", summary: "A comprehensive exploration of the Economy 4.0 paradigm — how digital technologies are reshaping value creation, labor markets, and competitive dynamics across all sectors." },
-              { id: 'book-2', title: "Digital Cognitive Organizations: A Framework for the Future", vol: "Vol. 2", color: "var(--brand-teal)", summary: "The definitive guide to building Digital Cognitive Organizations — from maturity assessment to full DCO alignment across the six strategic domains." },
-              { id: 'book-3', title: "Digital Business Platforms: Architecture & Strategy", vol: "Vol. 3", color: "var(--brand-orange)", summary: "How to design, build, and scale Digital Business Platforms — covering DXP, DWS, DIA, and SDO platform layers in depth." },
-            ].map(book => (
-              <div
-                key={book.vol}
-                onClick={() => openArticle({ id: book.id, headline: book.title, summary: book.summary, category: 'DTMB BOOKS', image: '', author: 'DigitalQatalyst Research', timestamp: 'Apr 2026', readTime: '45 min' })}
-                className="bg-white border rounded-sm overflow-hidden card-hover cursor-pointer"
-                style={{ borderColor: 'var(--brand-border)' }}
-              >
-                <div className="h-40 flex items-center justify-center" style={{ background: book.color }}>
-                  <div className="text-center px-6">
-                    <p className="text-white/60 text-[11px] font-black uppercase tracking-widest mb-2">DTMB · {book.vol}</p>
-                    <p className="text-white text-[15px] font-black leading-snug">{book.title}</p>
-                  </div>
-                </div>
-                <div className="p-4">
-                  <p className="text-[11px] font-black uppercase tracking-wider mb-1" style={{ color: 'var(--brand-orange)' }}>DigitalQatalyst Research</p>
-                  <p className="text-[12px]" style={{ color: 'var(--brand-muted)' }}>{book.summary}</p>
-                  <p className="mt-3 text-[11px] font-bold" style={{ color: 'var(--brand-orange)' }}>Read Volume →</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    );
+    return <BooksPage onSignIn={() => window.dispatchEvent(new CustomEvent('dtmi:signin'))} />;
   }
   return <GenericPage title={cfg.title} subtitle={cfg.subtitle} stories={stories} />;
 }
@@ -119,24 +130,25 @@ function DomainPage({ domain }) {
 }
 
 const SECTION_ROUTES = {
-  'Latest':            () => <Homepage />,
-  'Intelligence Feed': () => <IntelligenceFeed />,
-  'Insight Cards':     () => <InsightCards />,
-  'Trend Radar':       () => <TrendRadar />,
-  'AI Engine':         () => <AIEngine />,
-  '6xD Framework':     () => <SixDFramework />,
-  'Multimedia':        () => <Multimedia />,
-  'About':             () => <About />,
-  'Signal':            () => <IntelligenceLayerPage layer="Signal" />,
-  'Insight':           () => <IntelligenceLayerPage layer="Insight" />,
-  'Deep Analysis':     () => <IntelligenceLayerPage layer="Deep Analysis" />,
-  'Books':             () => <IntelligenceLayerPage layer="Books" />,
-  'D1': () => <DomainPage domain="D1" />,
-  'D2': () => <DomainPage domain="D2" />,
-  'D3': () => <DomainPage domain="D3" />,
-  'D4': () => <DomainPage domain="D4" />,
-  'D5': () => <DomainPage domain="D5" />,
-  'D6': () => <DomainPage domain="D6" />,
+  'Latest':            (p) => <Homepage />,
+  'Intelligence Feed': (p) => <IntelligenceFeed />,
+  'Insight Cards':     (p) => <InsightCards />,
+  'Trend Radar':       (p) => <TrendRadar />,
+  'AI Engine':         (p) => <AIEngine />,
+  '6xD Framework':     (p) => <SixDFramework />,
+  'Multimedia':        (p) => <Multimedia />,
+  'About':             (p) => <About />,
+  'Signal':            (p) => <IntelligenceLayerPage layer="Signal" />,
+  'Insight':           (p) => <IntelligenceLayerPage layer="Insight" />,
+  'Deep Analysis':     (p) => <IntelligenceLayerPage layer="Deep Analysis" />,
+  'Books':             (p) => <BooksPage onSignIn={p.onSignIn} />,
+  'Research':          (p) => <ResearchPage onSignIn={p.onSignIn} />,
+  'D1': (p) => <DomainPage domain="D1" />,
+  'D2': (p) => <DomainPage domain="D2" />,
+  'D3': (p) => <DomainPage domain="D3" />,
+  'D4': (p) => <DomainPage domain="D4" />,
+  'D5': (p) => <DomainPage domain="D5" />,
+  'D6': (p) => <DomainPage domain="D6" />,
 };
 
 // auth modal states
@@ -192,7 +204,7 @@ function AppInner() {
 
   const renderSection = () => {
     const route = SECTION_ROUTES[activeSection];
-    if (route) return route();
+    if (route) return route({ onSignIn: () => setAuthModal(AUTH_LOGIN) });
     return (
       <GenericPage
         title={activeSection}

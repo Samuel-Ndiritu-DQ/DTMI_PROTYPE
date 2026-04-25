@@ -28,9 +28,9 @@ export default function Homepage() {
                 <StoryCard story={topStories[0]} size="lg" />
                 <StoryCard story={topStories[1]} size="lg" />
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-0 border rounded-sm bg-white" style={{ borderColor: 'var(--brand-border)' }}>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-0 border rounded-sm bg-white overflow-hidden" style={{ borderColor: 'var(--brand-border)' }}>
                 {topStories.slice(2).map((story) => (
-                  <div key={story.id} className="border-b md:border-r last:border-b-0 p-4" style={{ borderColor: 'var(--brand-border)' }}>
+                  <div key={story.id} className="border-b md:odd:border-r p-4 last:border-b-0" style={{ borderColor: 'var(--brand-border)' }}>
                     <StoryCard story={story} showImage={false} />
                   </div>
                 ))}
@@ -55,8 +55,8 @@ export default function Homepage() {
             {/* EMERGING TECH */}
             <section>
               <SectionLabel title="Emerging Technology" />
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-0 border rounded-sm bg-white" style={{ borderColor: 'var(--brand-border)' }}>
-                <div className="border-r p-4" style={{ borderColor: 'var(--brand-border)' }}>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-0 border rounded-sm bg-white overflow-hidden" style={{ borderColor: 'var(--brand-border)' }}>
+                <div className="p-4 border-b md:border-b-0 md:border-r" style={{ borderColor: 'var(--brand-border)' }}>
                   <StoryCard story={emergingTech[0]} size="lg" />
                 </div>
                 <div>
@@ -119,7 +119,7 @@ export default function Homepage() {
       <div className="border-t" style={{ background: 'white', borderColor: 'var(--brand-border)' }}>
         <div className="max-w-[1280px] mx-auto px-4 py-8">
           <SectionLabel title="More from DTMI" />
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
             {[...topStories, ...emergingTech].slice(0, 6).map((story) => (
               <StoryCard key={story.id + '-more'} story={story} size="sm" />
             ))}

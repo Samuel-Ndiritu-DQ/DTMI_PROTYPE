@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { insightCards, insightCategories, severityBadge } from '../data/mockData';
-import { Search, Clock, Tag, Bookmark, ExternalLink, Star } from 'lucide-react';
+import { Clock, Tag, Bookmark, ExternalLink, Star } from 'lucide-react';
 import { useNav } from '../context/NavContext';
+import PageSearch from '../components/PageSearch';
 
 const catColor = {
   AI:               'text-violet-400',
@@ -96,11 +97,14 @@ export default function InsightCards() {
   const [sortBy, setSortBy] = useState('relevance');
 
   const filtered = insightCards.filter(card => {
-    const matchCat  = activeCategory === 'All' || card.category === activeCategory;
+    const matchCat    = activeCategory === 'All' || card.category === activeCategory;
+    const q           = searchQuery.toLowerCase();
     const matchSearch = !searchQuery ||
-      card.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      card.summary.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchRec  = !showRecommended || card.recommended;
+      card.title.toLowerCase().includes(q) ||
+      card.summary.toLowerCase().includes(q) ||
+      card.category.toLowerCase().includes(q) ||
+      card.tags?.some(t => t.toLowerCase().includes(q));
+    const matchRec    = !showRecommended || card.recommended;
     return matchCat && matchSearch && matchRec;
   });
 
@@ -140,38 +144,37 @@ export default function InsightCards() {
         </div>
 
         {/* Controls */}
-        <div className="flex flex-col sm:flex-row gap-3 mb-4">
-          {/* Search */}
-          <div className="relative flex-1">
-            <Search size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#444]" />
-            <input
-              type="text"
-              placeholder="Search insights..."
-              value={searchQuery}
-              onChange={e => setSearchQuery(e.target.value)}
-              className="w-full bg-[#111] border border-[#222] text-white text-[12px] pl-8 pr-4 py-2 focus:outline-none focus:border-[#cc0000] transition-colors placeholder-[#444]"
-            />
+        <div className="flex flex-col gap-4 mb-4">
+          {/* Search bar — 70% wide, centred */}
+          <PageSearch
+            value={searchQuery}
+            onChange={setSearchQuery}
+            placeholder="Search insights, topics, tags..."
+            resultCount={searchQuery ? sorted.length : undefined}
+            totalCount={insightCards.length}
+            dark
+          />
+          {/* Recommended + Sort row */}
+          <div className="flex flex-wrap gap-3 justify-center">
+            <button
+              onClick={() => setShowRecommended(r => !r)}
+              className={`flex items-center gap-2 px-3 py-2 border text-[11px] font-bold uppercase tracking-wide transition-colors ${
+                showRecommended
+                  ? 'bg-[#cc0000] border-[#cc0000] text-white'
+                  : 'border-[#222] text-[#666] hover:text-white hover:border-[#444]'
+              }`}
+            >
+              <Star size={12} /> Recommended Only
+            </button>
+            <select
+              value={sortBy}
+              onChange={e => setSortBy(e.target.value)}
+              className="bg-[#111] border border-[#222] text-[#888] text-[11px] px-3 py-2 focus:outline-none focus:border-[#cc0000] transition-colors"
+            >
+              <option value="relevance">Sort: Relevance</option>
+              <option value="severity">Sort: Severity</option>
+            </select>
           </div>
-          {/* Recommended toggle */}
-          <button
-            onClick={() => setShowRecommended(r => !r)}
-            className={`flex items-center gap-2 px-3 py-2 border text-[11px] font-bold uppercase tracking-wide transition-colors ${
-              showRecommended
-                ? 'bg-[#cc0000] border-[#cc0000] text-white'
-                : 'border-[#222] text-[#666] hover:text-white hover:border-[#444]'
-            }`}
-          >
-            <Star size={12} /> Recommended Only
-          </button>
-          {/* Sort */}
-          <select
-            value={sortBy}
-            onChange={e => setSortBy(e.target.value)}
-            className="bg-[#111] border border-[#222] text-[#888] text-[11px] px-3 py-2 focus:outline-none focus:border-[#cc0000] transition-colors"
-          >
-            <option value="relevance">Sort: Relevance</option>
-            <option value="severity">Sort: Severity</option>
-          </select>
         </div>
 
         {/* Category tabs */}

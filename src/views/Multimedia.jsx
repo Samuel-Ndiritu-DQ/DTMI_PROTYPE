@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { podcastEpisodes, videoEpisodes } from '../data/mockData';
 import { Play, Headphones, Video, Clock, Users } from 'lucide-react';
 import { useNav } from '../context/NavContext';
+import PageSearch from '../components/PageSearch';
 
 function PodcastCard({ ep, featured, onPlay }) {
   if (featured) {
@@ -143,8 +144,26 @@ function VideoCard({ ep, featured, onPlay }) {
 
 export default function Multimedia() {
   const [activeTab, setActiveTab] = useState('All');
+  const [searchQuery, setSearchQuery] = useState('');
   const { openVideo, openPodcast } = useNav();
   const tabs = ['All', 'Podcasts', 'Videos'];
+
+  const matchItem = (ep) => {
+    if (!searchQuery) return true;
+    const q = searchQuery.toLowerCase();
+    return (
+      ep.title.toLowerCase().includes(q) ||
+      ep.description?.toLowerCase().includes(q) ||
+      ep.host?.toLowerCase().includes(q) ||
+      ep.guest?.toLowerCase().includes(q) ||
+      ep.category?.toLowerCase().includes(q)
+    );
+  };
+
+  const filteredPodcasts = podcastEpisodes.filter(matchItem);
+  const filteredVideos   = videoEpisodes.filter(matchItem);
+  const totalFiltered    = filteredPodcasts.length + filteredVideos.length;
+  const totalAll         = podcastEpisodes.length + videoEpisodes.length;
 
   return (
     <div className="bg-[#0a0a0a] min-h-screen">
@@ -157,7 +176,7 @@ export default function Multimedia() {
         </div>
 
         {/* Tabs */}
-        <div className="flex gap-1.5 mb-6">
+        <div className="flex gap-1.5 mb-4">
           {tabs.map(tab => (
             <button
               key={tab}
@@ -175,8 +194,20 @@ export default function Multimedia() {
           ))}
         </div>
 
+        {/* Search bar */}
+        <div className="w-full mb-6">
+          <PageSearch
+            value={searchQuery}
+            onChange={setSearchQuery}
+            placeholder="Search episodes, hosts, guests, topics..."
+            resultCount={searchQuery ? totalFiltered : undefined}
+            totalCount={totalAll}
+            dark
+          />
+        </div>
+
         {/* PODCASTS */}
-        {(activeTab === 'All' || activeTab === 'Podcasts') && (
+        {(activeTab === 'All' || activeTab === 'Podcasts') && filteredPodcasts.length > 0 && (
           <section className="mb-10">
             <div className="flex items-center justify-between mb-4 pb-2 border-b border-[#1a1a1a]">
               <h2 className="text-white text-[14px] font-black uppercase tracking-wide flex items-center gap-2">
@@ -186,10 +217,10 @@ export default function Multimedia() {
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
               <div className="lg:col-span-2">
-                <PodcastCard ep={podcastEpisodes[0]} featured onPlay={openPodcast} />
+                <PodcastCard ep={filteredPodcasts[0]} featured onPlay={openPodcast} />
               </div>
               <div className="space-y-2">
-                {podcastEpisodes.slice(1).map(ep => (
+                {filteredPodcasts.slice(1).map(ep => (
                   <PodcastCard key={ep.id} ep={ep} onPlay={openPodcast} />
                 ))}
               </div>
@@ -198,7 +229,7 @@ export default function Multimedia() {
         )}
 
         {/* VIDEOS */}
-        {(activeTab === 'All' || activeTab === 'Videos') && (
+        {(activeTab === 'All' || activeTab === 'Videos') && filteredVideos.length > 0 && (
           <section>
             <div className="flex items-center justify-between mb-4 pb-2 border-b border-[#1a1a1a]">
               <h2 className="text-white text-[14px] font-black uppercase tracking-wide flex items-center gap-2">
@@ -206,16 +237,34 @@ export default function Multimedia() {
               </h2>
               <button className="text-[#cc0000] text-[11px] font-bold hover:underline">All videos →</button>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
-              <VideoCard ep={videoEpisodes[0]} featured onPlay={openVideo} />
-              <VideoCard ep={videoEpisodes[1]} featured onPlay={openVideo} />
-            </div>
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-              {videoEpisodes.slice(2).map(ep => (
-                <VideoCard key={ep.id} ep={ep} onPlay={openVideo} />
-              ))}
-            </div>
+            {filteredVideos.length >= 2 ? (
+              <>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                  <VideoCard ep={filteredVideos[0]} featured onPlay={openVideo} />
+                  <VideoCard ep={filteredVideos[1]} featured onPlay={openVideo} />
+                </div>
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                  {filteredVideos.slice(2).map(ep => (
+                    <VideoCard key={ep.id} ep={ep} onPlay={openVideo} />
+                  ))}
+                </div>
+              </>
+            ) : (
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                {filteredVideos.map(ep => (
+                  <VideoCard key={ep.id} ep={ep} onPlay={openVideo} />
+                ))}
+              </div>
+            )}
           </section>
+        )}
+
+        {/* No results */}
+        {searchQuery && totalFiltered === 0 && (
+          <div className="text-center py-16">
+            <p className="text-[#555] text-[14px]">No results for "<span className="text-white">{searchQuery}</span>"</p>
+            <button onClick={() => setSearchQuery('')} className="mt-3 text-[#cc0000] text-[12px] font-bold hover:underline">Clear search</button>
+          </div>
         )}
       </div>
     </div>

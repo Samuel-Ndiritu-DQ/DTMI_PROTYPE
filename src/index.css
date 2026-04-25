@@ -41,6 +41,10 @@
   from { opacity: 0; transform: translateY(-8px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+@keyframes searchFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
 
 .ticker-track {
   display: flex;
@@ -52,6 +56,7 @@
 .live-blink { animation: blink 1s step-start infinite; }
 .fade-in    { animation: fadeSlideIn 0.35s ease forwards; }
 .slide-down { animation: slideDown 0.2s ease forwards; }
+.search-overlay-in { animation: searchFadeIn 0.18s ease forwards; }
 
 /* Image overlay */
 .img-overlay {
@@ -87,16 +92,21 @@
 .nav-link:hover::after,
 .nav-link.active::after { transform: scaleX(1); }
 
-/* Mega menu */
-.mega-menu {
+/* Mega menu panel — positioned absolute inside the sticky header.
+   Left value is set by JS (trigger offset), clamped to stay in viewport. */
+.mega-menu-panel {
   position: absolute;
-  top: 100%;
-  left: 0;
-  z-index: 100;
+  top: 100%;          /* flush below the header bar */
+  z-index: 200;
   background: var(--brand-navy);
   border-top: 2px solid var(--brand-orange);
-  box-shadow: 0 16px 48px rgba(0,0,0,0.35);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.45);
   animation: slideDown 0.18s ease forwards;
+  /* never wider than the viewport */
+  max-width: min(900px, calc(100vw - 32px));
+  /* content drives width, but at least 480px */
+  width: max-content;
+  min-width: 480px;
 }
 
 /* Orange CTA button */

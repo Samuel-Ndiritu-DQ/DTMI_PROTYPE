@@ -32,7 +32,8 @@ export const navItems = [
           { label: "Signal",        key: "Signal",       desc: "Early signals & trend alerts" },
           { label: "Insight",       key: "Insight",      desc: "Analysis & framework explainers" },
           { label: "Deep Analysis", key: "Deep Analysis",desc: "Whitepapers, essays & research" },
-          { label: "DTMB Books",    key: "Books",        desc: "Flagship research volumes" },
+          { label: "Research",      key: "Research",     desc: "Reports, whitepapers & policy briefs" },
+          { label: "Books",         key: "Books",        desc: "DTMB flagship research volumes" },
         ],
       },
       {
