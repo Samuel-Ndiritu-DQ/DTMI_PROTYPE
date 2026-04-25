@@ -10,28 +10,23 @@ import { navItems } from '../data/mockData';
 ───────────────────────────────────────────────────────────── */
 function MegaMenu({ item, offsetLeft, headerWidth, onNavigate }) {
   const panelRef  = useRef(null);
-  const PANEL_PAD = 16; // min gap from viewport edge
+  const PANEL_PAD = 8; // min gap from viewport edge
 
-  // Column count based on number of groups
   const cols =
     item.children.length === 1 ? 'grid-cols-1' :
     item.children.length === 2 ? 'grid-cols-2' :
     item.children.length === 3 ? 'grid-cols-3' :
     'grid-cols-4';
 
-  // Compute left position: start at trigger, clamp so panel stays inside header
-  const getLeft = () => {
-    const el = panelRef.current;
-    if (!el) return offsetLeft;
-    const panelW = el.offsetWidth;
-    const maxLeft = headerWidth - panelW - PANEL_PAD;
-    return Math.max(PANEL_PAD, Math.min(offsetLeft, maxLeft));
-  };
-
-  // Re-position after first paint so we have real dimensions
+  // After mount, clamp so panel never overflows either edge
   const [left, setLeft] = useState(offsetLeft);
   useEffect(() => {
-    setLeft(getLeft());
+    const el = panelRef.current;
+    if (!el) return;
+    const panelW = el.offsetWidth;
+    // clamp: don't go past right edge, don't go before left edge
+    const clamped = Math.max(PANEL_PAD, Math.min(offsetLeft, headerWidth - panelW - PANEL_PAD));
+    setLeft(clamped);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [offsetLeft, headerWidth]);
 
@@ -130,6 +125,7 @@ export default function TopBar({ activeSection, setActiveSection, onAdmin, onSig
     if (btn && headerRef.current) {
       const headerRect = headerRef.current.getBoundingClientRect();
       const btnRect    = btn.getBoundingClientRect();
+      // offset from the header's left edge — this is what position:absolute uses
       setMegaOffset(btnRect.left - headerRect.left);
     }
     setOpenMega(key);
@@ -226,25 +222,43 @@ export default function TopBar({ activeSection, setActiveSection, onAdmin, onSig
                   onMouseEnter={() => item.children && openMegaMenu(item.key)}
                   onMouseLeave={() => setOpenMega(null)}
                 >
-                  <button
-                    ref={el => { triggerRefs.current[item.key] = el; }}
-                    onClick={() =>
-                      !item.children
-                        ? handleNavigate(item.key)
-                        : (openMega === item.key ? setOpenMega(null) : openMegaMenu(item.key))
-                    }
-                    className={`nav-link flex items-center gap-1 px-3 h-full text-[12px] font-semibold uppercase tracking-wide transition-colors ${
-                      isActive(item) ? 'text-white active' : 'text-[#94a3b8] hover:text-white'
-                    }`}
-                  >
-                    {item.label}
-                    {item.children && (
-                      <ChevronDown
-                        size={11}
-                        className={`transition-transform duration-150 ${openMega === item.key ? 'rotate-180' : ''}`}
-                      />
-                    )}
-                  </button>
+                  {item.children ? (
+                    /* Split: label click = navigate, chevron click = toggle dropdown */
+                    <div className="flex items-center h-full">
+                      <button
+                        ref={el => { triggerRefs.current[item.key] = el; }}
+                        onClick={() => handleNavigate(item.key)}
+                        className={`nav-link flex items-center pl-3 pr-0.5 h-full text-[12px] font-semibold uppercase tracking-wide transition-colors ${
+                          isActive(item) ? 'text-white active' : 'text-[#94a3b8] hover:text-white'
+                        }`}
+                      >
+                        {item.label}
+                      </button>
+                      <button
+                        onClick={() => openMega === item.key ? setOpenMega(null) : openMegaMenu(item.key)}
+                        className={`flex items-center justify-center w-6 h-full transition-colors ${
+                          isActive(item) ? 'text-white' : 'text-[#94a3b8] hover:text-white'
+                        }`}
+                        aria-label={`Open ${item.label} menu`}
+                      >
+                        <ChevronDown
+                          size={11}
+                          className={`transition-transform duration-150 ${openMega === item.key ? 'rotate-180' : ''}`}
+                        />
+                      </button>
+                    </div>
+                  ) : (
+                    /* No dropdown — full button navigates */
+                    <button
+                      ref={el => { triggerRefs.current[item.key] = el; }}
+                      onClick={() => handleNavigate(item.key)}
+                      className={`nav-link flex items-center gap-1 px-3 h-full text-[12px] font-semibold uppercase tracking-wide transition-colors ${
+                        isActive(item) ? 'text-white active' : 'text-[#94a3b8] hover:text-white'
+                      }`}
+                    >
+                      {item.label}
+                    </button>
+                  )}
                 </div>
               ))}
             </nav>
@@ -397,17 +411,27 @@ export default function TopBar({ activeSection, setActiveSection, onAdmin, onSig
                     </button>
                   ) : (
                     <>
-                      <button
-                        onClick={() => setMobileOpen(mobileOpen === item.key ? null : item.key)}
-                        className="w-full text-left px-4 py-3.5 text-[13px] font-semibold text-[#94a3b8] hover:text-white border-b flex items-center justify-between transition-colors"
-                        style={{ borderColor: 'rgba(255,255,255,0.05)' }}
-                      >
-                        <span>{item.label}</span>
-                        <ChevronDown
-                          size={14}
-                          className={`transition-transform duration-200 shrink-0 ${mobileOpen === item.key ? 'rotate-180' : ''}`}
-                        />
-                      </button>
+                      <div className="flex items-center border-b" style={{ borderColor: 'rgba(255,255,255,0.05)' }}>
+                        {/* Label — navigates to the section */}
+                        <button
+                          onClick={() => handleNavigate(item.key)}
+                          className="flex-1 text-left px-4 py-3.5 text-[13px] font-semibold transition-colors"
+                          style={{ color: isActive(item) ? 'var(--brand-orange)' : '#94a3b8' }}
+                        >
+                          {item.label}
+                        </button>
+                        {/* Chevron — toggles sub-items */}
+                        <button
+                          onClick={() => setMobileOpen(mobileOpen === item.key ? null : item.key)}
+                          className="px-4 py-3.5 text-[#94a3b8] hover:text-white transition-colors"
+                          aria-label={`Toggle ${item.label}`}
+                        >
+                          <ChevronDown
+                            size={14}
+                            className={`transition-transform duration-200 ${mobileOpen === item.key ? 'rotate-180' : ''}`}
+                          />
+                        </button>
+                      </div>
 
                       {mobileOpen === item.key && (
                         <div style={{ background: 'rgba(0,0,0,0.25)' }}>

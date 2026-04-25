@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { topStories, emergingTech } from '../data/mockData';
-import { Layers, Monitor, Users, BarChart2, Shield, ChevronRight, ArrowRight } from 'lucide-react';
+import { insightCards, emergingTech, topStories } from '../data/mockData';
+import { Layers, Monitor, Users, BarChart2, Shield, ChevronRight } from 'lucide-react';
 import { useNav } from '../context/NavContext';
 import StoryCard from '../components/StoryCard';
 import PageSearch from '../components/PageSearch';
@@ -14,48 +14,57 @@ const PLATFORMS = [
     desc: 'The DXP layer manages all customer and employee-facing digital interactions — web, mobile, IoT, and beyond. It powers personalization, content delivery, and omnichannel experience orchestration.',
     stat: '$180B', statLabel: 'Global DBP market 2026',
     capabilities: ['Digital Channels', 'Digital Experience', 'Digital Services', 'Digital MarCom'],
-    keys: ['DXP-Channels', 'DXP-Experience', 'DXP-Services', 'DXP-MarCom'],
+    keywords: ['experience', 'channel', 'digital', 'customer', 'marcom', 'personalization', 'omnichannel'],
   },
   {
     code: 'DWS', name: 'Digital Workspace Platform', color: '#0a7ea4', icon: Users,
     tagline: 'The operating system of the modern enterprise.',
-    desc: 'The DWS layer powers internal operations, collaboration, and productivity — including ERP, HRMS, collaboration tools, and back-office systems. It is the backbone of the digital worker experience.',
+    desc: 'The DWS layer powers internal operations, collaboration, and productivity — including ERP, HRMS, collaboration tools, and back-office systems.',
     stat: '67%', statLabel: 'Fortune 500 cloud migration complete',
     capabilities: ['Digital Workspace', 'Digital Core (ERP)', 'Digital GPRC', 'Digital Back Office'],
-    keys: ['DWS-Workspace', 'DWS-Core', 'DWS-GPRC', 'DWS-BackOffice'],
+    keywords: ['workspace', 'erp', 'workforce', 'worker', 'talent', 'collaboration', 'productivity', 'cloud'],
   },
   {
     code: 'DIA', name: 'Digital Intelligence & Analytics', color: '#10b981', icon: BarChart2,
     tagline: 'From data lakes to decision engines.',
-    desc: 'The DIA layer transforms raw data into actionable intelligence — covering data architecture, advanced analytics, AI/ML models, and real-time decision engines. Organizations with mature DIA report 3.2x better AI ROI.',
+    desc: 'The DIA layer transforms raw data into actionable intelligence — covering data architecture, advanced analytics, AI/ML models, and real-time decision engines.',
     stat: '61%', statLabel: 'Enterprise AI adoption rate Q1 2026',
     capabilities: ['Digital Analytics', 'Digital Intelligence (AI)'],
-    keys: ['DIA-Analytics', 'DIA-AI'],
+    keywords: ['ai', 'analytics', 'data', 'intelligence', 'automation', 'machine', 'generative', 'adoption'],
   },
   {
     code: 'SDO', name: 'Secure Digital Operations', color: '#ef4444', icon: Shield,
     tagline: 'Security, cloud, and interoperability as infrastructure.',
-    desc: 'The SDO layer provides the foundational cloud infrastructure, cybersecurity, and interoperability services that underpin all other platform layers. Zero-trust is now required by 74% of hybrid enterprises.',
+    desc: 'The SDO layer provides the foundational cloud infrastructure, cybersecurity, and interoperability services that underpin all other platform layers.',
     stat: '74%', statLabel: 'Enterprises requiring zero-trust',
     capabilities: ['Digital IT (Cloud)', 'Digital Interoperability', 'Digital Security'],
-    keys: ['SDO-IT', 'SDO-Interop', 'SDO-Security'],
+    keywords: ['security', 'cyber', 'cloud', 'zero-trust', 'infrastructure', 'ransomware', 'breach', 'finops'],
   },
 ];
+
+// All available content pool
+const ALL_CONTENT = [...topStories, ...emergingTech, ...insightCards.map(c => ({
+  ...c, headline: c.title, image: c.image || '',
+}))];
+
+function getStoriesForPlatform(platform, query) {
+  const kw = platform.keywords;
+  return ALL_CONTENT.filter(s => {
+    const text = `${s.headline || s.title || ''} ${s.category || ''} ${s.summary || ''}`.toLowerCase();
+    const matchesPlatform = kw.some(k => text.includes(k));
+    if (!query) return matchesPlatform;
+    const q = query.toLowerCase();
+    return matchesPlatform && text.includes(q);
+  }).slice(0, 6);
+}
 
 export default function TechnologyPage({ onNavigate }) {
   const [activePlatform, setActivePlatform] = useState(PLATFORMS[0]);
   const [searchQuery, setSearchQuery]       = useState('');
   const { openArticle } = useNav();
 
-  const pool    = [...topStories, ...emergingTech];
-  const stories = pool.filter(s => {
-    const q = searchQuery.toLowerCase();
-    return !searchQuery ||
-      (s.headline || '').toLowerCase().includes(q) ||
-      (s.category || '').toLowerCase().includes(q) ||
-      (s.summary  || '').toLowerCase().includes(q);
-  }).slice(0, 6);
-
+  const stories = getStoriesForPlatform(activePlatform, searchQuery);
+  const totalForPlatform = getStoriesForPlatform(activePlatform, '').length;
   const Icon = activePlatform.icon;
 
   return (
@@ -167,7 +176,7 @@ export default function TechnologyPage({ onNavigate }) {
             <PageSearch value={searchQuery} onChange={setSearchQuery}
               placeholder={`Search ${activePlatform.code} intelligence...`}
               resultCount={searchQuery ? stories.length : undefined}
-              totalCount={pool.length} />
+              totalCount={totalForPlatform} />
 
             <div>
               <SectionLabel title={`Latest: ${activePlatform.name}`} count={stories.length} />
@@ -181,8 +190,10 @@ export default function TechnologyPage({ onNavigate }) {
                 </div>
               ) : (
                 <div className="text-center py-12 bg-white rounded-sm border" style={{ borderColor: 'var(--brand-border)' }}>
-                  <p className="text-[13px]" style={{ color: 'var(--brand-muted)' }}>No results for "{searchQuery}"</p>
-                  <button onClick={() => setSearchQuery('')} className="mt-2 text-[12px] font-bold" style={{ color: 'var(--brand-orange)' }}>Clear search</button>
+                  <p className="text-[13px]" style={{ color: 'var(--brand-muted)' }}>
+                    {searchQuery ? `No results for "${searchQuery}"` : `No articles yet for ${activePlatform.name}`}
+                  </p>
+                  {searchQuery && <button onClick={() => setSearchQuery('')} className="mt-2 text-[12px] font-bold" style={{ color: 'var(--brand-orange)' }}>Clear search</button>}
                 </div>
               )}
             </div>

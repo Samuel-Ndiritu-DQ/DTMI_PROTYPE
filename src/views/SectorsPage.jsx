@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { topStories, emergingTech } from '../data/mockData';
-import { ArrowRight, ChevronRight } from 'lucide-react';
+import { insightCards, emergingTech, topStories } from '../data/mockData';
+import { ChevronRight } from 'lucide-react';
 import { useNav } from '../context/NavContext';
 import StoryCard from '../components/StoryCard';
 import PageSearch from '../components/PageSearch';
@@ -12,35 +12,50 @@ const SECTORS = {
     color: '#8b5cf6',
     desc: 'Transformation themes that cut across all industries — from AI adoption to digital governance.',
     items: [
-      { key: 'Economy 4.0',      label: 'Economy 4.0',      desc: 'Platform economies, digital value chains, and the $4.2T GDP opportunity' },
-      { key: 'Experience 4.0',   label: 'Experience 4.0',   desc: 'Customer and employee experience in the digital age' },
-      { key: 'Intelligence 4.0', label: 'Intelligence 4.0', desc: 'AI-driven decision intelligence across the enterprise' },
-      { key: 'Workspace 4.0',    label: 'Workspace 4.0',    desc: 'The future of work, digital talent, and hybrid collaboration' },
+      { key: 'Economy 4.0',      label: 'Economy 4.0',      desc: 'Platform economies, digital value chains, and the $4.2T GDP opportunity', keywords: ['economy', 'platform', 'gdp', 'digital economy', 'value chain'] },
+      { key: 'Experience 4.0',   label: 'Experience 4.0',   desc: 'Customer and employee experience in the digital age', keywords: ['experience', 'customer', 'employee', 'cx', 'ux'] },
+      { key: 'Intelligence 4.0', label: 'Intelligence 4.0', desc: 'AI-driven decision intelligence across the enterprise', keywords: ['ai', 'intelligence', 'analytics', 'data', 'automation'] },
+      { key: 'Workspace 4.0',    label: 'Workspace 4.0',    desc: 'The future of work, digital talent, and hybrid collaboration', keywords: ['workspace', 'worker', 'talent', 'workforce', 'hybrid', 'future of work'] },
     ],
   },
   'Primary & Secondary': {
     color: '#10b981',
     desc: 'Digital transformation in resource extraction, agriculture, manufacturing, and logistics.',
     items: [
-      { key: 'Mining 4.0',          label: 'Mining 4.0',          desc: 'Autonomous operations, predictive maintenance, and digital twins in mining' },
-      { key: 'Farming 4.0',         label: 'Farming 4.0',         desc: 'Precision agriculture, IoT sensors, and AI-driven crop management' },
-      { key: 'Plant 4.0',           label: 'Plant 4.0',           desc: 'Smart manufacturing, Industry 4.0, and connected factory floors' },
-      { key: 'Logistics 4.0',       label: 'Logistics 4.0',       desc: 'Supply chain digitization, autonomous delivery, and real-time visibility' },
-      { key: 'Infrastructure 4.0',  label: 'Infrastructure 4.0',  desc: 'Smart infrastructure, digital twins of cities, and connected utilities' },
+      { key: 'Mining 4.0',         label: 'Mining 4.0',         desc: 'Autonomous operations, predictive maintenance, and digital twins in mining', keywords: ['mining', 'autonomous', 'predictive', 'ot', 'industrial'] },
+      { key: 'Farming 4.0',        label: 'Farming 4.0',        desc: 'Precision agriculture, IoT sensors, and AI-driven crop management', keywords: ['farming', 'agriculture', 'iot', 'precision', 'crop'] },
+      { key: 'Plant 4.0',          label: 'Plant 4.0',          desc: 'Smart manufacturing, Industry 4.0, and connected factory floors', keywords: ['manufacturing', 'plant', 'factory', 'industry 4.0', 'smart'] },
+      { key: 'Logistics 4.0',      label: 'Logistics 4.0',      desc: 'Supply chain digitization, autonomous delivery, and real-time visibility', keywords: ['logistics', 'supply chain', 'delivery', 'transport', 'visibility'] },
+      { key: 'Infrastructure 4.0', label: 'Infrastructure 4.0', desc: 'Smart infrastructure, digital twins of cities, and connected utilities', keywords: ['infrastructure', 'smart city', 'utilities', 'digital twin', 'edge'] },
     ],
   },
   'Tertiary & Quaternary': {
     color: '#0a7ea4',
     desc: 'Digital transformation in services, government, retail, hospitality, and knowledge industries.',
     items: [
-      { key: 'Government 4.0',   label: 'Government 4.0',   desc: 'Digital public services, e-governance, and DCO adoption in the public sector' },
-      { key: 'Services 4.0',     label: 'Services 4.0',     desc: 'Financial services, professional services, and platform-based service delivery' },
-      { key: 'Retail 4.0',       label: 'Retail 4.0',       desc: 'Omnichannel commerce, AI personalization, and the future of physical retail' },
-      { key: 'Hospitality 4.0',  label: 'Hospitality 4.0',  desc: 'Smart hotels, contactless experiences, and AI-driven guest personalization' },
-      { key: 'Wellness 4.0',     label: 'Wellness 4.0',     desc: 'Digital health, telemedicine, and AI-powered wellness platforms' },
+      { key: 'Government 4.0',  label: 'Government 4.0',  desc: 'Digital public services, e-governance, and DCO adoption in the public sector', keywords: ['government', 'public', 'governance', 'dco', 'policy', 'regulation'] },
+      { key: 'Services 4.0',    label: 'Services 4.0',    desc: 'Financial services, professional services, and platform-based service delivery', keywords: ['services', 'financial', 'fintech', 'banking', 'professional'] },
+      { key: 'Retail 4.0',      label: 'Retail 4.0',      desc: 'Omnichannel commerce, AI personalization, and the future of physical retail', keywords: ['retail', 'commerce', 'omnichannel', 'ecommerce', 'consumer'] },
+      { key: 'Hospitality 4.0', label: 'Hospitality 4.0', desc: 'Smart hotels, contactless experiences, and AI-driven guest personalization', keywords: ['hospitality', 'hotel', 'travel', 'tourism', 'guest'] },
+      { key: 'Wellness 4.0',    label: 'Wellness 4.0',    desc: 'Digital health, telemedicine, and AI-powered wellness platforms', keywords: ['health', 'wellness', 'telemedicine', 'medical', 'healthcare'] },
     ],
   },
 };
+
+const ALL_CONTENT = [...topStories, ...emergingTech, ...insightCards.map(c => ({
+  ...c, headline: c.title, image: c.image || '',
+}))];
+
+function getStoriesForSector(sector, query) {
+  const kw = sector.keywords || [];
+  return ALL_CONTENT.filter(s => {
+    const text = `${s.headline || s.title || ''} ${s.category || ''} ${s.summary || ''}`.toLowerCase();
+    const matchesSector = kw.some(k => text.includes(k));
+    if (!query) return matchesSector;
+    const q = query.toLowerCase();
+    return matchesSector && text.includes(q);
+  }).slice(0, 6);
+}
 
 export default function SectorsPage({ onNavigate }) {
   const [activeGroup, setActiveGroup]   = useState('Cross-Sector');
@@ -48,16 +63,9 @@ export default function SectorsPage({ onNavigate }) {
   const [searchQuery, setSearchQuery]   = useState('');
   const { openArticle } = useNav();
 
-  const pool    = [...topStories, ...emergingTech];
-  const stories = pool.filter(s => {
-    const q = searchQuery.toLowerCase();
-    return !searchQuery ||
-      (s.headline || '').toLowerCase().includes(q) ||
-      (s.category || '').toLowerCase().includes(q) ||
-      (s.summary  || '').toLowerCase().includes(q);
-  }).slice(0, 6);
-
-  const group = SECTORS[activeGroup];
+  const group   = SECTORS[activeGroup];
+  const stories = getStoriesForSector(activeSector, searchQuery);
+  const totalForSector = getStoriesForSector(activeSector, '').length;
 
   return (
     <div style={{ background: 'var(--brand-light)' }} className="min-h-screen">
@@ -140,7 +148,7 @@ export default function SectorsPage({ onNavigate }) {
             <PageSearch value={searchQuery} onChange={setSearchQuery}
               placeholder={`Search ${activeSector.label} intelligence...`}
               resultCount={searchQuery ? stories.length : undefined}
-              totalCount={pool.length} />
+              totalCount={totalForSector} />
 
             {/* Stories */}
             <div>
@@ -155,8 +163,10 @@ export default function SectorsPage({ onNavigate }) {
                 </div>
               ) : (
                 <div className="text-center py-12 bg-white rounded-sm border" style={{ borderColor: 'var(--brand-border)' }}>
-                  <p className="text-[13px]" style={{ color: 'var(--brand-muted)' }}>No results for "{searchQuery}"</p>
-                  <button onClick={() => setSearchQuery('')} className="mt-2 text-[12px] font-bold" style={{ color: 'var(--brand-orange)' }}>Clear search</button>
+                  <p className="text-[13px]" style={{ color: 'var(--brand-muted)' }}>
+                    {searchQuery ? `No results for "${searchQuery}"` : `No articles yet for ${activeSector.label}`}
+                  </p>
+                  {searchQuery && <button onClick={() => setSearchQuery('')} className="mt-2 text-[12px] font-bold" style={{ color: 'var(--brand-orange)' }}>Clear search</button>}
                 </div>
               )}
             </div>

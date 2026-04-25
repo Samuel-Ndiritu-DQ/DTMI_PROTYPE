@@ -7,7 +7,6 @@ import TickerBar from './components/TickerBar';
 import Footer from './components/Footer';
 
 import Homepage         from './views/Homepage';
-import IntelligenceFeed from './views/IntelligenceFeed';
 import InsightCards     from './views/InsightCards';
 import TrendRadar       from './views/TrendRadar';
 import AIEngine         from './views/AIEngine';
@@ -19,8 +18,6 @@ import VideoPage        from './views/VideoPage';
 import PodcastPage      from './views/PodcastPage';
 import BooksPage        from './views/BooksPage';
 import ResearchPage     from './views/ResearchPage';
-import SectorsPage      from './views/SectorsPage';
-import TechnologyPage   from './views/TechnologyPage';
 import GlossaryPage     from './views/GlossaryPage';
 import AdminDashboard   from './views/admin/AdminDashboard';
 import LoginPage        from './views/LoginPage';
@@ -134,24 +131,30 @@ function DomainPage({ domain }) {
 
 const SECTION_ROUTES = {
   'Latest':            (p) => <Homepage />,
-  'Intelligence Feed': (p) => <IntelligenceFeed />,
-  'Insight Cards':     (p) => <InsightCards />,
-  'Trend Radar':       (p) => <TrendRadar />,
-  'AI Engine':         (p) => <AIEngine />,
+  // Intelligence parent → defaults to Signal
+  'intelligence':      (p) => <IntelligenceLayerPage layer="Signal" />,
+  // 6xD parent → defaults to D1
+  '6xd':               (p) => <DomainPage domain="D1" />,
   '6xD Framework':     (p) => <SixDFramework onNavigate={p.onNavigate} />,
-  '6xd':               (p) => <SixDFramework onNavigate={p.onNavigate} />,
+  // Sectors parent → defaults to Economy 4.0 (GenericPage)
+  'sectors':           (p) => <GenericPage title="Economy 4.0" subtitle="Platform economies, digital value chains, and the $4.2T GDP opportunity" stories={[]} />,
+  'Sectors':           (p) => <GenericPage title="Economy 4.0" subtitle="Platform economies, digital value chains, and the $4.2T GDP opportunity" stories={[]} />,
+  // Technology parent → defaults to DXP-Channels (GenericPage)
+  'technology':        (p) => <GenericPage title="Digital Channels" subtitle="DXP · Digital Experience Platform" stories={[]} />,
+  'Technology':        (p) => <GenericPage title="Digital Channels" subtitle="DXP · Digital Experience Platform" stories={[]} />,
   'Multimedia':        (p) => <Multimedia />,
   'About':             (p) => <About />,
+  // Intelligence sub-pages
   'Signal':            (p) => <IntelligenceLayerPage layer="Signal" />,
   'Insight':           (p) => <IntelligenceLayerPage layer="Insight" />,
   'Deep Analysis':     (p) => <IntelligenceLayerPage layer="Deep Analysis" />,
   'Books':             (p) => <BooksPage onSignIn={p.onSignIn} />,
   'Research':          (p) => <ResearchPage onSignIn={p.onSignIn} />,
   'Glossary':          (p) => <GlossaryPage />,
-  'Sectors':           (p) => <SectorsPage onNavigate={p.onNavigate} />,
-  'sectors':           (p) => <SectorsPage onNavigate={p.onNavigate} />,
-  'Technology':        (p) => <TechnologyPage onNavigate={p.onNavigate} />,
-  'technology':        (p) => <TechnologyPage onNavigate={p.onNavigate} />,
+  'Insight Cards':     (p) => <InsightCards />,
+  'Trend Radar':       (p) => <TrendRadar />,
+  'AI Engine':         (p) => <AIEngine />,
+  // 6xD domain sub-pages
   'D1': (p) => <DomainPage domain="D1" />,
   'D2': (p) => <DomainPage domain="D2" />,
   'D3': (p) => <DomainPage domain="D3" />,
