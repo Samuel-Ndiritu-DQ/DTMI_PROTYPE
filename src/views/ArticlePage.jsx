@@ -1,9 +1,10 @@
 import { useNav } from '../context/NavContext';
 import { getArticleBody } from '../data/articleContent';
-import { topStories, emergingTech, insightCards } from '../data/mockData';
+import { topStories, emergingTech, insightCards, getContentMeta } from '../data/mockData';
 import { CONTENT_CATEGORIES, getContentType } from '../data/contentTypes';
 import { ArrowLeft, Clock, BookOpen, Share2, Bookmark, Link } from 'lucide-react';
 import { useState } from 'react';
+import PageMeta from '../components/PageMeta';
 
 // Render a single body block with content-type styling
 function Block({ block, contentStyle, category, contentType }) {
@@ -434,6 +435,7 @@ export default function ArticlePage() {
     <div style={{ 
       background: 'white'
     }} className="min-h-screen">
+      <PageMeta title={headline} description={summary} />
 
       {/* ── BACK BAR ── */}
       <div className="border-b sticky top-14 z-40" style={{ 

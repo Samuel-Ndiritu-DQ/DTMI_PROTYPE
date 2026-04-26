@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { glossaryTerms, glossaryCategories } from '../data/glossaryData';
 import { BookOpen, ChevronDown, ChevronUp } from 'lucide-react';
 import PageSearch from '../components/PageSearch';
+import PageMeta from '../components/PageMeta';
+import { pageMeta } from '../data/mockData';
 
 const catColors = {
   'Digital Economy': '#8b5cf6', 'DCO': '#0a7ea4', 'AI & Automation': '#10b981',
@@ -69,6 +71,7 @@ export default function GlossaryPage() {
 
   return (
     <div style={{ background: 'var(--brand-light)' }} className="min-h-screen">
+      <PageMeta meta={pageMeta.Glossary} />
 
       {/* Hero */}
       <div style={{ background: 'var(--brand-navy)' }} className="border-b border-white/5">

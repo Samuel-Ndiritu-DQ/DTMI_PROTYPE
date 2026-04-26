@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { dtmbBooks } from '../data/booksData';
 import { BookOpen, Clock, ChevronRight, Lock, ArrowLeft, Users, Star, ExternalLink, BarChart2 } from 'lucide-react';
 import PageSearch from '../components/PageSearch';
+import PageMeta from '../components/PageMeta';
+import { pageMeta } from '../data/mockData';
 
 /* ── CSS book cover — renders like a real physical book ── */
 function BookCover({ book, size = 'md' }) {
@@ -184,6 +186,7 @@ function PaywallGate({ book, onSignIn }) {
 function BookReader({ book, onClose, onSignIn }) {
   return (
     <div style={{ background: 'var(--brand-light)', minHeight: '100vh' }}>
+      <PageMeta title={book.title} description={book.hook || book.subtitle} />
       {/* Slim breadcrumb bar */}
       <div className="bg-white border-b" style={{ borderColor: 'var(--brand-border)' }}>
         <div className="max-w-[960px] mx-auto px-4 h-11 flex items-center justify-between">
@@ -416,8 +419,7 @@ export default function BooksPage({ onSignIn }) {
 
   return (
     <div style={{ background: 'var(--brand-light)' }} className="min-h-screen">
-
-      {/* ── Hero ── */}
+      <PageMeta meta={pageMeta.Books} />
       <div style={{ background: 'var(--brand-navy)' }} className="border-b border-white/5">
         <div className="max-w-[1280px] mx-auto px-4 py-10">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">

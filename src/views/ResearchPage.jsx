@@ -5,6 +5,8 @@ import ContentFilterV2 from '../components/ContentFilterV2';
 import { FileText, Clock, Users, ArrowRight, BarChart } from 'lucide-react';
 import PageSearch from '../components/PageSearch';
 import ResearchReader from './ResearchReader';
+import PageMeta from '../components/PageMeta';
+import { pageMeta } from '../data/mockData';
 
 /* ── Research card ── */
 function ResearchCard({ report, onOpen }) {
@@ -164,6 +166,7 @@ export default function ResearchPage({ onSignIn }) {
 
   return (
     <div className="min-h-screen bg-white">
+      <PageMeta meta={pageMeta.Research} />
 
       {/* ── Hero ── */}
       <div style={{ background: 'var(--brand-navy)' }} className="border-b border-white/5">

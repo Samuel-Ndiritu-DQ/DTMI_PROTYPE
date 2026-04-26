@@ -1287,3 +1287,119 @@ export const videoEpisodes = [
     views: "4.9K"
   }
 ];
+
+// --- PAGE META DATA ----------------------------------------------------------
+// Used by PageMeta component to set document.title + meta description per page.
+
+export const pageMeta = {
+  // ── Core pages ──
+  Latest: {
+    title: 'Home',
+    description: 'DTMI by DigitalQatalyst — the leading intelligence platform for digital transformation leaders. Signal, Insight, Deep Analysis, and executive briefings.',
+  },
+  About: {
+    title: 'About DTMI',
+    description: 'Learn about DigitalQatalyst Think-Tank, the DTMI editorial team, the 6xD framework, and our mission to deliver world-class digital transformation intelligence.',
+  },
+  Multimedia: {
+    title: 'Multimedia',
+    description: 'Videos, podcasts, and visual intelligence from the DTMI research team — expert conversations on AI, cloud, cybersecurity, and digital transformation.',
+  },
+  Glossary: {
+    title: 'Glossary of Digital Transformation Terms',
+    description: 'The definitive A–Z reference for Economy 4.0, DCO, AI, cybersecurity, cloud, and digital platform terminology — curated by the DTMI Research Desk.',
+  },
+  Books: {
+    title: 'DTMB Book Library',
+    description: 'Curated books and exclusive DTMB research volumes for digital transformation leaders — from AI strategy to platform economics and organizational design.',
+  },
+  Research: {
+    title: 'Research Intelligence',
+    description: 'Premium whitepapers, research reports, policy briefs, and industry analyses from the DigitalQatalyst think-tank for digital transformation executives.',
+  },
+
+  // ── Intelligence layers ──
+  Signal: {
+    title: 'Signal Intelligence',
+    description: 'Real-time executive awareness, urgent alerts, and frontier monitoring — early signals and trend alerts for digital transformation leaders.',
+  },
+  Insight: {
+    title: 'Insight Intelligence',
+    description: 'Structured analysis, conceptual frameworks, and expert perspectives on digital transformation, AI, cloud, and organizational strategy.',
+  },
+  'Deep Analysis': {
+    title: 'Deep Analysis',
+    description: 'Comprehensive whitepapers, strategic essays, and long-form research for complex decision-making in the digital age.',
+  },
+  'Trend Radar': {
+    title: 'DTMI Trend Radar',
+    description: 'Interactive technology adoption and disruption map — track where AI, cloud, cybersecurity, and emerging tech sit on the adoption curve.',
+  },
+  'AI Engine': {
+    title: 'DTMI AI Insight Engine',
+    description: 'Query the DTMI intelligence database using AI — get instant answers, executive summaries, and strategic insights from our research corpus.',
+  },
+  'Insight Cards': {
+    title: 'Insight Cards',
+    description: 'Bite-sized intelligence cards covering AI, cloud, cybersecurity, and digital transformation — curated for busy executives.',
+  },
+
+  // ── 6xD Domains ──
+  D1: {
+    title: 'D1 — Digital Economy',
+    description: 'Economy 4.0, platform business models, digital value chains, and the $4.2 trillion GDP opportunity — DTMI intelligence on the digital economy.',
+  },
+  D2: {
+    title: 'D2 — Digital Cognitive Organizations',
+    description: 'DCO framework, AI-native organizations, cognitive workflows, and decision intelligence — DTMI research on the future of organizational design.',
+  },
+  D3: {
+    title: 'D3 — Digital Business Platforms',
+    description: 'DBP architecture, API ecosystems, platform business models, and digital marketplaces — DTMI intelligence on platform strategy.',
+  },
+  D4: {
+    title: 'D4 — Digital Transformation 2.0',
+    description: 'DT2.0 strategy, execution frameworks, change management, and ROI measurement — DTMI research on next-generation transformation.',
+  },
+  D5: {
+    title: 'D5 — Digital Worker & Workspace',
+    description: 'Future of work, digital talent, hybrid workspace models, and workforce transformation — DTMI intelligence on the digital worker.',
+  },
+  D6: {
+    title: 'D6 — Digital Accelerators',
+    description: 'AI, automation, and emerging technology accelerators — DTMI research on generative AI, edge computing, quantum, and digital acceleration.',
+  },
+  '6xD Framework': {
+    title: '6xD Framework',
+    description: 'The DigitalQatalyst 6xD Framework — six strategic domains structuring all DTMI research: Digital Economy, DCO, DBP, DT2.0, Digital Worker, and Accelerators.',
+  },
+
+  // ── Sectors ──
+  'Economy 4.0':       { title: 'Economy 4.0',       description: 'Platform economies, digital value chains, and the $4.2T GDP opportunity — DTMI sector intelligence.' },
+  'Experience 4.0':    { title: 'Experience 4.0',    description: 'Digital customer experience, CX transformation, and experience-led growth — DTMI sector intelligence.' },
+  'Intelligence 4.0':  { title: 'Intelligence 4.0',  description: 'AI-driven intelligence, data strategy, and analytics transformation — DTMI sector intelligence.' },
+  'Workspace 4.0':     { title: 'Workspace 4.0',     description: 'Digital workspace transformation, hybrid work, and the future of the office — DTMI sector intelligence.' },
+  'Government 4.0':    { title: 'Government 4.0',    description: 'Digital government transformation, public sector AI, and e-governance — DTMI sector intelligence.' },
+  'Services 4.0':      { title: 'Services 4.0',      description: 'Digital services transformation, platform-based service delivery, and service innovation — DTMI intelligence.' },
+  'Retail 4.0':        { title: 'Retail 4.0',        description: 'Digital retail transformation, omnichannel strategy, and commerce innovation — DTMI sector intelligence.' },
+  'Healthcare 4.0':    { title: 'Wellness 4.0',      description: 'Digital health transformation, AI in healthcare, and wellness technology — DTMI sector intelligence.' },
+  'Mining 4.0':        { title: 'Mining 4.0',        description: 'Digital transformation in mining, Industry 4.0 adoption, and smart extraction — DTMI sector intelligence.' },
+  'Farming 4.0':       { title: 'Farming 4.0',       description: 'AgriTech, precision farming, and digital agriculture transformation — DTMI sector intelligence.' },
+  'Logistics 4.0':     { title: 'Logistics 4.0',     description: 'Supply chain digitization, smart logistics, and last-mile innovation — DTMI sector intelligence.' },
+
+  // ── Technology platforms ──
+  Technology: {
+    title: 'Technology Platforms',
+    description: 'DTMI intelligence on DXP, DWS, DIA, and SDO digital platforms — architecture, adoption, and strategic deployment for enterprise leaders.',
+  },
+};
+
+// Helper: get meta for a content item (article, video, podcast, etc.)
+// Falls back gracefully if no meta is defined on the item.
+export function getContentMeta(item) {
+  if (!item) return { title: '', description: '' };
+  return {
+    title:       item.headline || item.title || '',
+    description: item.summary  || item.description || item.hook || '',
+  };
+}

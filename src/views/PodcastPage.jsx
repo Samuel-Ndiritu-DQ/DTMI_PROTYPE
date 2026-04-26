@@ -1,4 +1,5 @@
-﻿import { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
+import PageMeta from '../components/PageMeta';
 import { useNav } from '../context/NavContext';
 import { podcastEpisodes } from '../data/mockData';
 import { ArrowLeft, Play, Pause, SkipBack, SkipForward, Volume2, VolumeX, Clock, Users, Headphones, Link, Bookmark, Share2 } from 'lucide-react';
@@ -200,6 +201,7 @@ export default function PodcastPage() {
 
   return (
     <div style={{ background: 'var(--brand-light)' }} className="min-h-screen">
+      <PageMeta title={item.title} description={item.description} />
 
       {/* â”€â”€ BACK BAR â”€â”€ */}
       <div className="border-b sticky top-0 z-40" style={{ background: 'white', borderColor: 'var(--brand-border)' }}>

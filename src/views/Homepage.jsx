@@ -5,11 +5,12 @@ import OpinionSection from '../components/OpinionSection';
 import DTMIIndexWidget from '../components/DTMIIndexWidget';
 import SectionLabel from '../components/SectionLabel';
 import StoryCard from '../components/StoryCard';
-import { topStories, emergingTech, executiveBriefings, videoContent, insightCards } from '../data/mockData';
-import { ArrowRight, Zap, BookOpen, Radio } from 'lucide-react';
+import PageMeta from '../components/PageMeta';
+import { topStories, emergingTech, executiveBriefings, videoContent, insightCards, mostRead, pageMeta } from '../data/mockData';
+import { ArrowRight, Zap, BookOpen, Radio, Flame } from 'lucide-react';
 import { useNav } from '../context/NavContext';
 
-/* McKinsey-style mid-page newsletter CTA */
+/* Mid-page newsletter CTA */
 function NewsletterBanner() {
   return (
     <div className="rounded-sm overflow-hidden" style={{ background: 'var(--brand-navy)' }}>
@@ -39,10 +40,42 @@ function NewsletterBanner() {
   );
 }
 
+/* Trending strip — horizontal scrollable row of ranked stories */
+function TrendingStrip({ onOpen }) {
+  const items = mostRead.slice(0, 5);
+  return (
+    <div className="rounded-sm overflow-hidden border" style={{ background: 'white', borderColor: 'var(--brand-border)' }}>
+      <div className="flex items-center gap-2 px-4 py-2.5 border-b" style={{ borderColor: 'var(--brand-border)', background: 'var(--brand-light)' }}>
+        <Flame size={13} style={{ color: 'var(--brand-orange)' }} />
+        <span className="text-[11px] font-black uppercase tracking-widest" style={{ color: 'var(--brand-navy)' }}>Trending Now</span>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-5 divide-y sm:divide-y-0 sm:divide-x" style={{ '--tw-divide-opacity': 1 }}>
+        {items.map((item) => (
+          <div
+            key={item.rank}
+            className="flex sm:flex-col gap-3 sm:gap-1.5 px-4 py-3 cursor-pointer group hover:bg-gray-50 transition-colors"
+          >
+            <span className="text-[28px] font-black leading-none shrink-0 sm:shrink" style={{ color: 'rgba(232,80,10,0.18)' }}>
+              {item.rank}
+            </span>
+            <div>
+              <p className="text-[9px] font-black uppercase tracking-wider mb-1" style={{ color: 'var(--brand-teal)' }}>{item.category}</p>
+              <p className="text-[11px] font-semibold leading-snug group-hover:opacity-70 transition-opacity line-clamp-3" style={{ color: 'var(--brand-navy)' }}>
+                {item.headline}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+
+
 export default function Homepage() {
   const { openArticle } = useNav();
 
-  /* McKinsey "Week's Highlights" — top 3 featured stories */
   const weekHighlights = [
     { ...topStories[0], label: 'EXCLUSIVE ANALYSIS' },
     { ...executiveBriefings[0], label: 'VIDEO' },
@@ -51,6 +84,7 @@ export default function Homepage() {
 
   return (
     <div style={{ background: 'var(--brand-light)' }} className="min-h-screen">
+      <PageMeta meta={pageMeta.Latest} />
 
       {/* ── HERO ── */}
       <HeroSection />
@@ -62,9 +96,9 @@ export default function Homepage() {
           {/* ── LEFT: Main content (3 cols) ── */}
           <div className="lg:col-span-3 space-y-10">
 
-            {/* McKINSEY: WEEK'S HIGHLIGHTS */}
+            {/* WEEK'S HIGHLIGHTS */}
             <section>
-              <SectionLabel title="This Week's Highlights" />
+              <SectionLabel title="This Week's Highlights" subtitle="Curated top intelligence from across DTMI" />
               <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                 {weekHighlights.map((story, i) => (
                   <div key={story.id + '-wh-' + i} onClick={() => openArticle(story)} className="cursor-pointer">
@@ -76,7 +110,7 @@ export default function Homepage() {
 
             {/* TOP STORIES */}
             <section>
-              <SectionLabel title="Top Stories" count={topStories.length} />
+              <SectionLabel title="Top Stories" subtitle="Most important intelligence right now" count={topStories.length} />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <StoryCard story={topStories[0]} size="lg" />
                 <StoryCard story={topStories[1]} size="lg" />
@@ -90,9 +124,12 @@ export default function Homepage() {
               </div>
             </section>
 
+            {/* TRENDING STRIP */}
+            <TrendingStrip onOpen={openArticle} />
+
             {/* EXECUTIVE BRIEFINGS */}
             <section>
-              <SectionLabel title="Executive Briefings" />
+              <SectionLabel title="Executive Briefings" subtitle="Video, analysis & podcasts for C-suite leaders" />
               <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                 {executiveBriefings.map((story) => (
                   <StoryCard key={story.id} story={story} />
@@ -100,7 +137,7 @@ export default function Homepage() {
               </div>
             </section>
 
-            {/* McKINSEY: MID-PAGE NEWSLETTER CTA */}
+            {/* NEWSLETTER CTA */}
             <NewsletterBanner />
 
             {/* OPINION */}
@@ -110,7 +147,7 @@ export default function Homepage() {
 
             {/* EMERGING TECH */}
             <section>
-              <SectionLabel title="Emerging Technology" />
+              <SectionLabel title="Emerging Technology" subtitle="Frontier signals & early-stage disruption" />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-0 border rounded-sm bg-white overflow-hidden" style={{ borderColor: 'var(--brand-border)' }}>
                 <div className="p-4 border-b md:border-b-0 md:border-r" style={{ borderColor: 'var(--brand-border)' }}>
                   <StoryCard story={emergingTech[0]} size="lg" />
@@ -127,7 +164,7 @@ export default function Homepage() {
 
             {/* VIDEO & PODCASTS */}
             <section>
-              <SectionLabel title="Video & Podcasts" />
+              <SectionLabel title="Video & Podcasts" subtitle="Expert conversations & multimedia intelligence" />
               <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                 {videoContent.map((story) => (
                   <StoryCard key={story.id} story={story} />
@@ -143,7 +180,7 @@ export default function Homepage() {
             <DTMIIndexWidget />
             <MostRead />
 
-            {/* CNN-style "More to Explore" quick links */}
+            {/* More to Explore quick links */}
             <div className="bg-white border rounded-sm p-4" style={{ borderColor: 'var(--brand-border)' }}>
               <p className="text-[11px] font-black uppercase tracking-widest mb-3 pb-2 border-b" style={{ color: 'var(--brand-navy)', borderColor: 'var(--brand-border)' }}>
                 More to Explore
@@ -177,10 +214,10 @@ export default function Homepage() {
         </div>
       </div>
 
-      {/* ── CNN-style MORE STORIES rail ── */}
+      {/* ── MORE STORIES rail ── */}
       <div className="border-t" style={{ background: 'white', borderColor: 'var(--brand-border)' }}>
         <div className="max-w-[1280px] mx-auto px-4 py-8">
-          <SectionLabel title="More from DTMI" />
+          <SectionLabel title="More from DTMI" subtitle="Explore the full intelligence library" />
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
             {[...topStories, ...emergingTech].slice(0, 6).map((story) => (
               <StoryCard key={story.id + '-more'} story={story} size="sm" />

@@ -1,4 +1,6 @@
 import { Zap, BookOpen, Radio, BarChart2, Users, ArrowRight } from 'lucide-react';
+import PageMeta from '../components/PageMeta';
+import { pageMeta } from '../data/mockData';
 
 const team = [
   { name: "Dr Stephane Niango",  role: "Research Director · 6xD | Economy 4.0 | DCO | DBP",   type: "Research Leadership" },
@@ -47,6 +49,7 @@ const pillars = [
 export default function About() {
   return (
     <div style={{ background: 'var(--brand-light)' }} className="min-h-screen">
+      <PageMeta meta={pageMeta.About} />
 
       {/* Hero */}
       <div style={{ background: 'var(--brand-navy)' }} className="py-16">

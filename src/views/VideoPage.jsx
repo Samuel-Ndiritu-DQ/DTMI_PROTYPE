@@ -1,7 +1,8 @@
-﻿import { useRef, useState, useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { useNav } from '../context/NavContext';
-import { videoEpisodes, videoContent, topStories } from '../data/mockData';
+import { videoEpisodes, videoContent, topStories, getContentMeta } from '../data/mockData';
 import { ArrowLeft, Play, Pause, Volume2, VolumeX, Maximize, Clock, Users, Share2, Bookmark, Link } from 'lucide-react';
+import PageMeta from '../components/PageMeta';
 
 // Free-to-use public domain / CC0 videos from archive.org / sample sources
 const VIDEO_SOURCES = {
@@ -189,6 +190,7 @@ export default function VideoPage() {
 
   return (
     <div style={{ background: 'var(--brand-light)' }} className="min-h-screen">
+      <PageMeta title={title} description={desc} />
 
       {/* â”€â”€ BACK BAR â”€â”€ */}
       <div className="border-b sticky top-0 z-40" style={{ background: 'white', borderColor: 'var(--brand-border)' }}>

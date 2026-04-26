@@ -25,9 +25,11 @@ import RegisterPage     from './views/RegisterPage';
 import ForgotPasswordPage from './views/ForgotPasswordPage';
 
 import { topStories, emergingTech, executiveBriefings, videoContent, insightCards } from './data/mockData';
+import { pageMeta as sitePageMeta, getContentMeta } from './data/mockData';
 import SectionLabel from './components/SectionLabel';
 import StoryCard from './components/StoryCard';
 import PageSearch from './components/PageSearch';
+import PageMeta from './components/PageMeta';
 
 function GenericPage({ title, subtitle, stories }) {
   const { openArticle } = useNav();
@@ -48,6 +50,10 @@ function GenericPage({ title, subtitle, stories }) {
 
   return (
     <div style={{ background: 'var(--brand-light)' }} className="min-h-screen">
+      <PageMeta
+        title={sitePageMeta[title]?.title || title}
+        description={sitePageMeta[title]?.description || subtitle || `DTMI intelligence on ${title}`}
+      />
       <div className="max-w-[1280px] mx-auto px-4 py-8">
         {/* Page header */}
         <div className="mb-6 pb-4 border-b" style={{ borderColor: 'var(--brand-border)' }}>
