@@ -1,4 +1,5 @@
 ﻿import React, { useState, useEffect } from 'react';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { NavProvider, useNav } from './context/NavContext';
 
 import TopBar from './components/TopBar';
@@ -153,28 +154,49 @@ function IntelligenceLayerPage({ layer }) {
                   Real-time executive awareness, urgent alerts, and frontier monitoring to help you stay ahead of emerging risks and opportunities in the digital landscape.
                 </p>
               </div>
-              {/* Signal page image - executive monitoring emerging trends */}
-              <div className="relative w-64 h-40 rounded-lg overflow-hidden shadow-2xl">
-                <div className="absolute inset-0 bg-cover bg-center" style={{
-                  backgroundImage: 'url(https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80)',
-                }}>
-                  {/* Gradient overlay */}
-                  <div className="absolute inset-0" style={{
-                    background: 'linear-gradient(135deg, rgba(10, 22, 40, 0.7) 0%, rgba(10, 22, 40, 0.4) 100%)'
-                  }}></div>
-                  
-                  {/* Content */}
-                  <div className="absolute inset-0 flex flex-col justify-end p-4">
-                    <div>
-                      <div className="inline-flex items-center gap-1 mb-2 px-2 py-1 rounded-sm" style={{ 
-                        background: 'rgba(255,107,53,0.2)', 
-                        backdropFilter: 'blur(4px)'
-                      }}>
-                        <span className="text-[10px] font-bold uppercase tracking-wider" style={{ color: 'var(--brand-orange)' }}>Early Detection</span>
-                      </div>
-                      <h3 className="text-white text-[14px] font-bold leading-snug">Executive monitoring emerging digital signals</h3>
-                    </div>
-                  </div>
+              {/* Signal page - waveform visualization */}
+              <div className="relative w-1/2 h-40 rounded-xl overflow-hidden shadow-2xl mx-auto" style={{
+                background: 'linear-gradient(135deg, rgba(10, 22, 40, 0) 0%, rgba(10, 22, 40, 0) 100%)'
+              }}>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <svg width="100%" height="100%" viewBox="0 0 800 160" preserveAspectRatio="none" style={{ filter: 'drop-shadow(0 0 15px rgba(6, 182, 212, 0.4))' }}>
+                    {/* Waveform path */}
+                    <defs>
+                      <linearGradient id="waveGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style={{ stopColor: '#06b6d4', stopOpacity: 1 }} />
+                        <stop offset="100%" style={{ stopColor: 'rgba(6, 182, 212, 0.2)', stopOpacity: 1 }} />
+                      </linearGradient>
+                    </defs>
+                    
+                    {/* Main waveform */}
+                    <path
+                      d="M 0 80 Q 50 40 100 80 T 200 80 T 300 80 T 400 80 T 500 80 T 600 80 T 700 80 T 800 80"
+                      fill="none"
+                      stroke="url(#waveGradient)"
+                      strokeWidth="3"
+                      opacity="0.9"
+                    />
+                    
+                    {/* Secondary waveform lines */}
+                    <path
+                      d="M 0 80 Q 50 50 100 80 T 200 80 T 300 80 T 400 80 T 500 80 T 600 80 T 700 80 T 800 80"
+                      fill="none"
+                      stroke="rgba(6, 182, 212, 0.4)"
+                      strokeWidth="2"
+                      opacity="0.6"
+                    />
+                    
+                    <path
+                      d="M 0 80 Q 50 60 100 80 T 200 80 T 300 80 T 400 80 T 500 80 T 600 80 T 700 80 T 800 80"
+                      fill="none"
+                      stroke="rgba(6, 182, 212, 0.2)"
+                      strokeWidth="1.5"
+                      opacity="0.4"
+                    />
+                    
+                    {/* Glow effect */}
+                    <ellipse cx="400" cy="80" rx="300" ry="50" fill="none" stroke="rgba(6, 182, 212, 0.15)" strokeWidth="2" opacity="0.5" />
+                  </svg>
                 </div>
               </div>
             </div>
@@ -254,28 +276,56 @@ function IntelligenceLayerPage({ layer }) {
                   Structured analysis, conceptual frameworks, and expert perspectives to help you understand complex digital transformation concepts and make informed strategic decisions.
                 </p>
               </div>
-              {/* Insight page image - expert analysis and frameworks */}
-              <div className="relative w-64 h-40 rounded-lg overflow-hidden shadow-2xl">
-                <div className="absolute inset-0 bg-cover bg-center" style={{
-                  backgroundImage: 'url(https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80)',
-                }}>
-                  {/* Gradient overlay */}
-                  <div className="absolute inset-0" style={{
-                    background: 'linear-gradient(135deg, rgba(10, 22, 40, 0.7) 0%, rgba(10, 22, 40, 0.4) 100%)'
-                  }}></div>
-                  
-                  {/* Content */}
-                  <div className="absolute inset-0 flex flex-col justify-end p-4">
-                    <div>
-                      <div className="inline-flex items-center gap-1 mb-2 px-2 py-1 rounded-sm" style={{ 
-                        background: 'rgba(6, 182, 212, 0.2)', 
-                        backdropFilter: 'blur(4px)'
-                      }}>
-                        <span className="text-[10px] font-bold uppercase tracking-wider" style={{ color: '#06b6d4' }}>Strategic Framework</span>
-                      </div>
-                      <h3 className="text-white text-[14px] font-bold leading-snug">Expert analysis shaping digital transformation</h3>
-                    </div>
-                  </div>
+              {/* Insight page - analysis line chart visualization */}
+              <div className="relative w-1/2 h-40 rounded-xl overflow-hidden shadow-2xl mx-auto" style={{
+                background: 'linear-gradient(135deg, rgba(10, 22, 40, 0) 0%, rgba(10, 22, 40, 0) 100%)'
+              }}>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <svg width="100%" height="100%" viewBox="0 0 400 160" preserveAspectRatio="xMidYMid meet" style={{ filter: 'drop-shadow(0 0 15px rgba(6, 182, 212, 0.3))' }}>
+                    {/* Grid lines */}
+                    <defs>
+                      <linearGradient id="analysisGradient" x1="0%" y1="100%" x2="0%" y2="0%">
+                        <stop offset="0%" style={{ stopColor: '#06b6d4', stopOpacity: 0.1 }} />
+                        <stop offset="100%" style={{ stopColor: '#06b6d4', stopOpacity: 0.4 }} />
+                      </linearGradient>
+                    </defs>
+                    
+                    {/* Horizontal grid lines */}
+                    <line x1="20" y1="40" x2="380" y2="40" stroke="rgba(6, 182, 212, 0.1)" strokeWidth="1"/>
+                    <line x1="20" y1="80" x2="380" y2="80" stroke="rgba(6, 182, 212, 0.1)" strokeWidth="1"/>
+                    <line x1="20" y1="120" x2="380" y2="120" stroke="rgba(6, 182, 212, 0.1)" strokeWidth="1"/>
+                    
+                    {/* Area under curve */}
+                    <path
+                      d="M 20 100 L 80 60 L 140 50 L 200 70 L 260 40 L 320 55 L 380 35 L 380 140 L 20 140 Z"
+                      fill="url(#analysisGradient)"
+                      opacity="0.6"
+                    />
+                    
+                    {/* Main analysis line */}
+                    <polyline
+                      points="20,100 80,60 140,50 200,70 260,40 320,55 380,35"
+                      fill="none"
+                      stroke="#06b6d4"
+                      strokeWidth="2.5"
+                      opacity="0.9"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                    
+                    {/* Data points */}
+                    <circle cx="20" cy="100" r="3.5" fill="#06b6d4" opacity="0.8"/>
+                    <circle cx="80" cy="60" r="3.5" fill="#06b6d4" opacity="0.8"/>
+                    <circle cx="140" cy="50" r="3.5" fill="#06b6d4" opacity="0.8"/>
+                    <circle cx="200" cy="70" r="3.5" fill="#06b6d4" opacity="0.8"/>
+                    <circle cx="260" cy="40" r="3.5" fill="#06b6d4" opacity="0.8"/>
+                    <circle cx="320" cy="55" r="3.5" fill="#06b6d4" opacity="0.8"/>
+                    <circle cx="380" cy="35" r="3.5" fill="#06b6d4" opacity="0.8"/>
+                    
+                    {/* Axis lines */}
+                    <line x1="20" y1="140" x2="380" y2="140" stroke="rgba(6, 182, 212, 0.3)" strokeWidth="1.5"/>
+                    <line x1="20" y1="20" x2="20" y2="140" stroke="rgba(6, 182, 212, 0.3)" strokeWidth="1.5"/>
+                  </svg>
                 </div>
               </div>
             </div>
@@ -355,16 +405,26 @@ function IntelligenceLayerPage({ layer }) {
                   Comprehensive research, strategic depth, and long-form analysis to provide you with the deep insights needed for complex decision-making in the digital age.
                 </p>
               </div>
-              {/* Visual element for Deep Analysis page */}
-              <div className="flex items-end gap-2 shrink-0">
-                <div className="w-24 h-32 rounded-sm flex items-center justify-center" style={{ background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.2)' }}>
-                  <span className="text-white text-[12px] font-bold">RESEARCH</span>
-                </div>
-                <div className="w-20 h-28 rounded-sm flex items-center justify-center" style={{ background: 'rgba(255,255,255,0.08)', border: '1px solid rgba(255,255,255,0.15)' }}>
-                  <span className="text-white text-[10px] font-bold">WHITEPAPER</span>
-                </div>
-                <div className="w-16 h-24 rounded-sm flex items-center justify-center" style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)' }}>
-                  <span className="text-white text-[9px] font-bold">ESSAY</span>
+              {/* Deep Analysis page - research bar chart visualization */}
+              <div className="relative w-1/2 h-40 rounded-xl overflow-hidden shadow-2xl mx-auto" style={{
+                background: 'linear-gradient(135deg, rgba(10, 22, 40, 0) 0%, rgba(10, 22, 40, 0) 100%)'
+              }}>
+                <div className="absolute inset-0 flex items-end justify-center gap-3 p-6">
+                  {[70, 55, 85, 45, 90, 60, 75].map((height, i) => (
+                    <div
+                      key={i}
+                      className="rounded-t-sm transition-all hover:opacity-80"
+                      style={{
+                        width: '14px',
+                        height: `${height}%`,
+                        background: i % 2 === 0 
+                          ? 'linear-gradient(180deg, rgb(245, 158, 11) 0%, rgba(245, 158, 11, 0.6) 100%)'
+                          : 'linear-gradient(180deg, rgba(245, 158, 11, 0.8) 0%, rgba(245, 158, 11, 0.4) 100%)',
+                        boxShadow: `0 -2px 8px rgba(245, 158, 11, ${0.3 + i * 0.08})`,
+                        borderRadius: '2px 2px 0 0'
+                      }}
+                    />
+                  ))}
                 </div>
               </div>
             </div>
