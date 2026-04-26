@@ -1,0 +1,10 @@
+<svg viewBox="0 0 300 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <style>
+      .dtmi-text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-weight: 900; font-size: 56px; letter-spacing: -2px; }
+    </style>
+  </defs>
+  
+  <!-- DTMI text in brand orange -->
+  <text x="10" y="60" class="dtmi-text" fill="#FF6B35">DTMI</text>
+</svg>

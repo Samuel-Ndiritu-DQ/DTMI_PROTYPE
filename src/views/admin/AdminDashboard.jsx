@@ -358,15 +358,12 @@ export default function AdminDashboard({ onExit }) {
       >
         {/* Logo */}
         <div className="flex items-center gap-2.5 px-4 h-14 border-b shrink-0" style={{ borderColor: 'rgba(255,255,255,0.07)' }}>
-          <div className="w-7 h-7 rounded-sm flex items-center justify-center shrink-0" style={{ background: 'var(--brand-orange)' }}>
-            <Zap size={13} className="text-white" fill="white" />
-          </div>
-          {sidebarOpen && (
-            <div className="min-w-0">
-              <p className="text-white font-black text-[13px] leading-none">DTMI</p>
-              <p className="text-[9px] font-semibold uppercase tracking-widest leading-none mt-0.5" style={{ color: 'var(--brand-teal)' }}>Admin</p>
-            </div>
-          )}
+          <img 
+            src="/logo.png" 
+            alt="Logo" 
+            className="h-7 w-auto shrink-0" 
+            style={{ filter: 'brightness(1.1) saturate(1.2)' }}
+          />
         </div>
 
         {/* Nav */}
@@ -410,7 +407,7 @@ export default function AdminDashboard({ onExit }) {
             </button>
             <div>
               <h1 className="text-white text-[14px] font-bold">{breadcrumb}</h1>
-              <p className="text-[#64748b] text-[10px]">DTMI Admin Panel</p>
+              <p className="text-[#64748b] text-[10px]">Admin Panel</p>
             </div>
           </div>
           <div className="flex items-center gap-3">

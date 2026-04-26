@@ -298,16 +298,19 @@ export default function TopBar({ activeSection, setActiveSection, onAdmin, onSig
               )}
               <button
                 onClick={() => handleNavigate('Latest')}
-                className="flex items-center gap-2.5 shrink-0"
-                aria-label="DTMI Home"
+                className="flex items-center gap-3 shrink-0"
+                aria-label="Home"
               >
-                <div className="flex items-center justify-center w-8 h-8 rounded-sm shrink-0" style={{ background: 'var(--brand-orange)' }}>
-                  <Zap size={16} className="text-white" fill="white" />
-                </div>
-                <div className="leading-none">
-                  <p className="text-white font-black text-[15px] tracking-tight leading-none">DTMI</p>
+                <img 
+                  src="/logo.png" 
+                  alt="Logo" 
+                  className="h-8 w-auto shrink-0" 
+                  style={{ filter: 'brightness(1.1) saturate(1.2) drop-shadow(0 0 2px rgba(255,255,255,0.1))' }}
+                />
+                <div className="leading-none hidden md:block">
+                  <p className="text-white font-black text-[14px] tracking-tight leading-none">Digital Transformation</p>
                   <p className="text-[10px] font-semibold uppercase tracking-widest leading-none mt-0.5" style={{ color: 'var(--brand-teal)' }}>
-                    DigitalQatalyst
+                    Management Insight
                   </p>
                 </div>
               </button>
@@ -463,9 +466,11 @@ export default function TopBar({ activeSection, setActiveSection, onAdmin, onSig
             {/* Drawer header */}
             <div className="flex items-center justify-between px-4 py-3 border-b shrink-0" style={{ borderColor: 'rgba(255,255,255,0.1)' }}>
               <div className="flex items-center gap-2">
-                <div className="w-7 h-7 rounded-sm flex items-center justify-center shrink-0" style={{ background: 'var(--brand-orange)' }}>
-                  <Zap size={13} className="text-white" fill="white" />
-                </div>
+                <img 
+                  src="/dtmi-logo.svg" 
+                  alt="DTMI Logo" 
+                  className="h-7 w-auto shrink-0" 
+                />
                 <div className="leading-none">
                   <p className="text-white font-black text-[14px] leading-none">DTMI</p>
                   <p className="text-[9px] font-semibold uppercase tracking-widest leading-none mt-0.5" style={{ color: 'var(--brand-teal)' }}>

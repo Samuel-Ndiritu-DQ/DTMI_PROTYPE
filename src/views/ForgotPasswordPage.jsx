@@ -32,9 +32,12 @@ export default function ForgotPasswordPage({ onClose, onGoLogin }) {
 
         {/* Logo + title */}
         <div className="flex flex-col items-center mb-4">
-          <div className="flex items-center justify-center w-10 h-10 rounded-lg mb-2.5" style={{ background: 'var(--brand-navy)' }}>
-            <Zap size={18} className="text-white" fill="white" />
-          </div>
+          <img 
+            src="/logo.png" 
+            alt="Logo" 
+            className="h-10 w-auto mb-2.5" 
+            style={{ filter: 'brightness(1.1) saturate(1.2)' }}
+          />
           <h1 className="text-[17px] font-black text-center" style={{ color: 'var(--brand-dark)' }}>
             Reset your password
           </h1>

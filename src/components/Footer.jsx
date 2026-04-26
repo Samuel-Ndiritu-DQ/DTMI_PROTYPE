@@ -56,13 +56,16 @@ export default function Footer() {
         {/* Logo row */}
         <div className="flex items-center gap-3 mb-8 pb-6 border-b border-white/8">
           <button onClick={() => navigate('Latest')} className="flex items-center gap-3 hover:opacity-80 transition-opacity">
-            <div className="w-8 h-8 rounded-sm flex items-center justify-center" style={{ background: 'var(--brand-orange)' }}>
-              <Zap size={15} className="text-white" fill="white" />
-            </div>
+            <img 
+              src="/logo.png" 
+              alt="Logo" 
+              className="h-8 w-auto shrink-0" 
+              style={{ filter: 'brightness(1.1) saturate(1.2) drop-shadow(0 0 2px rgba(255,255,255,0.1))' }}
+            />
             <div className="text-left">
-              <p className="text-white font-black text-[15px] tracking-tight">DTMI</p>
+              <p className="text-white font-black text-[13px] tracking-tight">Digital Transformation</p>
               <p className="text-[10px] font-semibold uppercase tracking-widest" style={{ color: 'var(--brand-teal)' }}>
-                DigitalQatalyst Think-Tank · Digital Transformation Management Intelligence
+                Management Insight
               </p>
             </div>
           </button>
