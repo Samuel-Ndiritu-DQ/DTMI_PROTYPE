@@ -19,7 +19,6 @@ export const tickerItems = [
 ];
 
 // --- NAV STRUCTURE (mega-menu) -----------------------------------------------
-// Top-level items. items with `children` render a mega-menu dropdown.
 export const navItems = [
   { label: "Home",       key: "Latest" },
   {
@@ -29,10 +28,56 @@ export const navItems = [
       {
         heading: "Knowledge Layers",
         links: [
-          { label: "Signal",        key: "Signal",       desc: "Early signals & trend alerts" },
-          { label: "Insight",       key: "Insight",      desc: "Analysis & framework explainers" },
-          { label: "Deep Analysis", key: "Deep Analysis",desc: "Whitepapers, essays & research" },
-          { label: "Research",      key: "Research",     desc: "Reports, whitepapers & policy briefs" },
+          { 
+            label: "Signal",        
+            key: "Signal",       
+            desc: "Real-time executive awareness & urgent alerts",
+            contentTypes: [
+              { label: "Executive Briefs", key: "executive-brief", desc: "Urgent executive-level briefings" },
+              { label: "Frontier Watch", key: "frontier-watch", desc: "Monitoring emerging tech frontiers" },
+              { label: "Frontier Brief", key: "frontier-brief", desc: "Deep-dive frontier analysis" },
+              { label: "Rapid Insights", key: "rapid-insight", desc: "Quick-turnaround market insights" },
+              { label: "Trend Alerts", key: "trend-alert", desc: "Early trend identification & alerts" },
+              { label: "Viewpoint Blogs", key: "viewpoint-blog", desc: "Expert opinion & commentary" }
+            ]
+          },
+          { 
+            label: "Insight",       
+            key: "Insight",      
+            desc: "Structured analysis & conceptual frameworks",
+            contentTypes: [
+              { label: "Concept Introduction", key: "concept-intro", desc: "Introducing new digital concepts" },
+              { label: "Expert Perspective", key: "expert-perspective", desc: "Industry expert viewpoints" },
+              { label: "Framework Explainer", key: "framework-explainer", desc: "Detailed framework breakdowns" },
+              { label: "Insight Article", key: "insight-article", desc: "In-depth analytical articles" },
+              { label: "Microblogs", key: "microblog", desc: "Quick insights & observations" }
+            ]
+          },
+          { 
+            label: "Deep Analysis", 
+            key: "Deep Analysis",
+            desc: "Comprehensive research & strategic depth",
+            contentTypes: [
+              { label: "Forecast Article", key: "forecast-article", desc: "Future trend projections" },
+              { label: "Industry Briefs", key: "industry-brief", desc: "Sector-specific analysis" },
+              { label: "Research Notes", key: "research-note", desc: "Preliminary research findings" },
+              { label: "Strategic Essay", key: "strategic-essay", desc: "Long-form strategic thinking" },
+              { label: "White Paper", key: "whitepaper", desc: "Comprehensive research papers" },
+              { label: "Book Review", key: "book-review", desc: "Critical analysis of key books" },
+              { label: "Infographics", key: "infographic", desc: "Visual data representation" }
+            ]
+          },
+          { 
+            label: "Research",      
+            key: "Research",     
+            desc: "Premium intelligence & executive reports",
+            contentTypes: [
+              { label: "Research Report", key: "research-report", desc: "Comprehensive research studies" },
+              { label: "Market Intelligence", key: "market-intelligence", desc: "Market analysis & insights" },
+              { label: "Policy Brief", key: "policy-brief", desc: "Policy analysis & recommendations" },
+              { label: "Executive Analysis", key: "executive-analysis", desc: "C-suite level strategic analysis" }
+            ]
+          },
           { label: "Books",         key: "Books",        desc: "DTMB flagship research volumes" },
           { label: "Glossary",      key: "Glossary",     desc: "A–Z digital transformation terms" },
         ],
@@ -228,6 +273,7 @@ export const topStories = [
     severity: "High",
     recommended: true,
     image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=600&q=80",
+    type: "Insight Article",
   },
   {
     id: "ts-2",
@@ -238,6 +284,7 @@ export const topStories = [
     readTime: "5 min",
     severity: "Critical",
     image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&q=80",
+    type: "Trend Alert",
   },
   {
     id: "ts-3",
@@ -248,6 +295,7 @@ export const topStories = [
     readTime: "7 min",
     severity: "Medium",
     image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&q=80",
+    type: "Insight Article",
   },
   {
     id: "ts-4",
@@ -258,6 +306,7 @@ export const topStories = [
     readTime: "8 min",
     severity: "Medium",
     image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80",
+    type: "Research Report",
   },
 ];
 
@@ -271,6 +320,7 @@ export const executiveBriefings = [
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80",
     label: "VIDEO",
     duration: "18 min",
+    type: "Executive Briefs",
   },
   {
     id: "eb-2",
@@ -279,6 +329,7 @@ export const executiveBriefings = [
     timestamp: "Apr 22, 2026",
     image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80",
     label: "ANALYSIS",
+    type: "Executive Briefs",
   },
   {
     id: "eb-3",
@@ -287,6 +338,7 @@ export const executiveBriefings = [
     timestamp: "Apr 21, 2026",
     image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=80",
     label: "PODCAST",
+    type: "Executive Briefs",
     duration: "42 min",
   },
 ];
@@ -299,6 +351,7 @@ export const emergingTech = [
     headline: "Quantum computing: only 12% of enterprises have a strategy — but the window is closing",
     timestamp: "Apr 23, 2026",
     image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=600&q=80",
+    type: "Frontier Watch",
   },
   {
     id: "et-2",
@@ -306,6 +359,7 @@ export const emergingTech = [
     headline: "Digital twins are moving from factory floors to entire city infrastructures",
     timestamp: "Apr 22, 2026",
     image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=80",
+    type: "Frontier Watch",
   },
   {
     id: "et-3",
@@ -313,13 +367,15 @@ export const emergingTech = [
     headline: "Edge computing adoption reaches 38% — latency-sensitive industries lead adoption",
     timestamp: "Apr 21, 2026",
     image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&q=80",
+    type: "Frontier Watch",
   },
   {
     id: "et-4",
     category: "EMERGING TECH",
-    headline: "5G enterprise deployments accelerate: 41% of large firms now have active 5G strategies",
+    headline: "5G enterprise deployments accelerate: 41% of large firms now have active strategies",
     timestamp: "Apr 20, 2026",
     image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=600&q=80",
+    type: "Frontier Watch",
   },
 ];
 
@@ -421,388 +477,813 @@ export const severityBadge = {
 
 // --- INSIGHT CARDS -----------------------------------------------------------
 export const insightCards = [
+  // 1. EXECUTIVE BRIEFS (2 samples)
   {
-    id: "ic-1", category: "AI",
-    title: "AI's Role in Shaping the Future of Work",
-    summary: "Generative AI is redefining job functions across industries. 62% of knowledge workers now use AI tools daily, up from 31% in 2024.",
-    severity: "High", readTime: "5 min", timestamp: "Today, 09:14", author: "DTMI Research",
-    tags: ["GenAI", "Workforce", "Productivity"], recommended: true,
+    id: "eb-1",
+    category: "AI",
+    title: "Executive Brief: AI Governance Framework Implementation",
+    summary: "Organizations with formal AI governance frameworks report 3.2x better outcomes from AI investments. This brief outlines the 5-step implementation roadmap.",
+    severity: "High",
+    readTime: "4 min",
+    timestamp: "Today, 14:30",
+    author: "Executive Intelligence Desk",
+    tags: ["AI Governance", "Framework", "Implementation"],
+    recommended: true,
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80",
+    type: "Executive Briefs"
+  },
+  {
+    id: "eb-2",
+    category: "Cybersecurity",
+    title: "Executive Brief: Zero-Trust Implementation Timeline",
+    summary: "74% of hybrid enterprises now require zero-trust. This brief provides a 12-month implementation timeline with quarterly milestones.",
+    severity: "Critical",
+    readTime: "3 min",
+    timestamp: "Today, 11:15",
+    author: "Cyber Executive Desk",
+    tags: ["Zero-Trust", "Timeline", "Implementation"],
+    recommended: true,
+    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&q=80",
+    type: "Executive Briefs"
+  },
+
+  // 2. FRONTIER WATCH (2 samples)
+  {
+    id: "fw-1",
+    category: "Emerging Tech",
+    title: "Frontier Watch: Neuromorphic Computing Breakthroughs",
+    summary: "Neuromorphic chips achieve 100x energy efficiency gains over traditional AI hardware. Early prototypes show promise for edge AI applications.",
+    severity: "Medium",
+    readTime: "6 min",
+    timestamp: "Today, 15:20",
+    author: "Frontier Monitoring Unit",
+    tags: ["Neuromorphic", "AI Hardware", "Edge Computing"],
+    recommended: true,
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&q=80",
+    type: "Frontier Watch"
+  },
+  {
+    id: "fw-2",
+    category: "AI",
+    title: "Frontier Watch: Multimodal AI Convergence Trends",
+    summary: "Text, image, and audio models are converging into unified multimodal systems. Early applications show 40% accuracy improvements.",
+    severity: "High",
+    readTime: "7 min",
+    timestamp: "Today, 10:45",
+    author: "AI Frontier Desk",
+    tags: ["Multimodal AI", "Convergence", "Trends"],
+    recommended: true,
     image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=600&q=80",
+    type: "Frontier Watch"
   },
+
+  // 3. FRONTIER BRIEF (2 samples)
   {
-    id: "ic-2", category: "Cloud",
-    title: "Multi-Cloud Strategy: Avoiding Vendor Lock-In",
-    summary: "Enterprises adopting multi-cloud architectures report 18% lower operational costs and 40% better resilience scores.",
-    severity: "Medium", readTime: "7 min", timestamp: "Today, 07:30", author: "Cloud Intelligence Unit",
-    tags: ["Multi-Cloud", "Architecture", "Cost"], recommended: false,
-    image: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&q=80",
-  },
-  {
-    id: "ic-3", category: "Cybersecurity",
-    title: "Zero-Trust in the Age of Remote Work",
-    summary: "With 74% of enterprises operating hybrid workforces, zero-trust frameworks have become the de facto security standard.",
-    severity: "Critical", readTime: "6 min", timestamp: "Yesterday, 16:45", author: "Cyber Risk Desk",
-    tags: ["Zero-Trust", "Remote Work", "Security"], recommended: true,
-    image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&q=80",
-  },
-  {
-    id: "ic-4", category: "Digital Economy",
-    title: "Economy 4.0 Growth Projections for 2026",
-    summary: "Economy 4.0 is expected to grow by 5% next year, driven by platform economies, digital labor markets, and AI-native businesses.",
-    severity: "Low", readTime: "4 min", timestamp: "Yesterday, 11:20", author: "Economic Intelligence",
-    tags: ["Economy 4.0", "Growth", "Forecast"], recommended: false,
+    id: "fb-1",
+    category: "Digital Economy",
+    title: "Frontier Brief: Decentralized Autonomous Organizations",
+    summary: "DAO adoption grows 300% YoY. New governance models enable distributed decision-making at enterprise scale with measurable efficiency gains.",
+    severity: "Medium",
+    readTime: "8 min",
+    timestamp: "Yesterday, 14:30",
+    author: "Digital Frontier Desk",
+    tags: ["DAO", "Decentralized", "Governance"],
+    recommended: false,
     image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&q=80",
+    type: "Frontier Brief"
   },
   {
-    id: "ic-5", category: "DCO",
-    title: "Digital-Centered Organizations: The New Benchmark",
-    summary: "DCO-aligned firms outperform peers by 2.1x on digital revenue metrics. The framework is now adopted by 55% of G20 governments.",
-    severity: "Medium", readTime: "8 min", timestamp: "Apr 22, 14:00", author: "DCO Practice Lead",
-    tags: ["DCO", "Governance", "Performance"], recommended: true,
-    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80",
+    id: "fb-2",
+    category: "Cybersecurity",
+    title: "Frontier Brief: Post-Quantum Cryptography Developments",
+    summary: "NIST selects first post-quantum cryptographic algorithms. Migration timelines estimated at 3-5 years for critical infrastructure.",
+    severity: "High",
+    readTime: "9 min",
+    timestamp: "Yesterday, 11:15",
+    author: "Security Frontier Desk",
+    tags: ["Post-Quantum", "Cryptography", "NIST"],
+    recommended: true,
+    image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&q=80",
+    type: "Frontier Brief"
+  },
+
+  // 4. RAPID INSIGHTS (2 samples)
+  {
+    id: "ri-1",
+    category: "AI",
+    title: "Rapid Insight: GenAI Productivity Gains Analysis",
+    summary: "Quick-turnaround analysis shows 40% productivity gains from GenAI tools in knowledge work. Data from Q1 2026.",
+    severity: "High",
+    readTime: "3 min",
+    timestamp: "Today, 14:20",
+    author: "Rapid Insights Desk",
+    tags: ["GenAI", "Productivity", "Quick Analysis"],
+    recommended: true,
+    image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=600&q=80",
+    type: "Rapid Insights"
   },
   {
-    id: "ic-6", category: "Governance",
-    title: "AI Regulation: What Executives Need to Know",
-    summary: "The EU AI Act compliance deadline is Q3 2026. Non-compliant organizations face fines up to 6% of global annual revenue.",
-    severity: "Critical", readTime: "9 min", timestamp: "Apr 22, 10:15", author: "Policy & Regulation Desk",
-    tags: ["AI Act", "Compliance", "EU"], recommended: false,
-    image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&q=80",
+    id: "ri-2",
+    category: "Cloud",
+    title: "Rapid Insight: Multi-Cloud Cost Analysis",
+    summary: "Quick analysis reveals 18% cost savings from multi-cloud architectures but 22% complexity overhead.",
+    severity: "Medium",
+    readTime: "2 min",
+    timestamp: "Today, 10:30",
+    author: "Cloud Rapid Insights",
+    tags: ["Multi-Cloud", "Cost", "Quick Analysis"],
+    recommended: false,
+    image: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&q=80",
+    type: "Rapid Insights"
+  },
+
+  // 5. TREND ALERTS (2 samples)
+  {
+    id: "ta-1",
+    category: "AI",
+    title: "Trend Alert: AI Model Consolidation Wave",
+    summary: "Major AI vendors consolidating foundational models. Immediate implications for enterprise AI strategy and vendor selection.",
+    severity: "High",
+    readTime: "2 min",
+    timestamp: "Just now",
+    author: "Trend Alert Desk",
+    tags: ["AI Models", "Consolidation", "Early Signal"],
+    recommended: true,
+    image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=600&q=80",
+    type: "Trend Alerts"
   },
   {
-    id: "ic-7", category: "AI",
-    title: "AI Integration in the Digital Workplace",
-    summary: "Based on your recent interest in AI-driven transformations — how leading firms are embedding AI into core workflows and measuring ROI.",
-    severity: "High", readTime: "6 min", timestamp: "Apr 21, 09:00", author: "DTMI Research",
-    tags: ["AI", "Workplace", "ROI"], recommended: true,
+    id: "ta-2",
+    category: "Cloud",
+    title: "Trend Alert: Sustainability Cloud Pricing Shift",
+    summary: "Major cloud providers introducing sustainability-based pricing. Immediate review of cloud contracts recommended.",
+    severity: "Medium",
+    readTime: "1 min",
+    timestamp: "5 min ago",
+    author: "Cloud Trend Alert",
+    tags: ["Sustainability", "Cloud Pricing", "Early Signal"],
+    recommended: false,
+    image: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&q=80",
+    type: "Trend Alerts"
+  },
+
+  // 6. VIEWPOINT BLOGS (2 samples)
+  {
+    id: "vb-1",
+    category: "AI",
+    title: "Viewpoint: AI Governance is Not Optional",
+    summary: "Personal perspective on why AI governance frameworks are essential, not optional, for responsible AI adoption.",
+    severity: "High",
+    readTime: "5 min",
+    timestamp: "Yesterday, 09:00",
+    author: "Dr. Sarah Chen",
+    tags: ["AI Governance", "Opinion", "Viewpoint"],
+    recommended: true,
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&q=80",
+    type: "Viewpoint Blogs"
+  },
+  {
+    id: "vb-2",
+    category: "Cloud",
+    title: "Viewpoint: The Hidden Cost of Cloud Technical Debt",
+    summary: "Personal experience with cloud technical debt accumulation and strategies for managing it effectively.",
+    severity: "Medium",
+    readTime: "4 min",
+    timestamp: "Yesterday, 14:45",
+    author: "Marcus Webb",
+    tags: ["Cloud", "Technical Debt", "Viewpoint"],
+    recommended: false,
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&q=80",
+    type: "Viewpoint Blogs"
+  },
+
+  // 7. STRATEGIC ESSAYS (2 samples)
+  {
+    id: "se-1",
+    category: "Strategy",
+    title: "Strategic Essay: The Philosophy of Digital Transformation",
+    summary: "Deep philosophical exploration of what digital transformation truly means beyond technology implementation.",
+    severity: "Medium",
+    readTime: "12 min",
+    timestamp: "Apr 22, 2026",
+    author: "Dr. Sarah Chen",
+    tags: ["Digital Transformation", "Philosophy", "Strategy"],
+    recommended: true,
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=80",
+    type: "Strategic Essay"
+  },
+  {
+    id: "se-2",
+    category: "AI",
+    title: "Strategic Essay: AI as Organizational Consciousness",
+    summary: "Philosophical exploration of AI as an extension of organizational consciousness and decision-making.",
+    severity: "High",
+    readTime: "15 min",
+    timestamp: "Apr 21, 2026",
+    author: "Marcus Webb",
+    tags: ["AI", "Consciousness", "Philosophy"],
+    recommended: true,
     image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&q=80",
+    type: "Strategic Essay"
+  },
+
+  // 8. CONCEPT INTRODUCTION (2 samples)
+  {
+    id: "ci-1",
+    category: "AI",
+    title: "Concept Introduction: Federated Learning",
+    summary: "Beginner-friendly introduction to federated learning - what it is, why it matters, and simple examples.",
+    severity: "Medium",
+    readTime: "5 min",
+    timestamp: "Today, 13:00",
+    author: "AI Education Desk",
+    tags: ["Federated Learning", "AI", "Introduction"],
+    recommended: true,
+    image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=600&q=80",
+    type: "Concept Introduction"
   },
   {
-    id: "ic-8", category: "Emerging Tech",
-    title: "Quantum Computing: Enterprise Readiness Assessment",
-    summary: "Only 12% of enterprises have active quantum strategies. Early adopters in financial services report 10x speedups in optimization tasks.",
-    severity: "Medium", readTime: "10 min", timestamp: "Apr 21, 08:00", author: "Emerging Tech Unit",
-    tags: ["Quantum", "Enterprise", "Strategy"], recommended: false,
+    id: "ci-2",
+    category: "Cloud",
+    title: "Concept Introduction: Serverless Architecture",
+    summary: "Simple explanation of serverless architecture with clear examples and beginner-friendly diagrams.",
+    severity: "Low",
+    readTime: "6 min",
+    timestamp: "Today, 10:00",
+    author: "Cloud Education Desk",
+    tags: ["Serverless", "Architecture", "Introduction"],
+    recommended: false,
+    image: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&q=80",
+    type: "Concept Introduction"
+  },
+
+  // 9. FRAMEWORK EXPLAINER (2 samples)
+  {
+    id: "fe-1",
+    category: "Cybersecurity",
+    title: "Framework Explainer: Zero-Trust Architecture Model",
+    summary: "Detailed breakdown of the zero-trust architecture framework with component explanations and application guide.",
+    severity: "Critical",
+    readTime: "8 min",
+    timestamp: "Yesterday, 16:00",
+    author: "Security Framework Desk",
+    tags: ["Zero-Trust", "Framework", "Architecture"],
+    recommended: true,
+    image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&q=80",
+    type: "Framework Explainer"
+  },
+  {
+    id: "fe-2",
+    category: "DCO",
+    title: "Framework Explainer: Digital-Centered Organizations Model",
+    summary: "Structured explanation of the DCO framework with clear diagrams and step-by-step implementation guide.",
+    severity: "Medium",
+    readTime: "7 min",
+    timestamp: "Yesterday, 14:00",
+    author: "DCO Framework Desk",
+    tags: ["DCO", "Framework", "Organization"],
+    recommended: true,
+    image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80",
+    type: "Framework Explainer"
+  },
+
+  // 10. EXPERT PERSPECTIVE (2 samples)
+  {
+    id: "ep-1",
+    category: "AI",
+    title: "Expert Perspective: AI Coding Best Practices",
+    summary: "Industry expert insights on AI coding practices with recommendations based on 15 years of experience.",
+    severity: "High",
+    readTime: "6 min",
+    timestamp: "Today, 11:00",
+    author: "Dr. Sarah Chen",
+    tags: ["AI Coding", "Software Development", "Expert View"],
+    recommended: true,
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&q=80",
+    type: "Expert Perspective"
+  },
+  {
+    id: "ep-2",
+    category: "Cloud",
+    title: "Expert Perspective: Multi-Cloud Architecture Patterns",
+    summary: "Expert viewpoint on multi-cloud architecture patterns based on implementation experience across 50+ enterprises.",
+    severity: "Medium",
+    readTime: "7 min",
+    timestamp: "Today, 09:30",
+    author: "Marcus Webb",
+    tags: ["Multi-Cloud", "Architecture", "Expert View"],
+    recommended: false,
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&q=80",
+    type: "Expert Perspective"
+  },
+
+  // 11. INSIGHT ARTICLE (RESEARCH) (2 samples)
+  {
+    id: "ia-1",
+    category: "AI",
+    title: "Insight Article: AI Adoption Impact on Workforce Productivity",
+    summary: "Data-driven analysis of AI adoption impact across 1,200 organizations with methodology and key findings.",
+    severity: "High",
+    readTime: "8 min",
+    timestamp: "Today, 09:14",
+    author: "DTMI Research",
+    tags: ["AI Adoption", "Productivity", "Research"],
+    recommended: true,
+    image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=600&q=80",
+    type: "Insight Article"
+  },
+  {
+    id: "ia-2",
+    category: "Cloud",
+    title: "Insight Article: Multi-Cloud Strategy Effectiveness",
+    summary: "Evidence-based analysis of multi-cloud strategy outcomes with data from 340 enterprise deployments.",
+    severity: "Medium",
+    readTime: "7 min",
+    timestamp: "Today, 07:30",
+    author: "Cloud Intelligence Unit",
+    tags: ["Multi-Cloud", "Strategy", "Research"],
+    recommended: false,
+    image: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&q=80",
+    type: "Insight Article"
+  },
+
+  // 12. FORECAST ARTICLE (2 samples)
+  {
+    id: "fa-1",
+    category: "AI",
+    title: "Forecast: AI Regulation Landscape 2026-2028",
+    summary: "Future predictions on AI regulation with scenarios and supporting data analysis across G20 nations.",
+    severity: "High",
+    readTime: "8 min",
+    timestamp: "Yesterday, 13:45",
+    author: "Forecast Intelligence Unit",
+    tags: ["AI Regulation", "Forecast", "Timeline"],
+    recommended: true,
+    image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=600&q=80",
+    type: "Forecast Article"
+  },
+  {
+    id: "fa-2",
+    category: "Cloud",
+    title: "Forecast: Edge Computing Adoption Curve 2026-2030",
+    summary: "Future predictions on edge computing adoption with probability analysis and key variable identification.",
+    severity: "Medium",
+    readTime: "7 min",
+    timestamp: "Yesterday, 10:30",
+    author: "Cloud Forecast Desk",
+    tags: ["Edge Computing", "Adoption", "Forecast"],
+    recommended: false,
+    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&q=80",
+    type: "Forecast Article"
+  },
+
+  // 13. INDUSTRY BRIEFS (2 samples)
+  {
+    id: "ib-1",
+    category: "Finance",
+    title: "Industry Brief: Digital Banking Transformation 2026",
+    summary: "Comprehensive overview of digital banking sector with key players, trends, and risk analysis.",
+    severity: "Medium",
+    readTime: "6 min",
+    timestamp: "Yesterday, 15:00",
+    author: "Finance Intelligence Unit",
+    tags: ["Digital Banking", "Finance", "Industry"],
+    recommended: true,
+    image: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=600&q=80",
+    type: "Industry Briefs"
+  },
+  {
+    id: "ib-2",
+    category: "Healthcare",
+    title: "Industry Brief: Digital Health Adoption Trends",
+    summary: "Sector-wide snapshot of digital health adoption with market analysis and key trend identification.",
+    severity: "High",
+    readTime: "7 min",
+    timestamp: "Yesterday, 12:30",
+    author: "Healthcare Intelligence Unit",
+    tags: ["Digital Health", "Healthcare", "Industry"],
+    recommended: true,
+    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?w=600&q=80",
+    type: "Industry Briefs"
+  },
+
+  // 14. RESEARCH NOTES (2 samples)
+  {
+    id: "rn-1",
+    category: "Emerging Tech",
+    title: "Research Note: Quantum Computing Early Observations",
+    summary: "Preliminary observations from quantum computing research with early findings and hypotheses.",
+    severity: "Medium",
+    readTime: "5 min",
+    timestamp: "Yesterday, 08:00",
+    author: "Emerging Tech Unit",
+    tags: ["Quantum", "Enterprise", "Strategy"],
+    recommended: false,
     image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=600&q=80",
+    type: "Research Notes"
+  },
+  {
+    id: "rn-2",
+    category: "AI",
+    title: "Research Note: AI Ethics Framework Development",
+    summary: "Early findings from AI ethics framework research with hypotheses and preliminary conclusions.",
+    severity: "High",
+    readTime: "4 min",
+    timestamp: "Yesterday, 11:00",
+    author: "AI Ethics Research",
+    tags: ["AI Ethics", "Framework", "Research"],
+    recommended: true,
+    image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=600&q=80",
+    type: "Research Notes"
+  },
+
+  // 15. WHITE PAPER (2 samples)
+  {
+    id: "wp-1",
+    category: "Research",
+    title: "White Paper: Digital Transformation Maturity Framework",
+    summary: "Comprehensive research on digital maturity assessment across 6 domains with mixed-methods study.",
+    severity: "Medium",
+    readTime: "22 min",
+    timestamp: "Apr 14, 2026",
+    author: "DTMI Research Desk",
+    tags: ["Digital Transformation", "Maturity", "Framework"],
+    recommended: true,
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80",
+    type: "White Paper"
+  },
+  {
+    id: "wp-2",
+    category: "AI",
+    title: "White Paper: AI Ethics Governance Model",
+    summary: "Academic research on AI ethics governance frameworks with peer-reviewed methodology.",
+    severity: "High",
+    readTime: "18 min",
+    timestamp: "Apr 13, 2026",
+    author: "AI Ethics Research Unit",
+    tags: ["AI Ethics", "Governance", "Research"],
+    recommended: true,
+    image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=600&q=80",
+    type: "White Paper"
+  },
+
+  // 16. BOOK REVIEW (2 samples)
+  {
+    id: "br-1",
+    category: "Books",
+    title: "Book Review: 'The Age of AI' by Henry Kissinger",
+    summary: "Critical analysis and summary of key ideas from 'The Age of AI' with evaluation of arguments.",
+    severity: "Medium",
+    readTime: "6 min",
+    timestamp: "Apr 12, 2026",
+    author: "Book Review Desk",
+    tags: ["AI", "Book Review", "Kissinger"],
+    recommended: true,
+    image: "https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=600&q=80",
+    type: "Book Review"
+  },
+  {
+    id: "br-2",
+    category: "Books",
+    title: "Book Review: 'Digital Transformation 2.0'",
+    summary: "Evaluation and summary of key concepts from 'Digital Transformation 2.0' with critical perspective.",
+    severity: "High",
+    readTime: "7 min",
+    timestamp: "Apr 11, 2026",
+    author: "DTMI Book Review",
+    tags: ["Digital Transformation", "Book Review", "Strategy"],
+    recommended: true,
+    image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&q=80",
+    type: "Book Review"
+  },
+
+  // 17. INFOGRAPHICS (2 samples)
+  {
+    id: "ig-1",
+    category: "AI",
+    title: "Infographic: AI Adoption Timeline 2020-2026",
+    summary: "Visual timeline of AI adoption milestones from 2020 to 2026 with key statistics and trends.",
+    severity: "Medium",
+    readTime: "1 min",
+    timestamp: "Today, 16:00",
+    author: "Visual Intelligence Unit",
+    tags: ["AI Adoption", "Timeline", "Visual"],
+    recommended: true,
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80",
+    type: "Infographics"
+  },
+  {
+    id: "ig-2",
+    category: "Cloud",
+    title: "Infographic: Cloud Migration Journey Map",
+    summary: "Visual map of cloud migration journey with stages, timelines, and key decision points.",
+    severity: "Low",
+    readTime: "1 min",
+    timestamp: "Today, 14:30",
+    author: "Cloud Visual Desk",
+    tags: ["Cloud Migration", "Journey Map", "Visual"],
+    recommended: false,
+    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&q=80",
+    type: "Infographics"
+  },
+
+  // 18. MICROBLOGS (2 samples)
+  {
+    id: "mb-1",
+    category: "AI",
+    title: "Microblog: AI Transparency Matters",
+    summary: "One idea: AI transparency is not optional for trust. Quick takeaway for practitioners.",
+    severity: "High",
+    readTime: "1 min",
+    timestamp: "Today, 10:55",
+    author: "AI Microblog Desk",
+    tags: ["AI Transparency", "Explainability", "Micro"],
+    recommended: true,
+    image: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=600&q=80",
+    type: "Microblogs"
+  },
+  {
+    id: "mb-2",
+    category: "Cloud",
+    title: "Microblog: Cloud Cost Awareness",
+    summary: "One hook: Cloud costs spiral without visibility. Quick takeaway for finance teams.",
+    severity: "Medium",
+    readTime: "1 min",
+    timestamp: "Today, 09:30",
+    author: "Cloud Microblog",
+    tags: ["Cloud Cost", "Visibility", "Micro"],
+    recommended: false,
+    image: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&q=80",
+    type: "Microblogs"
   },
 ];
 
-export const insightCategories = ["All", "AI", "Cloud", "Cybersecurity", "Digital Economy", "DCO", "Governance", "Emerging Tech"];
+export const insightCategories = ["All", "AI", "Cloud", "Cybersecurity", "Digital Economy", "DCO", "Governance", "Emerging Tech", "Healthcare", "Finance", "Manufacturing", "Retail", "Strategy", "Books", "Visual", "Social", "Quantum", "Biotech", "Energy", "Technology", "Business", "Economy"];
 
 // --- TREND RADAR -------------------------------------------------------------
 export const trendRadarItems = [
-  { id: 1, name: "Generative AI",          adoption: 61, disruption: 45, readiness: 58, ring: "Adopt",  quadrant: "AI & Automation",  color: "#8b5cf6" },
-  { id: 2, name: "Zero-Trust Security",    adoption: 54, disruption: 40, readiness: 62, ring: "Adopt",  quadrant: "Security",          color: "#ef4444" },
-  { id: 3, name: "Edge Computing",         adoption: 38, disruption: 32, readiness: 44, ring: "Trial",  quadrant: "Infrastructure",    color: "#06b6d4" },
-  { id: 4, name: "5G Enterprise",          adoption: 41, disruption: 38, readiness: 47, ring: "Trial",  quadrant: "Infrastructure",    color: "#0ea5e9" },
-  { id: 5, name: "Digital Twins",          adoption: 29, disruption: 35, readiness: 33, ring: "Trial",  quadrant: "AI & Automation",   color: "#a78bfa" },
-  { id: 6, name: "AI Governance Platforms",adoption: 33, disruption: 30, readiness: 40, ring: "Assess", quadrant: "Governance",        color: "#f59e0b" },
-  { id: 7, name: "Quantum Computing",      adoption: 12, disruption: 68, readiness: 15, ring: "Assess", quadrant: "Emerging Tech",     color: "#ec4899" },
-  { id: 8, name: "Blockchain (Enterprise)",adoption: 22, disruption: 28, readiness: 25, ring: "Hold",   quadrant: "Infrastructure",    color: "#6b7280" },
+  { id: 1, name: "Generative AI", adoption: 61, disruption: 85, readiness: 42, ring: "Adopt", quadrant: "AI & Automation", color: "#3b82f6" },
+  { id: 2, name: "Zero-Trust Security", adoption: 74, disruption: 68, readiness: 55, ring: "Adopt", quadrant: "Cybersecurity", color: "#ef4444" },
+  { id: 3, name: "Multi-Cloud", adoption: 67, disruption: 58, readiness: 48, ring: "Adopt", quadrant: "Cloud", color: "#0ea5e9" },
+  { id: 4, name: "Digital Twins", adoption: 38, disruption: 72, readiness: 28, ring: "Trial", quadrant: "Emerging Tech", color: "#8b5cf6" },
+  { id: 5, name: "Edge Computing", adoption: 38, disruption: 65, readiness: 32, ring: "Trial", quadrant: "Infrastructure", color: "#f59e0b" },
+  { id: 6, name: "5G Enterprise", adoption: 41, disruption: 48, readiness: 35, ring: "Trial", quadrant: "Infrastructure", color: "#10b981" },
+  { id: 7, name: "Quantum Computing", adoption: 12, disruption: 68, readiness: 15, ring: "Assess", quadrant: "Emerging Tech", color: "#ec4899" },
+  { id: 8, name: "Blockchain (Enterprise)", adoption: 22, disruption: 28, readiness: 25, ring: "Hold", quadrant: "Infrastructure", color: "#6b7280" },
 ];
 
 export const trendRadarRings = {
-  Adopt:  { color: "#10b981", label: "Adopt",  desc: "Proven value — recommend broad adoption" },
-  Trial:  { color: "#06b6d4", label: "Trial",  desc: "Worth pursuing with limited risk" },
-  Assess: { color: "#f59e0b", label: "Assess", desc: "Explore with caution, monitor closely" },
-  Hold:   { color: "#6b7280", label: "Hold",   desc: "Proceed with caution, reassess in 12–18 months" },
+  Adopt: { label: "Adopt", color: "#10b981", description: "Ready for enterprise adoption" },
+  Trial: { label: "Trial", color: "#f59e0b", description: "Evaluate for specific use cases" },
+  Assess: { label: "Assess", color: "#8b5cf6", description: "Understand potential impact" },
+  Hold: { label: "Hold", color: "#6b7280", description: "Monitor but don't invest yet" },
 };
 
-// --- AI ENGINE RESPONSES -----------------------------------------------------
-export const aiResponses = {
-  default: {
-    title: "Emerging Risks in Digital Transformation",
-    summary: "Digital transformation risk exposure has increased 20% in Q1 2026. The convergence of AI dependency and cybersecurity vulnerabilities represents the highest combined risk vector. Immediate executive attention is recommended for data governance and zero-trust implementation.",
-    risks: [
-      { label: "Increased dependency on AI systems",   level: "Medium"   },
-      { label: "Data privacy and sovereignty concerns", level: "High"     },
-      { label: "Cybersecurity threat expansion",        level: "Critical" },
-      { label: "Talent and skills gap in digital roles",level: "Medium"   },
-      { label: "Regulatory compliance lag",             level: "High"     },
-    ],
-    actions: [
-      "Commission enterprise-wide AI risk assessment",
-      "Accelerate zero-trust security rollout across all BUs",
-      "Establish cross-functional digital risk committee",
-      "Brief board on regulatory compliance timeline",
-    ],
+// --- AI ENGINE ---------------------------------------------------------------
+export const aiResponses = [
+  {
+    id: 1,
+    query: "What are the key trends in AI adoption for 2026?",
+    response: "AI adoption reached 61% in Q1 2026 — the highest level ever recorded. Key trends include: 1) Generative AI integration in 78% of Fortune 500 workflows, 2) AI governance frameworks becoming a competitive differentiator (3.2x better outcomes), 3) Multimodal AI convergence accelerating, 4) Edge AI deployment growing 40% YoY.",
+    timestamp: "Today, 14:30",
+    confidence: 92,
+    sources: ["DTMI AI Adoption Index Q1 2026", "Global Enterprise Survey 2026"],
   },
-  ai: {
-    title: "AI Adoption Intelligence Report",
-    summary: "AI adoption has accelerated by 15% in the past quarter. Organizations with structured AI governance frameworks report 3x better outcomes. The primary risk remains uncontrolled AI deployment without adequate oversight mechanisms.",
-    risks: [
-      { label: "Model hallucination in critical workflows", level: "High"   },
-      { label: "AI bias in decision-making systems",        level: "High"   },
-      { label: "Vendor concentration risk (top 3 providers)",level: "Medium" },
-    ],
-    actions: [
-      "Implement AI model governance framework",
-      "Establish AI ethics review board",
-      "Diversify AI vendor portfolio",
-      "Deploy AI monitoring and observability tools",
-    ],
+  {
+    id: 2,
+    query: "How should we approach zero-trust implementation?",
+    response: "Zero-trust implementation requires a phased approach: 1) Complete identity infrastructure foundation (critical for 54% of successful implementations), 2) Segment implementation into manageable phases (18-36 month timeline), 3) Treat it as organizational transformation, not technology deployment, 4) Establish cross-functional governance beyond CISO office.",
+    timestamp: "Today, 11:45",
+    confidence: 88,
+    sources: ["DTMI Zero-Trust Implementation Guide 2026", "340 Enterprise Case Studies"],
   },
-  cloud: {
-    title: "Cloud Transformation Status",
-    summary: "Cloud migration is 67% complete across monitored enterprises. Cost optimization remains the top challenge, with 43% of organizations reporting cloud spend 20% over budget. Hybrid cloud architectures are emerging as the dominant model.",
-    risks: [
-      { label: "Multi-cloud complexity and cost overruns",  level: "Medium" },
-      { label: "Data residency compliance gaps",            level: "High"   },
-      { label: "Legacy system integration bottlenecks",     level: "Medium" },
-    ],
-    actions: [
-      "Conduct cloud cost optimization audit",
-      "Map data residency requirements by jurisdiction",
-      "Accelerate legacy modernization roadmap",
-      "Implement FinOps practices across engineering teams",
-    ],
-  },
-  cyber: {
-    title: "Cybersecurity Threat Intelligence",
-    summary: "Cybersecurity incidents have increased 23% YoY. The attack surface has expanded significantly due to rapid SaaS adoption and remote work infrastructure. Zero-trust implementation is the single highest-ROI security investment available.",
-    risks: [
-      { label: "Ransomware targeting OT/IT convergence",   level: "Critical" },
-      { label: "Supply chain software vulnerabilities",     level: "Critical" },
-      { label: "Insider threat amplification via AI tools", level: "High"     },
-    ],
-    actions: [
-      "Initiate zero-trust architecture assessment",
-      "Conduct supply chain security audit",
-      "Deploy AI-powered threat detection platform",
-      "Run executive cyber crisis simulation exercise",
-    ],
-  },
-  governance: {
-    title: "Governance & Compliance Outlook",
-    summary: "Regulatory compliance scores improved by 12% following DCO framework adoption. Early movers show 2.3x better audit outcomes. The EU AI Act is the single most impactful regulatory event of 2026.",
-    risks: [
-      { label: "EU AI Act non-compliance exposure",         level: "Critical" },
-      { label: "Data sovereignty fragmentation",            level: "High"     },
-      { label: "Board-level digital literacy gap",          level: "Medium"   },
-    ],
-    actions: [
-      "Publish governance scorecard for board review",
-      "Align internal policies with ISO 27001 updates",
-      "Schedule board digital literacy briefing",
-      "Appoint Chief AI Compliance Officer",
-    ],
-  },
-};
+];
 
 export const aiSuggestedQueries = [
-  "What risks are emerging in digital transformation?",
-  "Analyze current AI adoption trends",
-  "What is the cloud migration status?",
-  "Assess the cybersecurity threat landscape",
+  "What are the compliance requirements for EU AI Act?",
+  "How to measure ROI from digital transformation?",
+  "What's the current state of quantum computing readiness?",
+  "How to build an AI governance framework?",
+  "What are the best practices for multi-cloud strategy?",
+  "How to address the digital talent gap?",
   "What governance risks should executives prioritize?",
   "Generate an executive summary for the board",
 ];
 
-// --- 6xD FRAMEWORK -----------------------------------------------------------
+
+// --- SIXD FRAMEWORK ----------------------------------------------------------
 export const sixDFramework = {
+  title: "6xD Framework",
+  subtitle: "Six strategic domains for digital transformation",
   pillars: [
     {
-      id: "economy40",
+      id: "D1",
       code: "D1",
-      name: "Economy 4.0",
-      color: "#8b5cf6",
+      name: "Digital Economy",
+      tagline: "Economy 4.0 & platform models",
       icon: "TrendingUp",
-      tagline: "The next economic paradigm",
-      description: "Economy 4.0 integrates digital technologies, AI, and platform models to create new value chains and redefine competitive advantage across all sectors.",
-      stat: "$4.2T",
-      statLabel: "Projected GDP contribution by 2028",
+      description: "Platform economies, digital value chains, and the $4.2T GDP opportunity",
+      color: "#3b82f6",
+      stat: "42%",
+      statLabel: "Platform Economy Growth",
       articles: [
-        { title: "Economy 4.0 is expected to grow by 5% next year — platform economies lead", timestamp: "Today, 09:00", severity: "Low",    readTime: "4 min" },
-        { title: "Digital labor markets reshape workforce economics in 47 countries",           timestamp: "Apr 22",       severity: "Medium", readTime: "6 min" },
-        { title: "Platform business models now account for 22% of global market cap",          timestamp: "Apr 21",       severity: "Low",    readTime: "5 min" },
-      ],
+        { title: "Platform Economics: The New Business Model", severity: "High", timestamp: "Today, 09:30", readTime: "6 min" },
+        { title: "Digital Value Chains in Economy 4.0", severity: "Medium", timestamp: "Yesterday, 14:20", readTime: "5 min" },
+        { title: "The $4.2T GDP Opportunity Explained", severity: "Critical", timestamp: "Apr 22, 2026", readTime: "8 min" }
+      ]
     },
     {
-      id: "dco",
+      id: "D2",
       code: "D2",
       name: "DCO",
-      color: "#06b6d4",
-      icon: "Building2",
-      tagline: "Digital-Centered Organizations",
-      description: "DCO is a framework for building organizations where digital capability is the core operating model — not a support function. Adopted by 55% of G20 governments.",
-      stat: "2.1x",
-      statLabel: "Revenue outperformance vs. non-DCO peers",
-      articles: [
-        { title: "DCO adoption rate climbs to 55% among G20 nations — new benchmark set",      timestamp: "Today, 08:30", severity: "Medium", readTime: "7 min" },
-        { title: "How DCO-aligned firms are closing the digital talent gap faster",             timestamp: "Apr 22",       severity: "Medium", readTime: "5 min" },
-        { title: "DCO maturity model v3.0 released — key changes for 2026",                    timestamp: "Apr 20",       severity: "Low",    readTime: "8 min" },
-      ],
-    },
-    {
-      id: "ai-orgs",
-      code: "D3",
-      name: "AI-Driven Organizations",
-      color: "#10b981",
+      tagline: "Digital Cognitive Organizations",
       icon: "Brain",
-      tagline: "Intelligence as infrastructure",
-      description: "AI-driven organizations embed machine intelligence into every decision layer — from operations to strategy. 38% of enterprises now classify AI as core infrastructure.",
-      stat: "38%",
-      statLabel: "Enterprises with AI as core infrastructure",
+      description: "AI-native organizations, cognitive workflows, and decision intelligence",
+      color: "#8b5cf6",
+      stat: "3.2x",
+      statLabel: "Performance Improvement",
       articles: [
-        { title: "AI adoption has accelerated by 15% — reshaping every industry on the planet", timestamp: "Today, 07:00", severity: "High",   readTime: "8 min" },
-        { title: "Building AI-native organizations: the 5 non-negotiable capabilities",         timestamp: "Apr 22",       severity: "High",   readTime: "6 min" },
-        { title: "AI governance frameworks: what separates leaders from laggards",              timestamp: "Apr 21",       severity: "Medium", readTime: "7 min" },
-      ],
+        { title: "Building AI-Native Organizations", severity: "High", timestamp: "Today, 11:15", readTime: "7 min" },
+        { title: "Cognitive Workflows: A Practical Guide", severity: "High", timestamp: "Yesterday, 16:45", readTime: "6 min" },
+        { title: "Decision Intelligence Frameworks", severity: "Medium", timestamp: "Apr 21, 2026", readTime: "5 min" }
+      ]
     },
     {
-      id: "dbp",
-      code: "D4",
+      id: "D3",
+      code: "D3",
       name: "Digital Business Platforms",
-      color: "#f59e0b",
+      tagline: "DBP architecture & ecosystems",
       icon: "Layers",
-      tagline: "The architecture of digital scale",
-      description: "Digital Business Platforms are the foundational technology stacks enabling organizations to scale digital products, ecosystems, and services at speed.",
+      description: "Platform business models, API ecosystems, and digital marketplaces",
+      color: "#0ea5e9",
       stat: "$180B",
-      statLabel: "Global DBP market valuation in 2026",
+      statLabel: "Market Valuation",
       articles: [
-        { title: "Digital Business Platforms market reaches $180B valuation milestone",         timestamp: "Today, 06:30", severity: "Low",    readTime: "5 min" },
-        { title: "API-first architecture: why 71% of digital leaders are rebuilding their stack",timestamp: "Apr 22",       severity: "Medium", readTime: "9 min" },
-        { title: "Platform ecosystems vs. monoliths: the definitive 2026 comparison",           timestamp: "Apr 20",       severity: "Low",    readTime: "6 min" },
-      ],
+        { title: "API Ecosystem Design Patterns", severity: "Medium", timestamp: "Today, 10:00", readTime: "6 min" },
+        { title: "Digital Marketplace Architecture", severity: "Medium", timestamp: "Yesterday, 13:30", readTime: "7 min" },
+        { title: "Platform Business Model Canvas", severity: "Low", timestamp: "Apr 20, 2026", readTime: "5 min" }
+      ]
     },
     {
-      id: "cyber-resilience",
+      id: "D4",
+      code: "D4",
+      name: "Digital Transformation 2.0",
+      tagline: "DT2.0 strategy & execution",
+      icon: "Building2",
+      description: "Next-generation transformation frameworks, change management, and ROI measurement",
+      color: "#10b981",
+      stat: "60%",
+      statLabel: "Success Rate with DT2.0",
+      articles: [
+        { title: "Why 60% of DT Programs Fail", severity: "High", timestamp: "Today, 08:45", readTime: "8 min" },
+        { title: "Change Management in DT2.0", severity: "Medium", timestamp: "Yesterday, 15:20", readTime: "6 min" },
+        { title: "Measuring Transformation ROI", severity: "Medium", timestamp: "Apr 19, 2026", readTime: "7 min" }
+      ]
+    },
+    {
+      id: "D5",
       code: "D5",
-      name: "Cyber Resilience",
-      color: "#ef4444",
+      name: "Digital Worker & Workspace",
+      tagline: "Future of work & digital talent",
       icon: "Shield",
-      tagline: "Security as a transformation enabler",
-      description: "Cyber resilience goes beyond protection — it's the ability to anticipate, withstand, recover from, and adapt to cyber threats while maintaining business continuity.",
-      stat: "23%",
-      statLabel: "YoY increase in breach incidents",
+      description: "Hybrid work models, digital skills, and workforce transformation",
+      color: "#f59e0b",
+      stat: "74%",
+      statLabel: "Hybrid Work Adoption",
       articles: [
-        { title: "Zero-trust is no longer optional — 74% of hybrid enterprises now require it", timestamp: "Today, 08:00", severity: "Critical","readTime": "6 min" },
-        { title: "Ransomware targets OT/IT convergence — critical infrastructure at risk",       timestamp: "Apr 22",       severity: "Critical","readTime": "5 min" },
-        { title: "Cyber resilience maturity: how to benchmark your organization in 2026",        timestamp: "Apr 21",       severity: "High",   readTime: "7 min" },
-      ],
+        { title: "The Digital Talent Gap Crisis", severity: "Critical", timestamp: "Today, 12:30", readTime: "6 min" },
+        { title: "Hybrid Work Models That Work", severity: "High", timestamp: "Yesterday, 10:15", readTime: "5 min" },
+        { title: "Digital Skills Framework 2026", severity: "Medium", timestamp: "Apr 18, 2026", readTime: "7 min" }
+      ]
     },
     {
-      id: "data-intelligence",
+      id: "D6",
       code: "D6",
-      name: "Data & Intelligence",
-      color: "#ec4899",
+      name: "Digital Accelerators",
+      tagline: "AI, automation & emerging tech",
       icon: "BarChart2",
-      tagline: "From data lakes to decision engines",
-      description: "Data & Intelligence covers the full spectrum from data architecture and governance to advanced analytics and real-time decision intelligence at enterprise scale.",
-      stat: "72%",
-      statLabel: "Enterprises prioritizing data as strategic asset",
+      description: "Generative AI, automation, and technology adoption curves",
+      color: "#ef4444",
+      stat: "61%",
+      statLabel: "AI Adoption Rate",
       articles: [
-        { title: "Data sovereignty: the new boardroom priority as regulations tighten globally", timestamp: "Today, 07:45", severity: "High",   readTime: "7 min" },
-        { title: "Real-time analytics adoption reaches 72% — batch processing in decline",       timestamp: "Apr 22",       severity: "Medium", readTime: "5 min" },
-        { title: "The data mesh vs. data fabric debate: which architecture wins in 2026?",       timestamp: "Apr 20",       severity: "Low",    readTime: "8 min" },
-      ],
-    },
-  ],
+        { title: "GenAI Adoption Accelerates 15%", severity: "Critical", timestamp: "Today, 07:30", readTime: "8 min" },
+        { title: "Automation ROI: The Real Numbers", severity: "High", timestamp: "Yesterday, 09:45", readTime: "6 min" },
+        { title: "Emerging Tech Adoption Curves", severity: "Medium", timestamp: "Apr 17, 2026", readTime: "5 min" }
+      ]
+    }
+  ]
 };
 
-// --- MULTIMEDIA --------------------------------------------------------------
+// --- PODCAST EPISODES --------------------------------------------------------
 export const podcastEpisodes = [
   {
     id: "pod-1",
-    title: "Digital Transformation in Government – Trends and Insights",
+    title: "The Future of AI Governance",
     host: "Dr. Sarah Chen",
-    guest: "Minister James Okafor, Digital Affairs",
     duration: "42:18",
-    date: "Apr 23, 2026",
-    category: "DCO",
-    description: "Exploring how governments are leveraging DCO frameworks to modernize public services and improve citizen outcomes at scale.",
-    episode: "EP 47",
-    image: "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=600&q=80",
-    plays: "12.4K",
+    category: "AI",
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&q=80",
+    description: "Deep dive into AI governance frameworks and implementation strategies",
+    timestamp: "Apr 23, 2026",
+    listens: "12.4K"
   },
   {
     id: "pod-2",
-    title: "Cybersecurity in the Age of AI: Threats and Defenses",
-    host: "Priya Nair",
-    guest: "CISO Panel: 3 Fortune 500 Leaders",
+    title: "Zero-Trust Implementation Guide",
+    host: "Marcus Webb",
     duration: "35:42",
-    date: "Apr 21, 2026",
     category: "Cybersecurity",
-    description: "How AI is both amplifying cyber threats and enabling next-generation defense strategies — a frank conversation with three CISOs.",
-    episode: "EP 46",
-    image: "https://images.unsplash.com/photo-1510511459019-5dda7724fd87?w=600&q=80",
-    plays: "9.1K",
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&q=80",
+    description: "Practical guide to implementing zero-trust architecture in enterprise environments",
+    timestamp: "Apr 22, 2026",
+    listens: "8.7K"
   },
   {
     id: "pod-3",
-    title: "The Economy 4.0 Opportunity: Where to Invest Now",
-    host: "Marcus Webb",
-    guest: "Dr. Lena Hoffmann, WEF Digital Economy Lead",
-    duration: "28:55",
-    date: "Apr 19, 2026",
-    category: "Digital Economy",
-    description: "A deep dive into the $4.2 trillion Economy 4.0 opportunity — which sectors are moving fastest and where capital is flowing.",
-    episode: "EP 45",
-    image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&q=80",
-    plays: "7.3K",
+    title: "Digital Transformation ROI",
+    host: "Priya Nair",
+    duration: "28:15",
+    category: "Strategy",
+    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=600&q=80",
+    description: "Measuring and maximizing ROI from digital transformation initiatives",
+    timestamp: "Apr 21, 2026",
+    listens: "6.2K"
   },
   {
     id: "pod-4",
-    title: "AI Governance: Building the Guardrails Before the Crash",
-    host: "Dr. Sarah Chen",
-    guest: "Prof. Amara Diallo, AI Ethics Institute",
-    duration: "51:04",
-    date: "Apr 17, 2026",
-    category: "Governance",
-    description: "Why AI governance frameworks are lagging behind adoption — and what organizations must do before regulators force their hand.",
-    episode: "EP 44",
+    title: "Cloud Cost Optimization",
+    host: "Alex Rodriguez",
+    duration: "31:45",
+    category: "Cloud",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80",
-    plays: "6.8K",
+    description: "Strategies for optimizing cloud spend and avoiding technical debt",
+    timestamp: "Apr 20, 2026",
+    listens: "5.8K"
   },
+  {
+    id: "pod-5",
+    title: "AI Ethics in Practice",
+    host: "Dr. Sarah Chen",
+    duration: "39:22",
+    category: "AI",
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&q=80",
+    description: "Practical approaches to implementing AI ethics frameworks",
+    timestamp: "Apr 19, 2026",
+    listens: "7.3K"
+  }
 ];
 
+// --- VIDEO EPISODES ----------------------------------------------------------
 export const videoEpisodes = [
   {
     id: "vid-1",
-    title: "Building AI-Native Organizations: A Playbook for Executives",
-    host: "Marcus Webb",
-    duration: "18:05",
-    date: "Apr 22, 2026",
-    category: "AI",
-    description: "A step-by-step guide for executives on embedding AI into organizational DNA — from strategy to execution to measurement.",
-    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&q=80",
-    views: "8.7K",
-    label: "MASTERCLASS",
+    title: "Digital Transformation in Government",
+    duration: "42:18",
+    category: "DCO",
+    image: "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=600&q=80",
+    description: "Trends and insights on digital transformation in public sector",
+    timestamp: "Apr 23, 2026",
+    views: "12.4K"
   },
   {
     id: "vid-2",
-    title: "DTMI Live: Q1 2026 Transformation Index Review",
-    host: "DTMI Research Desk",
-    duration: "24:30",
-    date: "Apr 20, 2026",
-    category: "Intelligence",
-    description: "Our quarterly deep-dive into the DTMI Transformation Index — what moved, what stalled, and what it means for your strategy.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80",
-    views: "15.2K",
-    label: "LIVE REPLAY",
+    title: "Building AI-Native Organizations",
+    duration: "18:05",
+    category: "AI",
+    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&q=80",
+    description: "Playbook for executives on creating AI-native organizational structures",
+    timestamp: "Apr 22, 2026",
+    views: "8.7K"
   },
   {
     id: "vid-3",
-    title: "Zero-Trust Architecture: A Visual Explainer",
-    host: "Priya Nair",
-    duration: "12:18",
-    date: "Apr 18, 2026",
+    title: "Cybersecurity in the Age of AI",
+    duration: "35:42",
     category: "Cybersecurity",
-    description: "A clear, visual walkthrough of zero-trust architecture — what it is, how it works, and how to start your implementation.",
-    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&q=80",
-    views: "11.4K",
-    label: "EXPLAINER",
+    image: "https://images.unsplash.com/photo-1510511459019-5dda7724fd87?w=600&q=80",
+    description: "Threats and defenses in AI-powered cybersecurity landscape",
+    timestamp: "Apr 21, 2026",
+    views: "6.2K"
   },
   {
     id: "vid-4",
-    title: "DCO in Practice: Case Studies from 3 Governments",
-    host: "Dr. Sarah Chen",
-    duration: "31:47",
-    date: "Apr 16, 2026",
-    category: "DCO",
-    description: "Real-world DCO implementation stories from Singapore, Estonia, and UAE — what worked, what didn't, and lessons for all sectors.",
-    image: "https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=600&q=80",
-    views: "5.9K",
-    label: "CASE STUDY",
+    title: "Multi-Cloud Strategy Deep Dive",
+    duration: "29:15",
+    category: "Cloud",
+    image: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&q=80",
+    description: "Comprehensive analysis of multi-cloud architecture patterns",
+    timestamp: "Apr 20, 2026",
+    views: "5.4K"
   },
+  {
+    id: "vid-5",
+    title: "Future of Work 2026",
+    duration: "33:28",
+    category: "Workspace",
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80",
+    description: "Trends and predictions for the future of digital workspaces",
+    timestamp: "Apr 19, 2026",
+    views: "4.9K"
+  }
 ];

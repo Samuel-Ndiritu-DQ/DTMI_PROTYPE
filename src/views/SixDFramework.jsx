@@ -113,7 +113,7 @@ export default function SixDFramework({ onNavigate }) {
             <div className="lg:col-span-2 space-y-5">
               <div className="flex items-center justify-between pb-3 border-b-2" style={{ borderColor: activePillar.color }}>
                 <h3 className="text-[15px] font-black" style={{ color: 'var(--brand-navy)' }}>
-                  Latest Intelligence Â· {activePillar.name}
+                  Latest Intelligence · {activePillar.name}
                 </h3>
                 <span className="text-[11px]" style={{ color: 'var(--brand-muted)' }}>{filteredArticles.length} articles</span>
               </div>
@@ -126,7 +126,7 @@ export default function SixDFramework({ onNavigate }) {
               <div className="space-y-3">
                 {filteredArticles.length > 0 ? filteredArticles.map((article, i) => (
                   <div key={i}
-                    onClick={() => openArticle({ id: `6xd-${activePillar.id}-${i}`, headline: article.title, summary: activePillar.description, category: activePillar.name.toUpperCase(), image: '', author: 'DTMI Research', timestamp: article.timestamp, readTime: article.readTime })}
+                    onClick={() => openArticle({ id: `6xd-${activePillar.id}-${i}`, headline: article.title, summary: activePillar.description, category: activePillar.name.toUpperCase(), image: '', author: 'DTMI Research', timestamp: article.timestamp, readTime: article.readTime, type: 'Framework Explainer' })}
                     className="bg-white border rounded-sm p-4 cursor-pointer group card-hover" style={{ borderColor: 'var(--brand-border)' }}>
                     <div className="flex items-start gap-4">
                       <div className="flex-1 min-w-0">
@@ -174,4 +174,5 @@ export default function SixDFramework({ onNavigate }) {
     </div>
   );
 }
+
 

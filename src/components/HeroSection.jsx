@@ -28,11 +28,11 @@ export default function HeroSection() {
                 </span>
               </div>
               {/* Overlay text */}
-              <div className="absolute bottom-0 left-0 right-0 p-4 lg:p-6">
+              <div className="absolute bottom-0 left-0 right-0 p-4 lg:p-6 pt-10">
                 <p className="text-[11px] font-black uppercase tracking-widest mb-2" style={{ color: 'var(--brand-orange)' }}>
                   {heroStory.category}
                 </p>
-                <h1 className="text-white text-xl lg:text-2xl xl:text-[28px] font-black leading-tight mb-2 drop-shadow-lg">
+                <h1 className="text-white text-base sm:text-xl lg:text-2xl xl:text-[28px] font-black leading-tight mb-2 drop-shadow-lg">
                   {heroStory.headline}
                 </h1>
                 <p className="text-[#cbd5e1] text-[13px] leading-relaxed hidden md:block mb-3 max-w-2xl">

@@ -3,9 +3,23 @@
 @layer base {
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
-    background-color: #f8f9fb;
+    background-color: #0d1b3e;
     color: #1a1a2e;
     font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  }
+  
+  /* Font family utilities */
+  .font-mono {
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Cascadia Code', 'Courier New', monospace;
+  }
+  .font-serif {
+    font-family: 'Playfair Display', 'Times New Roman', 'Georgia', serif;
+  }
+  .font-source-serif {
+    font-family: 'Source Serif Pro', 'Georgia', 'Times New Roman', serif;
+  }
+  .font-source-code {
+    font-family: 'Source Code Pro', 'Monaco', 'Cascadia Code', monospace;
   }
   ::-webkit-scrollbar { width: 4px; height: 4px; }
   ::-webkit-scrollbar-track { background: #e8eaf0; }
@@ -128,4 +142,30 @@
 .dark-card {
   background: var(--brand-navy);
   border: 1px solid rgba(255,255,255,0.07);
+}
+/* Fixed navbar spacing - adjust based on screen size */
+body {
+  padding-top: 56px; /* Mobile: main header height (h-14 = 56px) */
+}
+
+@media (min-width: 640px) {
+  body {
+    padding-top: 92px; /* Desktop: main header (56px) + utility bar (h-9 = 36px) */
+  }
+}
+
+
+/* Remove body padding when admin dashboard is active */
+body.admin-active {
+  padding-top: 0 !important;
+}
+
+/* AI Engine workspace height */
+.ai-workspace {
+  height: calc(100vh - 56px); /* mobile: only main header */
+}
+@media (min-width: 640px) {
+  .ai-workspace {
+    height: calc(100vh - 92px); /* desktop: main header + utility bar */
+  }
 }

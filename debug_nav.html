@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debug Nav</title>
+    <style>
+        body { font-family: monospace; padding: 20px; }
+        .card { border: 1px solid #ccc; padding: 10px; margin: 10px; cursor: pointer; }
+        .card:hover { background: #f0f0f0; }
+    </style>
+</head>
+<body>
+    <h1>Debug Navigation</h1>
+    <p>Checking if ArticlePage would receive data...</p>
+    
+    <div class="card" onclick="logCardData('mostRead item', { rank: 1, headline: 'Test headline', category: 'AI' })">
+        Most Read Card (incomplete data)
+    </div>
+    
+    <div class="card" onclick="logCardData('insightCard', { 
+        id: 'eb-1', 
+        category: 'AI',
+        title: 'Executive Brief: AI Governance Framework Implementation',
+        summary: 'Key issue, strategic implications, 3-5 bullet recommendations',
+        author: 'DTMI Research Desk',
+        readTime: '5 min',
+        tags: ['AI', 'Governance', 'Strategy'],
+        type: 'Executive Briefs',
+        image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80'
+    })">
+        Insight Card (complete data)
+    </div>
+    
+    <div id="output"></div>
+    
+    <script>
+        function logCardData(type, data) {
+            const output = document.getElementById('output');
+            output.innerHTML = `
+                <h2>${type} clicked</h2>
+                <pre>${JSON.stringify(data, null, 2)}</pre>
+                <h3>ArticlePage would receive:</h3>
+                <ul>
+                    <li>headline: ${data.headline || data.title || '(empty)'}</li>
+                    <li>summary: ${data.summary || '(empty)'}</li>
+                    <li>category: ${data.category || '(empty)'}</li>
+                    <li>type: ${data.type || '(empty)'}</li>
+                    <li>id: ${data.id || '(empty)'}</li>
+                    <li>Has all required fields: ${!!data.id && !!(data.headline || data.title) && !!data.summary && !!data.category && !!data.type}</li>
+                </ul>
+            `;
+        }
+    </script>
+</body>
+</html>

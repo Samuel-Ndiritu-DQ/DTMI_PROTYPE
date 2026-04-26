@@ -175,9 +175,9 @@ function RelatedEpisodeCard({ ep, onOpen }) {
         <img src={ep.image} alt={ep.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" loading="lazy" />
       </div>
       <div className="flex-1 min-w-0">
-        <p className="text-[9px] font-black uppercase tracking-wider mb-0.5" style={{ color: 'var(--brand-orange)' }}>{ep.episode} Â· {ep.category}</p>
-        <p className="text-[12px] font-bold leading-snug line-clamp-2 text-white group-hover:text-[#ccc] transition-colors">{ep.title}</p>
-        <p className="text-[10px] mt-0.5 text-[#64748b] flex items-center gap-1"><Clock size={8} /> {ep.duration} Â· {ep.plays} plays</p>
+        <p className="text-[9px] font-black uppercase tracking-wider mb-0.5" style={{ color: 'var(--brand-orange)' }}>{ep.episode} · {ep.category}</p>
+        <p className="text-[12px] font-bold leading-snug line-clamp-2 transition-colors" style={{ color: "var(--brand-navy)" }}>{ep.title}</p>
+        <p className="text-[10px] mt-0.5 text-[#64748b] flex items-center gap-1"><Clock size={8} /> {ep.duration} · {ep.plays} plays</p>
       </div>
     </button>
   );
@@ -206,15 +206,15 @@ export default function PodcastPage() {
         <div className="max-w-[1280px] mx-auto px-4 h-11 flex items-center justify-between">
           <button
             onClick={goBack}
-            className="flex items-center gap-2 text-[12px] font-bold uppercase tracking-wide text-[#94a3b8] hover:text-white transition-colors"
+            className="flex items-center gap-2 text-[12px] font-bold uppercase tracking-wide transition-colors hover:opacity-70" style={{ color: "var(--brand-navy)" }}
           >
             <ArrowLeft size={15} /> Back
           </button>
           <div className="flex items-center gap-2">
-            <button onClick={handleCopy} className="flex items-center gap-1.5 text-[11px] font-semibold px-3 py-1.5 border rounded-sm text-[#94a3b8] hover:text-white transition-colors" style={{ borderColor: '#333' }}>
+            <button onClick={handleCopy} className="flex items-center gap-1.5 text-[11px] font-semibold px-3 py-1.5 border rounded-sm transition-colors hover:opacity-70" style={{ borderColor: "var(--brand-border)", color: "var(--brand-muted)" }}>
               <Link size={12} /> {copied ? 'Copied!' : 'Copy link'}
             </button>
-            <button className="p-1.5 border rounded-sm text-[#94a3b8] hover:text-white transition-colors" style={{ borderColor: '#333' }}>
+            <button className="p-1.5 border rounded-sm transition-colors hover:opacity-70" style={{ borderColor: "var(--brand-border)", color: "var(--brand-muted)" }}>
               <Bookmark size={14} />
             </button>
           </div>
@@ -246,47 +246,47 @@ export default function PodcastPage() {
                 </span>
               </div>
 
-              <h1 className="text-white text-[22px] lg:text-[26px] font-black leading-tight mb-4">
+              <h1 className="text-[22px] lg:text-[26px] font-black leading-tight mb-4" style={{ color: "var(--brand-navy)" }}>
                 {item.title}
               </h1>
 
               <div className="flex items-center justify-between flex-wrap gap-3 pb-4 mb-5 border-b" style={{ borderColor: 'var(--brand-border)' }}>
                 <div className="flex items-center gap-3 text-[#64748b] text-[12px]">
-                  <span className="text-white font-semibold">{item.host}</span>
-                  <span>Â·</span>
+                  <span className="font-semibold" style={{ color: "var(--brand-navy)" }}>{item.host}</span>
+                  <span>·</span>
                   <span>Guest: {item.guest}</span>
-                  <span>Â·</span>
+                  <span>·</span>
                   <span className="flex items-center gap-1"><Clock size={10} /> {item.duration}</span>
-                  <span>Â·</span>
+                  <span>·</span>
                   <span className="flex items-center gap-1"><Users size={10} /> {item.plays} plays</span>
                 </div>
                 <div className="flex gap-2">
                   <button className="flex items-center gap-1.5 text-[11px] font-semibold px-3 py-1.5 border rounded-sm text-[#0077b5] hover:bg-white/5 transition-colors" style={{ borderColor: '#333' }}>
                     <Share2 size={12} /> Share
                   </button>
-                  <button onClick={handleCopy} className="flex items-center gap-1.5 text-[11px] font-semibold px-3 py-1.5 border rounded-sm text-[#94a3b8] hover:text-white hover:bg-white/5 transition-colors" style={{ borderColor: '#333' }}>
+                  <button onClick={handleCopy} className="flex items-center gap-1.5 text-[11px] font-semibold px-3 py-1.5 border rounded-sm transition-colors hover:opacity-70" style={{ borderColor: "var(--brand-border)", color: "var(--brand-muted)" }}>
                     <Link size={12} /> {copied ? 'Copied!' : 'Copy link'}
                   </button>
                 </div>
               </div>
 
-              <p className="text-[#94a3b8] text-[15px] leading-relaxed mb-6">{item.description}</p>
+              <p className="text-[15px] leading-relaxed mb-6" style={{ color: "var(--brand-muted)" }}>{item.description}</p>
             </div>
 
             {/* Episode notes */}
             <div className="border rounded-sm p-5" style={{ borderColor: 'var(--brand-border)', background: 'white' }}>
               <p className="text-[11px] font-black uppercase tracking-wider mb-4" style={{ color: 'var(--brand-orange)' }}>Episode Notes</p>
-              <div className="space-y-4 text-[#94a3b8] text-[14px] leading-relaxed">
+              <div className="space-y-4 text-[14px] leading-relaxed" style={{ color: "var(--brand-dark)" }}>
                 <p>In this episode, {item.host} sits down with {item.guest} to explore the most pressing questions facing digital transformation leaders today.</p>
                 <p>The conversation covers the current state of digital adoption across sectors, the governance frameworks that are proving most effective, and the common failure patterns that continue to derail transformation programs.</p>
-                <p>Key topics discussed:</p>
+                <p className="font-semibold">Key topics discussed:</p>
                 <ul className="space-y-2 ml-4">
                   {[
                     `The current state of ${item.category} transformation globally`,
                     'What separates digital leaders from laggards in 2026',
                     'Practical frameworks for executive decision-making',
                     'The role of governance in sustainable transformation',
-                    'Predictions for the next 12â€“18 months',
+                    'Predictions for the next 12\u201318 months',
                   ].map((point, i) => (
                     <li key={i} className="flex items-start gap-2">
                       <span className="mt-2 w-1.5 h-1.5 rounded-full shrink-0" style={{ background: 'var(--brand-orange)' }} />
@@ -294,7 +294,7 @@ export default function PodcastPage() {
                     </li>
                   ))}
                 </ul>
-                <p className="text-[12px] text-[#64748b]">Published: {item.date} Â· Duration: {item.duration}</p>
+                <p className="text-[12px]" style={{ color: "var(--brand-muted)" }}>Published: {item.date} &middot; Duration: {item.duration}</p>
               </div>
             </div>
           </div>
@@ -302,7 +302,7 @@ export default function PodcastPage() {
           {/* â”€â”€ SIDEBAR (1/3) â”€â”€ */}
           <aside className="space-y-5">
             <div className="border rounded-sm p-4" style={{ borderColor: 'var(--brand-border)', background: 'white' }}>
-              <h3 className="text-[12px] font-black uppercase tracking-wider mb-3 pb-2 border-b text-white" style={{ borderColor: 'var(--brand-border)' }}>
+              <h3 className="text-[12px] font-black uppercase tracking-wider mb-3 pb-2 border-b" style={{ color: "var(--brand-navy)" }} style={{ borderColor: 'var(--brand-border)' }}>
                 More Episodes
               </h3>
               {related.map(ep => (
@@ -326,3 +326,6 @@ export default function PodcastPage() {
     </div>
   );
 }
+
+
+

@@ -1,7 +1,7 @@
 export const researchReports = [
   {
     id: 'res-1',
-    type: 'Whitepaper',
+    type: 'White Paper',
     title: 'The State of Digital Transformation 2026: Global Executive Survey',
     subtitle: 'Insights from 1,200 C-suite leaders across 47 countries',
     author: 'DTMI Research Desk',
@@ -196,4 +196,4 @@ export const researchReports = [
 ];
 
 export const researchCategories = ['All', 'Digital Transformation', 'AI & Automation', 'Governance', 'Cybersecurity', 'Cloud', 'Future of Work'];
-export const researchTypes = ['All Types', 'Whitepaper', 'Research Report', 'Policy Brief', 'Industry Analysis', 'Market Intelligence', 'Thought Leadership'];
+export const researchTypes = ['All Types', 'White Paper', 'Research Report', 'Policy Brief', 'Industry Analysis', 'Market Intelligence', 'Thought Leadership'];

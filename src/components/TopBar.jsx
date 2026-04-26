@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { Search, Menu, X, Bell, ChevronDown, Zap } from 'lucide-react';
+import { Search, Menu, X, Bell, ChevronDown, Zap, ArrowLeft } from 'lucide-react';
 import { navItems } from '../data/mockData';
 
 /* ─────────────────────────────────────────────────────────────
@@ -11,6 +11,7 @@ import { navItems } from '../data/mockData';
 function MegaMenu({ item, offsetLeft, headerWidth, onNavigate }) {
   const panelRef  = useRef(null);
   const PANEL_PAD = 8; // min gap from viewport edge
+  const [expandedSections, setExpandedSections] = useState({});
 
   const cols =
     item.children.length === 1 ? 'grid-cols-1' :
@@ -30,6 +31,26 @@ function MegaMenu({ item, offsetLeft, headerWidth, onNavigate }) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [offsetLeft, headerWidth]);
 
+  // Initialize all sections as collapsed by default
+  useEffect(() => {
+    const initialExpanded = {};
+    item.children.forEach(group => {
+      group.links.forEach(link => {
+        if (link.contentTypes) {
+          initialExpanded[link.key] = false; // Collapsed by default
+        }
+      });
+    });
+    setExpandedSections(initialExpanded);
+  }, [item]);
+
+  const toggleSection = (key) => {
+    setExpandedSections(prev => ({
+      ...prev,
+      [key]: !prev[key]
+    }));
+  };
+
   return (
     <div
       ref={panelRef}
@@ -48,18 +69,61 @@ function MegaMenu({ item, offsetLeft, headerWidth, onNavigate }) {
               </p>
               <div className="space-y-0.5">
                 {group.links.map((link) => (
-                  <button
-                    key={link.key}
-                    onClick={() => onNavigate(link.key)}
-                    className="w-full text-left group px-2 py-2 rounded-sm hover:bg-white/5 transition-colors"
-                  >
-                    <p className="text-[#e2e8f0] text-[12px] font-semibold group-hover:text-white transition-colors leading-snug">
-                      {link.label}
-                    </p>
-                    {link.desc && (
-                      <p className="text-[#64748b] text-[10px] mt-0.5 leading-snug">{link.desc}</p>
+                  <div key={link.key} className="group">
+                    <div className="flex items-center">
+                      <button
+                        onClick={() => onNavigate(link.key)}
+                        className="flex-1 text-left px-2 py-2 rounded-sm hover:bg-white/5 transition-colors"
+                      >
+                        <p className="text-[#e2e8f0] text-[12px] font-semibold group-hover:text-white transition-colors leading-snug">
+                          {link.label}
+                        </p>
+                        {link.desc && (
+                          <p className="text-[#64748b] text-[10px] mt-0.5 leading-snug">{link.desc}</p>
+                        )}
+                      </button>
+                      
+                      {/* Expand/collapse button for sections with content types */}
+                      {link.contentTypes && (
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            toggleSection(link.key);
+                          }}
+                          className="px-1 py-2 text-[#64748b] hover:text-white transition-colors"
+                          aria-label={expandedSections[link.key] ? 'Collapse' : 'Expand'}
+                        >
+                          <svg 
+                            width="12" 
+                            height="12" 
+                            viewBox="0 0 12 12" 
+                            className={`transition-transform duration-200 ${expandedSections[link.key] ? 'rotate-180' : ''}`}
+                            fill="currentColor"
+                          >
+                            <path d="M6 8.5L1.5 4L10.5 4L6 8.5Z" />
+                          </svg>
+                        </button>
+                      )}
+                    </div>
+                    
+                    {/* Show content types if available and expanded */}
+                    {link.contentTypes && expandedSections[link.key] && (
+                      <div className="ml-3 mt-1 space-y-0.5 border-l border-white/10 pl-2">
+                        {link.contentTypes.map((contentType) => (
+                          <button
+                            key={contentType.key}
+                            onClick={() => onNavigate(link.key)}
+                            className="w-full text-left px-2 py-1 rounded-sm hover:bg-white/5 transition-colors flex items-center gap-1.5"
+                          >
+                            <span className="w-1.5 h-1.5 rounded-full bg-white/30"></span>
+                            <p className="text-[#94a3b8] text-[10px] font-medium group-hover:text-white transition-colors leading-snug">
+                              {contentType.label}
+                            </p>
+                          </button>
+                        ))}
+                      </div>
                     )}
-                  </button>
+                  </div>
                 ))}
               </div>
             </div>
@@ -73,7 +137,7 @@ function MegaMenu({ item, offsetLeft, headerWidth, onNavigate }) {
 /* ─────────────────────────────────────────────────────────────
    TopBar
 ───────────────────────────────────────────── */
-export default function TopBar({ activeSection, setActiveSection, onAdmin, onSignIn }) {
+export default function TopBar({ activeSection, setActiveSection, onAdmin, onSignIn, showBackButton = false, onBack }) {
   const [menuOpen,    setMenuOpen]    = useState(false);
   const [openMega,    setOpenMega]    = useState(null);
   const [megaOffset,  setMegaOffset]  = useState(0);
@@ -81,6 +145,7 @@ export default function TopBar({ activeSection, setActiveSection, onAdmin, onSig
   const [scrolled,    setScrolled]    = useState(false);
   const [searchOpen,  setSearchOpen]  = useState(false);
   const [mobileOpen,  setMobileOpen]  = useState(null);
+  const [expandedSections, setExpandedSections] = useState({});
 
   const headerRef  = useRef(null);
   const navRef     = useRef(null);
@@ -114,6 +179,23 @@ export default function TopBar({ activeSection, setActiveSection, onAdmin, onSig
     return () => document.removeEventListener('mousedown', handler);
   }, []);
 
+  /* ── Initialize expanded sections for mobile ── */
+  useEffect(() => {
+    const initialExpanded = {};
+    navItems.forEach(item => {
+      if (item.children) {
+        item.children.forEach(group => {
+          group.links.forEach(link => {
+            if (link.contentTypes) {
+              initialExpanded[link.key] = false; // Collapsed by default
+            }
+          });
+        });
+      }
+    });
+    setExpandedSections(initialExpanded);
+  }, []);
+
   /* ── lock body scroll when mobile drawer is open ── */
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : '';
@@ -132,6 +214,10 @@ export default function TopBar({ activeSection, setActiveSection, onAdmin, onSig
   }, []);
 
   const handleNavigate = (key) => {
+    // If we're on a content page (showBackButton is false but onBack exists), close it first
+    if (!showBackButton && onBack) {
+      onBack(); // Close the content page
+    }
     setActiveSection(key);
     setOpenMega(null);
     setMenuOpen(false);
@@ -150,68 +236,82 @@ export default function TopBar({ activeSection, setActiveSection, onAdmin, onSig
 
   return (
     <>
-      {/* ── Top utility bar (hidden on mobile) ── */}
-      <div style={{ background: 'var(--brand-navy)' }} className="border-b border-white/5 hidden sm:block">
-        <div className="max-w-[1280px] mx-auto px-4 flex items-center justify-between h-9">
-          <div className="flex items-center gap-3">
-            <span className="text-[#94a3b8] text-[11px] uppercase tracking-wider whitespace-nowrap">
-              {new Date().toLocaleDateString('en-US', { weekday: 'short', month: 'long', day: 'numeric', year: 'numeric' })}
-            </span>
-            <span className="text-white/20 text-xs">|</span>
-            <span
-              className="text-[11px] font-bold uppercase tracking-wider flex items-center gap-1.5 whitespace-nowrap"
-              style={{ color: 'var(--brand-orange)' }}
-            >
-              <span className="live-blink inline-block w-1.5 h-1.5 rounded-full" style={{ background: 'var(--brand-orange)' }} />
-              Live Intelligence
-            </span>
-          </div>
-          <div className="flex items-center gap-3">
-            <button onClick={onAdmin} className="text-[#94a3b8] text-[11px] hover:text-white transition-colors font-semibold whitespace-nowrap">
-              Admin
-            </button>
-            <button onClick={onSignIn} className="text-[#94a3b8] text-[11px] hover:text-white transition-colors whitespace-nowrap">
-              Sign In
-            </button>
-            <button className="btn-orange text-[11px] px-3 py-1 rounded-sm uppercase tracking-wide whitespace-nowrap">
-              Subscribe
-            </button>
+      {/* ── Fixed navbar container ── */}
+      <div className="fixed top-0 left-0 right-0 z-50">
+        {/* ── Top utility bar (hidden on mobile) ── */}
+        <div style={{ background: 'var(--brand-navy)' }} className="border-b border-white/5 hidden sm:block">
+          <div className="max-w-[1280px] mx-auto px-4 flex items-center justify-between h-9">
+            <div className="flex items-center gap-3">
+              <span className="text-[#94a3b8] text-[11px] uppercase tracking-wider whitespace-nowrap">
+                {new Date().toLocaleDateString('en-US', { weekday: 'short', month: 'long', day: 'numeric', year: 'numeric' })}
+              </span>
+              <span className="text-white/20 text-xs">|</span>
+              <span
+                className="text-[11px] font-bold uppercase tracking-wider flex items-center gap-1.5 whitespace-nowrap"
+                style={{ color: 'var(--brand-orange)' }}
+              >
+                <span className="live-blink inline-block w-1.5 h-1.5 rounded-full" style={{ background: 'var(--brand-orange)' }} />
+                Live Intelligence
+              </span>
+            </div>
+            <div className="flex items-center gap-3">
+              <button onClick={onAdmin} className="text-[#94a3b8] text-[11px] hover:text-white transition-colors font-semibold whitespace-nowrap">
+                Admin
+              </button>
+              <button onClick={onSignIn} className="text-[#94a3b8] text-[11px] hover:text-white transition-colors whitespace-nowrap">
+                Sign In
+              </button>
+              <button className="btn-orange text-[11px] px-3 py-1 rounded-sm uppercase tracking-wide whitespace-nowrap">
+                Subscribe
+              </button>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* ── Main header ── */}
-      {/*
-        position:relative here is the containing block for the mega-menu panel.
-        The panel is absolute inside this element, so it can span the full header
-        width and we can clamp its left position precisely.
-      */}
-      <header
-        ref={headerRef}
-        style={{ background: 'var(--brand-navy)', position: 'relative' }}
-        className={`sticky top-0 z-50 border-b border-white/10 transition-shadow duration-200 ${
-          scrolled ? 'shadow-xl shadow-black/40' : ''
-        }`}
-      >
+        {/* ── Main header ── */}
+        {/*
+          position:relative here is the containing block for the mega-menu panel.
+          The panel is absolute inside this element, so it can span the full header
+          width and we can clamp its left position precisely.
+        */}
+        <header
+          ref={headerRef}
+          style={{ background: 'var(--brand-navy)' }}
+          className={`border-b border-white/10 transition-all duration-300 ${
+            scrolled ? 'shadow-xl shadow-black/40 backdrop-blur-sm bg-opacity-95' : ''
+          }`}
+        >
         <div className="max-w-[1280px] mx-auto px-4">
           <div className="flex items-center justify-between h-14">
 
             {/* ── Logo ── */}
-            <button
-              onClick={() => handleNavigate('Latest')}
-              className="flex items-center gap-2.5 shrink-0"
-              aria-label="DTMI Home"
-            >
-              <div className="flex items-center justify-center w-8 h-8 rounded-sm shrink-0" style={{ background: 'var(--brand-orange)' }}>
-                <Zap size={16} className="text-white" fill="white" />
-              </div>
-              <div className="leading-none">
-                <p className="text-white font-black text-[15px] tracking-tight leading-none">DTMI</p>
-                <p className="text-[10px] font-semibold uppercase tracking-widest leading-none mt-0.5" style={{ color: 'var(--brand-teal)' }}>
-                  DigitalQatalyst
-                </p>
-              </div>
-            </button>
+            <div className="flex items-center gap-3">
+              {showBackButton && onBack && (
+                <button
+                  onClick={onBack}
+                  className="flex items-center gap-1.5 text-[12px] font-bold uppercase tracking-wide transition-colors hover:opacity-70 text-white"
+                  aria-label="Go back"
+                >
+                  <ArrowLeft size={15} />
+                  Back
+                </button>
+              )}
+              <button
+                onClick={() => handleNavigate('Latest')}
+                className="flex items-center gap-2.5 shrink-0"
+                aria-label="DTMI Home"
+              >
+                <div className="flex items-center justify-center w-8 h-8 rounded-sm shrink-0" style={{ background: 'var(--brand-orange)' }}>
+                  <Zap size={16} className="text-white" fill="white" />
+                </div>
+                <div className="leading-none">
+                  <p className="text-white font-black text-[15px] tracking-tight leading-none">DTMI</p>
+                  <p className="text-[10px] font-semibold uppercase tracking-widest leading-none mt-0.5" style={{ color: 'var(--brand-teal)' }}>
+                    DigitalQatalyst
+                  </p>
+                </div>
+              </button>
+            </div>
 
             {/* ── Desktop nav ── */}
             <nav ref={navRef} className="hidden lg:flex items-center h-14">
@@ -342,6 +442,7 @@ export default function TopBar({ activeSection, setActiveSection, onAdmin, onSig
           </div>
         )}
       </header>
+      </div>
 
       {/* ── Mobile drawer ── */}
       {menuOpen && (
@@ -441,17 +542,63 @@ export default function TopBar({ activeSection, setActiveSection, onAdmin, onSig
                                 {group.heading}
                               </p>
                               {group.links.map((link) => (
-                                <button
-                                  key={link.key}
-                                  onClick={() => handleNavigate(link.key)}
-                                  className="w-full text-left py-2 px-2 text-[12px] rounded-sm hover:bg-white/5 transition-colors flex items-center gap-2"
-                                  style={{ color: activeSection === link.key ? 'var(--brand-orange)' : '#94a3b8' }}
-                                >
-                                  {activeSection === link.key && (
-                                    <span className="w-1 h-3 rounded-full shrink-0" style={{ background: 'var(--brand-orange)' }} />
+                                <div key={link.key} className="mb-1">
+                                  <div className="flex items-center">
+                                    <button
+                                      onClick={() => handleNavigate(link.key)}
+                                      className="flex-1 text-left py-2 px-2 text-[12px] rounded-sm hover:bg-white/5 transition-colors flex items-center gap-2"
+                                      style={{ color: activeSection === link.key ? 'var(--brand-orange)' : '#94a3b8' }}
+                                    >
+                                      {activeSection === link.key && (
+                                        <span className="w-1 h-3 rounded-full shrink-0" style={{ background: 'var(--brand-orange)' }} />
+                                      )}
+                                      {link.label}
+                                    </button>
+                                    
+                                    {/* Expand/collapse button for sections with content types */}
+                                    {link.contentTypes && (
+                                      <button
+                                        onClick={(e) => {
+                                          e.stopPropagation();
+                                          const newExpanded = {};
+                                          newExpanded[link.key] = !expandedSections[link.key];
+                                          setExpandedSections(prev => ({ ...prev, ...newExpanded }));
+                                        }}
+                                        className="px-2 py-2 text-[#64748b] hover:text-white transition-colors"
+                                        aria-label={expandedSections[link.key] ? 'Collapse' : 'Expand'}
+                                      >
+                                        <svg 
+                                          width="12" 
+                                          height="12" 
+                                          viewBox="0 0 12 12" 
+                                          className={`transition-transform duration-200 ${expandedSections[link.key] ? 'rotate-180' : ''}`}
+                                          fill="currentColor"
+                                        >
+                                          <path d="M6 8.5L1.5 4L10.5 4L6 8.5Z" />
+                                        </svg>
+                                      </button>
+                                    )}
+                                  </div>
+                                  
+                                  {/* Show content types if available and expanded */}
+                                  {link.contentTypes && expandedSections[link.key] && (
+                                    <div className="ml-4 mt-1 space-y-0.5 border-l border-white/10 pl-2">
+                                      {link.contentTypes.map((contentType) => (
+                                        <button
+                                          key={contentType.key}
+                                          onClick={() => handleNavigate(link.key)}
+                                          className="w-full text-left py-1 px-2 text-[11px] rounded-sm hover:bg-white/5 transition-colors"
+                                          style={{ color: '#94a3b8' }}
+                                        >
+                                          <p className="text-[11px] font-medium">{contentType.label}</p>
+                                          {contentType.desc && (
+                                            <p className="text-[#64748b] text-[9px] mt-0.5 leading-snug">{contentType.desc}</p>
+                                          )}
+                                        </button>
+                                      ))}
+                                    </div>
                                   )}
-                                  {link.label}
-                                </button>
+                                </div>
                               ))}
                             </div>
                           ))}
