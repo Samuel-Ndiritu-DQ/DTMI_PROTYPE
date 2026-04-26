@@ -83,7 +83,7 @@ export default function GlossaryPage() {
             Glossary of Digital Transformation Terms
           </h1>
           <p className="text-[14px] leading-relaxed max-w-[600px]" style={{ color: '#94a3b8' }}>
-            The definitive reference for Economy 4.0, DCO, AI, cybersecurity, cloud, and digital platform terminology — curated by the DTMI Research Desk.
+            The definitive reference for Economy 4.0, DCO, AI, cybersecurity, cloud, and digital platform terminology - curated by the DTMI Research Desk.
           </p>
           <div className="flex flex-wrap gap-4 mt-4 text-[13px]" style={{ color: '#64748b' }}>
             <span className="flex items-center gap-1.5"><BookOpen size={13} /> {glossaryTerms.length} terms defined</span>

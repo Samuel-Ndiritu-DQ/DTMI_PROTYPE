@@ -131,7 +131,7 @@ export default function SignalPage() {
                 The essential reading list for digital transformation leaders
               </h1>
               <p className="text-[14px] leading-relaxed" style={{ color: '#94a3b8' }}>
-                Curated books from the world's leading thinkers on digital strategy, AI, and organizational transformation — plus exclusive DTMB research volumes from DigitalQatalyst.
+                Curated books from the world's leading thinkers on digital strategy, AI, and organizational transformation - plus exclusive DTMB research volumes from DigitalQatalyst.
               </p>
             </div>
             {/* Cover stack preview */}

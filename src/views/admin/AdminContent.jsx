@@ -1,4 +1,4 @@
-﻿import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Plus, Search, Edit2, Trash2, Eye, FileText, Video,
   Headphones, BookOpen, X, ChevronDown, ChevronUp,
@@ -1251,7 +1251,7 @@ export default function AdminContent({ activeSubKey }) {
             className="text-[11px] font-semibold transition-colors hover:opacity-70"
             style={{ color: 'var(--brand-orange)' }}
           >
-            Clear filters Ã—
+            Clear filters Ã-
           </button>
         )}
       </div>

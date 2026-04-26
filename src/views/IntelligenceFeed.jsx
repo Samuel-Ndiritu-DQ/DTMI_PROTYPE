@@ -55,9 +55,9 @@ export default function IntelligenceFeed() {
     const pool = [
       { text: "DTMI AI Engine detects new transformation risk cluster in APAC region", severity: "High",     category: "AI" },
       { text: "Cloud adoption velocity index reaches 3-year high across G20 nations",  severity: "Medium",   category: "Cloud" },
-      { text: "New zero-day vulnerability disclosed — patch available, deployment lagging", severity: "Critical", category: "Cybersecurity" },
+      { text: "New zero-day vulnerability disclosed - patch available, deployment lagging", severity: "Critical", category: "Cybersecurity" },
       { text: "Digital Business Platforms market cap surpasses $180B for first time",   severity: "Low",      category: "Digital Economy" },
-      { text: "DCO compliance framework v3.0 published — 47-page executive guide live", severity: "Medium",   category: "DCO" },
+      { text: "DCO compliance framework v3.0 published - 47-page executive guide live", severity: "Medium",   category: "DCO" },
     ];
     const t = setInterval(() => {
       const item = pool[Math.floor(Math.random() * pool.length)];
@@ -104,7 +104,7 @@ export default function IntelligenceFeed() {
             <h1 className="text-white text-2xl font-black uppercase tracking-wide">
               <span className="text-[#cc0000]">●</span> Live Intelligence Feed
             </h1>
-            <p className="text-[#666] text-[12px] mt-1">Real-time digital transformation signals — auto-updating every 7 seconds</p>
+            <p className="text-[#666] text-[12px] mt-1">Real-time digital transformation signals - auto-updating every 7 seconds</p>
           </div>
           <button
             onClick={() => setPaused(p => !p)}
@@ -170,7 +170,7 @@ export default function IntelligenceFeed() {
               <div className="flex items-center gap-3 px-4 py-2 bg-[#111] border-b border-[#1a1a1a]">
                 <span className="live-blink w-2 h-2 rounded-full bg-[#cc0000]" />
                 <span className="text-white text-[11px] font-black uppercase tracking-wider">
-                  {filtered.length} signals — {paused ? 'Paused' : 'Live'}
+                  {filtered.length} signals - {paused ? 'Paused' : 'Live'}
                 </span>
                 <span className="ml-auto text-[#444] text-[10px]">Sorted by severity</span>
               </div>
@@ -217,7 +217,7 @@ export default function IntelligenceFeed() {
                     {level === 'Critical' && 'Immediate action required'}
                     {level === 'High'     && 'Executive attention needed'}
                     {level === 'Medium'   && 'Monitor and plan response'}
-                    {level === 'Low'      && 'Informational — track trend'}
+                    {level === 'Low'      && 'Informational - track trend'}
                   </span>
                 </div>
               ))}

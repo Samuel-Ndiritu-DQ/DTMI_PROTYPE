@@ -198,7 +198,7 @@ function VideoPlayer({ src, poster, color }) {
   );
 }
 
-/* Related video card — YouTube-style */
+/* Related video card - YouTube-style */
 function RelatedCard({ ep, onOpen, active }) {
   const color = catColor(ep.category);
   return (

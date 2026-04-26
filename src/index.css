@@ -106,7 +106,7 @@
 .nav-link:hover::after,
 .nav-link.active::after { transform: scaleX(1); }
 
-/* Mega menu panel — positioned absolute inside the sticky header.
+/* Mega menu panel - positioned absolute inside the sticky header.
    Left value is set by JS (trigger offset), clamped to stay in viewport. */
 .mega-menu-panel {
   position: absolute;
@@ -132,7 +132,7 @@
 }
 .btn-orange:hover { background: var(--brand-orange2); }
 
-/* Severity badges — light theme */
+/* Severity badges - light theme */
 .sev-critical { background:#fef2f2; color:#b91c1c; border:1px solid #fecaca; }
 .sev-high     { background:#fff7ed; color:#c2410c; border:1px solid #fed7aa; }
 .sev-medium   { background:#fffbeb; color:#b45309; border:1px solid #fde68a; }

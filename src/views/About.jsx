@@ -67,7 +67,7 @@ export default function About() {
               and strategy.
             </h1>
             <p className="text-[#94a3b8] text-[15px] leading-relaxed mb-6 max-w-2xl">
-              DTMI is the primary knowledge platform of DigitalQatalyst — a global think-tank examining how organizations across sectors are adapting to the new dynamics of technology-driven economic transformation. We produce, distribute, and amplify research on Digital Cognitive Organizations and the wider Digital Economy.
+              DTMI is the primary knowledge platform of DigitalQatalyst - a global think-tank examining how organizations across sectors are adapting to the new dynamics of technology-driven economic transformation. We produce, distribute, and amplify research on Digital Cognitive Organizations and the wider Digital Economy.
             </p>
             <div className="flex gap-3">
               <button className="btn-orange px-5 py-2.5 rounded-sm text-[13px] font-black uppercase tracking-wide">
@@ -88,7 +88,7 @@ export default function About() {
           <p className="text-[11px] font-black uppercase tracking-widest mb-2" style={{ color: 'var(--brand-orange)' }}>Framework</p>
           <h2 className="text-2xl font-black mb-2" style={{ color: 'var(--brand-navy)' }}>The DQ DTMI Think-Tank Content Stack</h2>
           <p className="text-[14px] leading-relaxed mb-8 max-w-2xl" style={{ color: 'var(--brand-muted)' }}>
-            The TT.CS provides the structural architecture through which DigitalQatalyst research moves from intellectual production to global influence — connecting the DTMI editorial engine with distribution channels and engagement systems.
+            The TT.CS provides the structural architecture through which DigitalQatalyst research moves from intellectual production to global influence - connecting the DTMI editorial engine with distribution channels and engagement systems.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {zones.map((zone) => {
@@ -136,7 +136,7 @@ export default function About() {
           <p className="text-[11px] font-black uppercase tracking-widest mb-2" style={{ color: 'var(--brand-orange)' }}>Editorial Model</p>
           <h2 className="text-xl font-black mb-2" style={{ color: 'var(--brand-navy)' }}>1 Research Asset → 8–20 Editorial Artefacts</h2>
           <p className="text-[13px] leading-relaxed mb-6 max-w-2xl" style={{ color: 'var(--brand-muted)' }}>
-            Every flagship research paper generates a portfolio of derivative editorial outputs distributed across multiple channels and formats — maximizing reach, lifespan, and strategic influence.
+            Every flagship research paper generates a portfolio of derivative editorial outputs distributed across multiple channels and formats - maximizing reach, lifespan, and strategic influence.
           </p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {[

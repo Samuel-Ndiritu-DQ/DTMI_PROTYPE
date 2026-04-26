@@ -40,7 +40,7 @@ function NewsletterBanner() {
   );
 }
 
-/* Trending strip — horizontal scrollable row of ranked stories */
+/* Trending strip - horizontal scrollable row of ranked stories */
 function TrendingStrip({ onOpen }) {
   const items = mostRead.slice(0, 5);
   return (

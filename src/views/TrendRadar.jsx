@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+import { useState } from 'react';
 import { trendRadarItems, trendRadarRings } from '../data/mockData';
 import { TrendingUp, BarChart2, ChevronRight, Info } from 'lucide-react';
 
@@ -25,7 +25,7 @@ export default function TrendRadar() {
             Technology Trend Radar
           </h1>
           <p className="text-[14px] leading-relaxed max-w-[600px]" style={{ color: '#94a3b8' }}>
-            Emerging technology adoption, disruption signals, and organizational readiness — Q2 2026
+            Emerging technology adoption, disruption signals, and organizational readiness - Q2 2026
           </p>
         </div>
       </div>
@@ -140,7 +140,7 @@ export default function TrendRadar() {
                         className="inline-block mt-2 text-[10px] font-black uppercase px-2.5 py-1 rounded-full"
                         style={{ background: 'rgba(255,255,255,0.2)', color: 'white' }}
                       >
-                        {selected.ring} — {ring.description}
+                        {selected.ring} - {ring.description}
                       </span>
                     </div>
                     <div className="p-5 bg-white space-y-4">
@@ -170,7 +170,7 @@ export default function TrendRadar() {
                       <span className="text-[10px] font-black uppercase tracking-widest" style={{ color: 'var(--brand-orange)' }}>DTMI Recommendation</span>
                     </div>
                     <p className="text-[13px] leading-relaxed" style={{ color: '#94a3b8' }}>
-                      {selected.ring === 'Adopt' && 'Broad rollout is recommended — early adopters report significant competitive advantages.'}
+                      {selected.ring === 'Adopt' && 'Broad rollout is recommended - early adopters report significant competitive advantages.'}
                       {selected.ring === 'Trial' && 'Evaluate for specific use cases. Run controlled pilots before full commitment.'}
                       {selected.ring === 'Assess' && 'Monitor closely. Understand potential impact before committing resources.'}
                       {selected.ring === 'Hold' && `Reassess in 12–18 months as the market matures.`}
@@ -199,7 +199,7 @@ export default function TrendRadar() {
 
             {/* Adoption comparison */}
             <div className="rounded-sm border bg-white p-4" style={{ borderColor: 'var(--brand-border)' }}>
-              <p className="text-[10px] font-black uppercase tracking-widest mb-3" style={{ color: 'var(--brand-muted)' }}>All Technologies — Adoption</p>
+              <p className="text-[10px] font-black uppercase tracking-widest mb-3" style={{ color: 'var(--brand-muted)' }}>All Technologies - Adoption</p>
               {trendRadarItems.map(t => (
                 <div key={t.id} className="flex items-center gap-2 mb-2">
                   <span className="text-[10px] w-28 truncate shrink-0" style={{ color: 'var(--brand-navy)' }}>{t.name}</span>

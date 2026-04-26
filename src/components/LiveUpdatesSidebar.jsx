@@ -10,7 +10,7 @@ export default function LiveUpdatesSidebar() {
     const pool = [
       { id: 100, time: "Just now", text: "DTMI AI Engine detects new transformation risk cluster in APAC region", hot: true },
       { id: 101, time: "Just now", text: "Cloud adoption velocity index reaches 3-year high across G20 nations", hot: true },
-      { id: 102, time: "Just now", text: "New DCO compliance framework published — 47-page executive guide available", hot: true },
+      { id: 102, time: "Just now", text: "New DCO compliance framework published - 47-page executive guide available", hot: true },
     ];
     let i = 0;
     const t = setInterval(() => {

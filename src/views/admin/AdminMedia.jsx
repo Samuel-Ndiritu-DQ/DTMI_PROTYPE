@@ -1,15 +1,15 @@
-﻿import { useState } from 'react';
+import { useState } from 'react';
 import { Upload, Search, Image, Video, Headphones, FileText, Trash2, Download, Copy, Grid, List } from 'lucide-react';
 
 const MEDIA = [
-  { id: 1,  name: 'ai-workplace-hero.jpg',     type: 'image',   size: '284 KB', dims: '1400Ã—788', date: 'Apr 23', url: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=200&q=60' },
-  { id: 2,  name: 'cybersecurity-cover.jpg',   type: 'image',   size: '312 KB', dims: '1400Ã—788', date: 'Apr 22', url: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=200&q=60' },
-  { id: 3,  name: 'cloud-migration.jpg',       type: 'image',   size: '198 KB', dims: '1400Ã—788', date: 'Apr 22', url: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=200&q=60' },
-  { id: 4,  name: 'dco-framework.jpg',         type: 'image',   size: '241 KB', dims: '1400Ã—788', date: 'Apr 21', url: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=200&q=60' },
-  { id: 5,  name: 'quantum-computing.jpg',     type: 'image',   size: '356 KB', dims: '1400Ã—788', date: 'Apr 21', url: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=200&q=60' },
-  { id: 6,  name: 'economy-4-chart.jpg',       type: 'image',   size: '178 KB', dims: '1400Ã—788', date: 'Apr 20', url: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=200&q=60' },
-  { id: 7,  name: 'ai-native-orgs.mp4',        type: 'video',   size: '48.2 MB',dims: '1920Ã—1080',date: 'Apr 22', url: '' },
-  { id: 8,  name: 'dtmi-live-q1-2026.mp4',     type: 'video',   size: '62.7 MB',dims: '1920Ã—1080',date: 'Apr 20', url: '' },
+  { id: 1,  name: 'ai-workplace-hero.jpg',     type: 'image',   size: '284 KB', dims: '1400Ã-788', date: 'Apr 23', url: 'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=200&q=60' },
+  { id: 2,  name: 'cybersecurity-cover.jpg',   type: 'image',   size: '312 KB', dims: '1400Ã-788', date: 'Apr 22', url: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?w=200&q=60' },
+  { id: 3,  name: 'cloud-migration.jpg',       type: 'image',   size: '198 KB', dims: '1400Ã-788', date: 'Apr 22', url: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=200&q=60' },
+  { id: 4,  name: 'dco-framework.jpg',         type: 'image',   size: '241 KB', dims: '1400Ã-788', date: 'Apr 21', url: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=200&q=60' },
+  { id: 5,  name: 'quantum-computing.jpg',     type: 'image',   size: '356 KB', dims: '1400Ã-788', date: 'Apr 21', url: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=200&q=60' },
+  { id: 6,  name: 'economy-4-chart.jpg',       type: 'image',   size: '178 KB', dims: '1400Ã-788', date: 'Apr 20', url: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=200&q=60' },
+  { id: 7,  name: 'ai-native-orgs.mp4',        type: 'video',   size: '48.2 MB',dims: '1920Ã-1080',date: 'Apr 22', url: '' },
+  { id: 8,  name: 'dtmi-live-q1-2026.mp4',     type: 'video',   size: '62.7 MB',dims: '1920Ã-1080',date: 'Apr 20', url: '' },
   { id: 9,  name: 'govt-transformation.mp3',   type: 'audio',   size: '38.4 MB',dims: '42:18',    date: 'Apr 23', url: '' },
   { id: 10, name: 'cyber-ai-threats.mp3',      type: 'audio',   size: '29.1 MB',dims: '35:42',    date: 'Apr 21', url: '' },
   { id: 11, name: 'dtmi-whitepaper-q1.pdf',    type: 'doc',     size: '2.4 MB', dims: '48 pages', date: 'Apr 18', url: '' },

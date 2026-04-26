@@ -14,7 +14,7 @@ function Block({ block }) {
       return (
         <blockquote className="my-7 pl-5 border-l-4" style={{ borderColor: 'var(--brand-orange)' }}>
           <p className="text-[17px] font-semibold italic leading-relaxed mb-2" style={{ color: 'var(--brand-navy)' }}>"{block.text}"</p>
-          {block.author && <cite className="text-[12px] not-italic font-bold" style={{ color: 'var(--brand-orange)' }}>— {block.author}</cite>}
+          {block.author && <cite className="text-[12px] not-italic font-bold" style={{ color: 'var(--brand-orange)' }}>- {block.author}</cite>}
         </blockquote>
       );
     case 'bullets':
@@ -120,7 +120,7 @@ function ResearchPaywallGate({ report, onSignIn }) {
   );
 }
 
-/* ── Research reader — renders as normal page content ── */
+/* ── Research reader - renders as normal page content ── */
 export default function ResearchReader({ report, onClose, onSignIn }) {
   const contentType = report.type ? report.type.toLowerCase().replace(/\s+/g, '-') : 'research-report';
   const isWhitepaper = contentType === 'white-paper';

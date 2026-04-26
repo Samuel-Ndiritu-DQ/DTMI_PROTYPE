@@ -1,4 +1,4 @@
-﻿import { useState } from 'react';
+import { useState } from 'react';
 import { researchReports, researchCategories } from '../data/researchData';
 import { CONTENT_CATEGORIES, getContentType } from '../data/contentTypes';
 import ContentFilterV2 from '../components/ContentFilterV2';
@@ -180,7 +180,7 @@ export default function ResearchPage({ onSignIn }) {
                 Premium research reports and executive intelligence
               </h1>
               <p className="text-[14px] leading-relaxed" style={{ color: '#94a3b8' }}>
-                Exclusive whitepapers, confidential research reports, policy briefs, and industry analyses from the DigitalQatalyst think-tank — delivering actionable intelligence for digital transformation leaders worldwide.
+                Exclusive whitepapers, confidential research reports, policy briefs, and industry analyses from the DigitalQatalyst think-tank - delivering actionable intelligence for digital transformation leaders worldwide.
               </p>
             </div>
             {/* Research stack preview */}

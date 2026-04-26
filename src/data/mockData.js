@@ -1,7 +1,7 @@
 // --- BREAKING NEWS BANNER ----------------------------------------------------
 export const breakingNews = [
-  "BREAKING: Global AI Adoption Index surges to record 61% — fastest quarterly growth in history",
-  "LIVE UPDATES: EU AI Act enforcement begins Q3 2026 — non-compliant firms face 6% revenue fines",
+  "BREAKING: Global AI Adoption Index surges to record 61% - fastest quarterly growth in history",
+  "LIVE UPDATES: EU AI Act enforcement begins Q3 2026 - non-compliant firms face 6% revenue fines",
   "ALERT: Cybersecurity breach incidents rise 23% YoY as zero-trust adoption lags in enterprise",
   "DEVELOPING: Economy 4.0 projected to add $4.2 trillion to global GDP by 2028, IMF report says",
 ];
@@ -98,12 +98,12 @@ export const navItems = [
       {
         heading: "Strategic Domains",
         links: [
-          { label: "D1 — Digital Economy",        key: "D1", desc: "Economy 4.0 & platform models" },
-          { label: "D2 — DCO",                    key: "D2", desc: "Digital Cognitive Organizations" },
-          { label: "D3 — Digital Business Platforms", key: "D3", desc: "DBP architecture & ecosystems" },
-          { label: "D4 — Digital Transformation 2.0", key: "D4", desc: "DT2.0 strategy & execution" },
-          { label: "D5 — Digital Worker & Workspace", key: "D5", desc: "Future of work & digital talent" },
-          { label: "D6 — Digital Accelerators",   key: "D6", desc: "AI, automation & emerging tech" },
+          { label: "D1 - Digital Economy",        key: "D1", desc: "Economy 4.0 & platform models" },
+          { label: "D2 - DCO",                    key: "D2", desc: "Digital Cognitive Organizations" },
+          { label: "D3 - Digital Business Platforms", key: "D3", desc: "DBP architecture & ecosystems" },
+          { label: "D4 - Digital Transformation 2.0", key: "D4", desc: "DT2.0 strategy & execution" },
+          { label: "D5 - Digital Worker & Workspace", key: "D5", desc: "Future of work & digital talent" },
+          { label: "D6 - Digital Accelerators",   key: "D6", desc: "AI, automation & emerging tech" },
         ],
       },
     ],
@@ -148,7 +148,7 @@ export const navItems = [
     key: "technology",
     children: [
       {
-        heading: "Platform 01 — DXP",
+        heading: "Platform 01 - DXP",
         links: [
           { label: "Digital Channels",   key: "DXP-Channels" },
           { label: "Digital Experience", key: "DXP-Experience" },
@@ -157,7 +157,7 @@ export const navItems = [
         ],
       },
       {
-        heading: "Platform 02 — DWS",
+        heading: "Platform 02 - DWS",
         links: [
           { label: "Digital Workspace",  key: "DWS-Workspace" },
           { label: "Digital Core (ERP)", key: "DWS-Core" },
@@ -166,14 +166,14 @@ export const navItems = [
         ],
       },
       {
-        heading: "Platform 03 — DIA",
+        heading: "Platform 03 - DIA",
         links: [
           { label: "Digital Analytics",     key: "DIA-Analytics" },
           { label: "Digital Intelligence (AI)", key: "DIA-AI" },
         ],
       },
       {
-        heading: "Platform 04 — SDO",
+        heading: "Platform 04 - SDO",
         links: [
           { label: "Digital IT (Cloud)",       key: "SDO-IT" },
           { label: "Digital Interoperability", key: "SDO-Interop" },
@@ -203,7 +203,7 @@ export const navSections = navItems.flatMap(item =>
 export const heroStory = {
   id: "hero-1",
   category: "AI & AUTOMATION",
-  headline: "AI adoption has accelerated by 15% in the past quarter — and it's reshaping every industry on the planet",
+  headline: "AI adoption has accelerated by 15% in the past quarter - and it's reshaping every industry on the planet",
   summary: "From manufacturing floors to government ministries, generative AI is no longer a pilot program. It's the operating system of the modern enterprise. DTMI's latest intelligence report reveals the winners, the laggards, and what executives must do now.",
   label: "EXCLUSIVE ANALYSIS",
   timestamp: "Updated 4 minutes ago",
@@ -218,7 +218,7 @@ export const heroSideStories = [
   {
     id: "side-1",
     category: "CYBERSECURITY",
-    headline: "Zero-trust is no longer optional — 74% of enterprises operating hybrid workforces now require it",
+    headline: "Zero-trust is no longer optional - 74% of enterprises operating hybrid workforces now require it",
     timestamp: "12 minutes ago",
     severity: "Critical",
     image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=400&q=80",
@@ -226,7 +226,7 @@ export const heroSideStories = [
   {
     id: "side-2",
     category: "CLOUD",
-    headline: "Multi-cloud strategy cuts operational costs by 18% — but complexity is the hidden price",
+    headline: "Multi-cloud strategy cuts operational costs by 18% - but complexity is the hidden price",
     timestamp: "28 minutes ago",
     severity: "Medium",
     image: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=400&q=80",
@@ -242,7 +242,7 @@ export const heroSideStories = [
   {
     id: "side-4",
     category: "DIGITAL ECONOMY",
-    headline: "Economy 4.0 is expected to grow by 5% next year — platform economies lead the charge",
+    headline: "Economy 4.0 is expected to grow by 5% next year - platform economies lead the charge",
     timestamp: "1 hour ago",
     severity: "Low",
     image: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&q=80",
@@ -252,12 +252,12 @@ export const heroSideStories = [
 // --- LIVE UPDATES FEED -------------------------------------------------------
 export const liveUpdates = [
   { id: 1, time: "Just now",  text: "AI Adoption Index hits new record: 61% global enterprise penetration", hot: true },
-  { id: 2, time: "4 min ago", text: "DTMI Transformation Velocity score rises to 42% — highest since Q2 2024", hot: false },
+  { id: 2, time: "4 min ago", text: "DTMI Transformation Velocity score rises to 42% - highest since Q2 2024", hot: false },
   { id: 3, time: "9 min ago", text: "EU AI Act enforcement team confirms first compliance audits begin July 2026", hot: false },
   { id: 4, time: "14 min ago",text: "Cybersecurity threat surface expands 31% following rapid SaaS adoption wave", hot: false },
-  { id: 5, time: "21 min ago",text: "Cloud migration reaches 67% completion across Fortune 500 — hybrid model dominates", hot: false },
+  { id: 5, time: "21 min ago",text: "Cloud migration reaches 67% completion across Fortune 500 - hybrid model dominates", hot: false },
   { id: 6, time: "33 min ago",text: "Quantum computing readiness: only 12% of enterprises have active strategies", hot: false },
-  { id: 7, time: "41 min ago",text: "DCO framework adopted by 55% of G20 governments — new global benchmark set", hot: false },
+  { id: 7, time: "41 min ago",text: "DCO framework adopted by 55% of G20 governments - new global benchmark set", hot: false },
   { id: 8, time: "58 min ago",text: "Digital Business Platforms market reaches $180B valuation milestone", hot: false },
 ];
 
@@ -267,7 +267,7 @@ export const topStories = [
     id: "ts-1",
     category: "AI & AUTOMATION",
     headline: "AI Integration in the Digital Workplace: A Playbook for 2026",
-    summary: "How leading firms are embedding AI into core workflows and measuring ROI — with 62% of knowledge workers now using AI tools daily.",
+    summary: "How leading firms are embedding AI into core workflows and measuring ROI - with 62% of knowledge workers now using AI tools daily.",
     timestamp: "Today, 09:14",
     readTime: "6 min",
     severity: "High",
@@ -278,7 +278,7 @@ export const topStories = [
   {
     id: "ts-2",
     category: "CYBERSECURITY",
-    headline: "Ransomware targets OT/IT convergence points — critical infrastructure at risk",
+    headline: "Ransomware targets OT/IT convergence points - critical infrastructure at risk",
     summary: "A new wave of ransomware attacks is exploiting the gap between operational and IT systems, with energy and manufacturing sectors most exposed.",
     timestamp: "Today, 08:30",
     readTime: "5 min",
@@ -301,7 +301,7 @@ export const topStories = [
     id: "ts-4",
     category: "DCO",
     headline: "Digital-Centered Organizations outperform peers by 2.1x on digital revenue metrics",
-    summary: "The DCO framework is no longer theoretical. Early adopters are posting measurable results — and the gap with laggards is widening fast.",
+    summary: "The DCO framework is no longer theoretical. Early adopters are posting measurable results - and the gap with laggards is widening fast.",
     timestamp: "Yesterday, 16:00",
     readTime: "8 min",
     severity: "Medium",
@@ -325,7 +325,7 @@ export const executiveBriefings = [
   {
     id: "eb-2",
     category: "EXECUTIVE BRIEFING",
-    headline: "The digital transformation talent gap is widening — and it's a CEO problem",
+    headline: "The digital transformation talent gap is widening - and it's a CEO problem",
     timestamp: "Apr 22, 2026",
     image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80",
     label: "ANALYSIS",
@@ -334,7 +334,7 @@ export const executiveBriefings = [
   {
     id: "eb-3",
     category: "EXECUTIVE BRIEFING",
-    headline: "Why 60% of digital transformation programs fail — and how to be in the 40%",
+    headline: "Why 60% of digital transformation programs fail - and how to be in the 40%",
     timestamp: "Apr 21, 2026",
     image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&q=80",
     label: "PODCAST",
@@ -348,7 +348,7 @@ export const emergingTech = [
   {
     id: "et-1",
     category: "EMERGING TECH",
-    headline: "Quantum computing: only 12% of enterprises have a strategy — but the window is closing",
+    headline: "Quantum computing: only 12% of enterprises have a strategy - but the window is closing",
     timestamp: "Apr 23, 2026",
     image: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=600&q=80",
     type: "Frontier Watch",
@@ -364,7 +364,7 @@ export const emergingTech = [
   {
     id: "et-3",
     category: "EMERGING TECH",
-    headline: "Edge computing adoption reaches 38% — latency-sensitive industries lead adoption",
+    headline: "Edge computing adoption reaches 38% - latency-sensitive industries lead adoption",
     timestamp: "Apr 21, 2026",
     image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&q=80",
     type: "Frontier Watch",
@@ -385,7 +385,7 @@ export const opinionPieces = [
     id: "op-1",
     author: "Dr. Sarah Chen",
     role: "Chief Digital Officer, DTMI",
-    headline: "The real reason digital transformation fails isn't technology — it's leadership",
+    headline: "The real reason digital transformation fails isn't technology - it's leadership",
     image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80",
     label: "OPINION",
   },
@@ -393,7 +393,7 @@ export const opinionPieces = [
     id: "op-2",
     author: "Marcus Webb",
     role: "AI Strategy Lead",
-    headline: "Stop calling it 'AI adoption' — it's a fundamental rewiring of how organizations think",
+    headline: "Stop calling it 'AI adoption' - it's a fundamental rewiring of how organizations think",
     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&q=80",
     label: "ANALYSIS",
   },
@@ -401,7 +401,7 @@ export const opinionPieces = [
     id: "op-3",
     author: "Priya Nair",
     role: "Cybersecurity Correspondent",
-    headline: "We are building the most connected world in history — and securing it like it's 2015",
+    headline: "We are building the most connected world in history - and securing it like it's 2015",
     image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&q=80",
     label: "OPINION",
   },
@@ -437,7 +437,7 @@ export const videoContent = [
 
 // --- SIDEBAR: MOST READ ------------------------------------------------------
 export const mostRead = [
-  { rank: 1, headline: "AI adoption accelerates by 15% — what it means for your workforce", category: "AI" },
+  { rank: 1, headline: "AI adoption accelerates by 15% - what it means for your workforce", category: "AI" },
   { rank: 2, headline: "EU AI Act: the compliance checklist every executive needs now", category: "GOVERNANCE" },
   { rank: 3, headline: "Zero-trust architecture: the definitive implementation guide for 2026", category: "CYBERSECURITY" },
   { rank: 4, headline: "Why 60% of digital transformation programs fail", category: "STRATEGY" },
@@ -456,15 +456,15 @@ export const severityColors = {
 export const intelligenceFeedItems = [
   { id: 1,  text: "AI-powered workforce tools adoption surges 10% globally in Q1 2026", severity: "High",     category: "AI" },
   { id: 2,  text: "Cloud migration accelerates: 67% of Fortune 500 complete hybrid transition", severity: "Medium",   category: "Cloud" },
-  { id: 3,  text: "Cybersecurity breach incidents rise 23% — zero-trust frameworks now critical", severity: "Critical", category: "Cybersecurity" },
+  { id: 3,  text: "Cybersecurity breach incidents rise 23% - zero-trust frameworks now critical", severity: "Critical", category: "Cybersecurity" },
   { id: 4,  text: "Digital governance frameworks adopted by 42 new national governments", severity: "Medium",   category: "Governance" },
   { id: 5,  text: "Generative AI integration in enterprise workflows up 38% YoY", severity: "High",     category: "AI" },
   { id: 6,  text: "Economy 4.0 projected to add $4.2T to global GDP by 2028", severity: "Low",      category: "Digital Economy" },
-  { id: 7,  text: "DCO adoption rate climbs to 55% among G20 nations — new benchmark set", severity: "Medium",   category: "DCO" },
+  { id: 7,  text: "DCO adoption rate climbs to 55% among G20 nations - new benchmark set", severity: "Medium",   category: "DCO" },
   { id: 8,  text: "Quantum computing readiness: only 12% of enterprises have active strategies", severity: "High",     category: "Emerging Tech" },
   { id: 9,  text: "Digital Business Platforms market reaches $180B valuation milestone", severity: "Low",      category: "Digital Economy" },
-  { id: 10, text: "AI regulation frameworks finalized in EU — compliance deadline Q3 2026", severity: "Critical", category: "Governance" },
-  { id: 11, text: "Ransomware attacks on OT/IT convergence points up 41% — energy sector most exposed", severity: "Critical", category: "Cybersecurity" },
+  { id: 10, text: "AI regulation frameworks finalized in EU - compliance deadline Q3 2026", severity: "Critical", category: "Governance" },
+  { id: 11, text: "Ransomware attacks on OT/IT convergence points up 41% - energy sector most exposed", severity: "Critical", category: "Cybersecurity" },
   { id: 12, text: "5G enterprise deployments accelerate: 41% of large firms now have active strategies", severity: "Medium",   category: "Emerging Tech" },
 ];
 
@@ -1044,7 +1044,7 @@ export const aiResponses = [
   {
     id: 1,
     query: "What are the key trends in AI adoption for 2026?",
-    response: "AI adoption reached 61% in Q1 2026 — the highest level ever recorded. Key trends include: 1) Generative AI integration in 78% of Fortune 500 workflows, 2) AI governance frameworks becoming a competitive differentiator (3.2x better outcomes), 3) Multimodal AI convergence accelerating, 4) Edge AI deployment growing 40% YoY.",
+    response: "AI adoption reached 61% in Q1 2026 - the highest level ever recorded. Key trends include: 1) Generative AI integration in 78% of Fortune 500 workflows, 2) AI governance frameworks becoming a competitive differentiator (3.2x better outcomes), 3) Multimodal AI convergence accelerating, 4) Edge AI deployment growing 40% YoY.",
     timestamp: "Today, 14:30",
     confidence: 92,
     sources: ["DTMI AI Adoption Index Q1 2026", "Global Enterprise Survey 2026"],
@@ -1295,7 +1295,7 @@ export const pageMeta = {
   // ── Core pages ──
   Latest: {
     title: 'Home',
-    description: 'DTMI by DigitalQatalyst — the leading intelligence platform for digital transformation leaders. Signal, Insight, Deep Analysis, and executive briefings.',
+    description: 'DTMI by DigitalQatalyst - the leading intelligence platform for digital transformation leaders. Signal, Insight, Deep Analysis, and executive briefings.',
   },
   About: {
     title: 'About DTMI',
@@ -1303,15 +1303,15 @@ export const pageMeta = {
   },
   Multimedia: {
     title: 'Multimedia',
-    description: 'Videos, podcasts, and visual intelligence from the DTMI research team — expert conversations on AI, cloud, cybersecurity, and digital transformation.',
+    description: 'Videos, podcasts, and visual intelligence from the DTMI research team - expert conversations on AI, cloud, cybersecurity, and digital transformation.',
   },
   Glossary: {
     title: 'Glossary of Digital Transformation Terms',
-    description: 'The definitive A–Z reference for Economy 4.0, DCO, AI, cybersecurity, cloud, and digital platform terminology — curated by the DTMI Research Desk.',
+    description: 'The definitive A–Z reference for Economy 4.0, DCO, AI, cybersecurity, cloud, and digital platform terminology - curated by the DTMI Research Desk.',
   },
   Books: {
     title: 'DTMB Book Library',
-    description: 'Curated books and exclusive DTMB research volumes for digital transformation leaders — from AI strategy to platform economics and organizational design.',
+    description: 'Curated books and exclusive DTMB research volumes for digital transformation leaders - from AI strategy to platform economics and organizational design.',
   },
   Research: {
     title: 'Research Intelligence',
@@ -1321,7 +1321,7 @@ export const pageMeta = {
   // ── Intelligence layers ──
   Signal: {
     title: 'Signal Intelligence',
-    description: 'Real-time executive awareness, urgent alerts, and frontier monitoring — early signals and trend alerts for digital transformation leaders.',
+    description: 'Real-time executive awareness, urgent alerts, and frontier monitoring - early signals and trend alerts for digital transformation leaders.',
   },
   Insight: {
     title: 'Insight Intelligence',
@@ -1333,64 +1333,64 @@ export const pageMeta = {
   },
   'Trend Radar': {
     title: 'DTMI Trend Radar',
-    description: 'Interactive technology adoption and disruption map — track where AI, cloud, cybersecurity, and emerging tech sit on the adoption curve.',
+    description: 'Interactive technology adoption and disruption map - track where AI, cloud, cybersecurity, and emerging tech sit on the adoption curve.',
   },
   'AI Engine': {
     title: 'DTMI AI Insight Engine',
-    description: 'Query the DTMI intelligence database using AI — get instant answers, executive summaries, and strategic insights from our research corpus.',
+    description: 'Query the DTMI intelligence database using AI - get instant answers, executive summaries, and strategic insights from our research corpus.',
   },
   'Insight Cards': {
     title: 'Insight Cards',
-    description: 'Bite-sized intelligence cards covering AI, cloud, cybersecurity, and digital transformation — curated for busy executives.',
+    description: 'Bite-sized intelligence cards covering AI, cloud, cybersecurity, and digital transformation - curated for busy executives.',
   },
 
   // ── 6xD Domains ──
   D1: {
-    title: 'D1 — Digital Economy',
-    description: 'Economy 4.0, platform business models, digital value chains, and the $4.2 trillion GDP opportunity — DTMI intelligence on the digital economy.',
+    title: 'D1 - Digital Economy',
+    description: 'Economy 4.0, platform business models, digital value chains, and the $4.2 trillion GDP opportunity - DTMI intelligence on the digital economy.',
   },
   D2: {
-    title: 'D2 — Digital Cognitive Organizations',
-    description: 'DCO framework, AI-native organizations, cognitive workflows, and decision intelligence — DTMI research on the future of organizational design.',
+    title: 'D2 - Digital Cognitive Organizations',
+    description: 'DCO framework, AI-native organizations, cognitive workflows, and decision intelligence - DTMI research on the future of organizational design.',
   },
   D3: {
-    title: 'D3 — Digital Business Platforms',
-    description: 'DBP architecture, API ecosystems, platform business models, and digital marketplaces — DTMI intelligence on platform strategy.',
+    title: 'D3 - Digital Business Platforms',
+    description: 'DBP architecture, API ecosystems, platform business models, and digital marketplaces - DTMI intelligence on platform strategy.',
   },
   D4: {
-    title: 'D4 — Digital Transformation 2.0',
-    description: 'DT2.0 strategy, execution frameworks, change management, and ROI measurement — DTMI research on next-generation transformation.',
+    title: 'D4 - Digital Transformation 2.0',
+    description: 'DT2.0 strategy, execution frameworks, change management, and ROI measurement - DTMI research on next-generation transformation.',
   },
   D5: {
-    title: 'D5 — Digital Worker & Workspace',
-    description: 'Future of work, digital talent, hybrid workspace models, and workforce transformation — DTMI intelligence on the digital worker.',
+    title: 'D5 - Digital Worker & Workspace',
+    description: 'Future of work, digital talent, hybrid workspace models, and workforce transformation - DTMI intelligence on the digital worker.',
   },
   D6: {
-    title: 'D6 — Digital Accelerators',
-    description: 'AI, automation, and emerging technology accelerators — DTMI research on generative AI, edge computing, quantum, and digital acceleration.',
+    title: 'D6 - Digital Accelerators',
+    description: 'AI, automation, and emerging technology accelerators - DTMI research on generative AI, edge computing, quantum, and digital acceleration.',
   },
   '6xD Framework': {
     title: '6xD Framework',
-    description: 'The DigitalQatalyst 6xD Framework — six strategic domains structuring all DTMI research: Digital Economy, DCO, DBP, DT2.0, Digital Worker, and Accelerators.',
+    description: 'The DigitalQatalyst 6xD Framework - six strategic domains structuring all DTMI research: Digital Economy, DCO, DBP, DT2.0, Digital Worker, and Accelerators.',
   },
 
   // ── Sectors ──
-  'Economy 4.0':       { title: 'Economy 4.0',       description: 'Platform economies, digital value chains, and the $4.2T GDP opportunity — DTMI sector intelligence.' },
-  'Experience 4.0':    { title: 'Experience 4.0',    description: 'Digital customer experience, CX transformation, and experience-led growth — DTMI sector intelligence.' },
-  'Intelligence 4.0':  { title: 'Intelligence 4.0',  description: 'AI-driven intelligence, data strategy, and analytics transformation — DTMI sector intelligence.' },
-  'Workspace 4.0':     { title: 'Workspace 4.0',     description: 'Digital workspace transformation, hybrid work, and the future of the office — DTMI sector intelligence.' },
-  'Government 4.0':    { title: 'Government 4.0',    description: 'Digital government transformation, public sector AI, and e-governance — DTMI sector intelligence.' },
-  'Services 4.0':      { title: 'Services 4.0',      description: 'Digital services transformation, platform-based service delivery, and service innovation — DTMI intelligence.' },
-  'Retail 4.0':        { title: 'Retail 4.0',        description: 'Digital retail transformation, omnichannel strategy, and commerce innovation — DTMI sector intelligence.' },
-  'Healthcare 4.0':    { title: 'Wellness 4.0',      description: 'Digital health transformation, AI in healthcare, and wellness technology — DTMI sector intelligence.' },
-  'Mining 4.0':        { title: 'Mining 4.0',        description: 'Digital transformation in mining, Industry 4.0 adoption, and smart extraction — DTMI sector intelligence.' },
-  'Farming 4.0':       { title: 'Farming 4.0',       description: 'AgriTech, precision farming, and digital agriculture transformation — DTMI sector intelligence.' },
-  'Logistics 4.0':     { title: 'Logistics 4.0',     description: 'Supply chain digitization, smart logistics, and last-mile innovation — DTMI sector intelligence.' },
+  'Economy 4.0':       { title: 'Economy 4.0',       description: 'Platform economies, digital value chains, and the $4.2T GDP opportunity - DTMI sector intelligence.' },
+  'Experience 4.0':    { title: 'Experience 4.0',    description: 'Digital customer experience, CX transformation, and experience-led growth - DTMI sector intelligence.' },
+  'Intelligence 4.0':  { title: 'Intelligence 4.0',  description: 'AI-driven intelligence, data strategy, and analytics transformation - DTMI sector intelligence.' },
+  'Workspace 4.0':     { title: 'Workspace 4.0',     description: 'Digital workspace transformation, hybrid work, and the future of the office - DTMI sector intelligence.' },
+  'Government 4.0':    { title: 'Government 4.0',    description: 'Digital government transformation, public sector AI, and e-governance - DTMI sector intelligence.' },
+  'Services 4.0':      { title: 'Services 4.0',      description: 'Digital services transformation, platform-based service delivery, and service innovation - DTMI intelligence.' },
+  'Retail 4.0':        { title: 'Retail 4.0',        description: 'Digital retail transformation, omnichannel strategy, and commerce innovation - DTMI sector intelligence.' },
+  'Healthcare 4.0':    { title: 'Wellness 4.0',      description: 'Digital health transformation, AI in healthcare, and wellness technology - DTMI sector intelligence.' },
+  'Mining 4.0':        { title: 'Mining 4.0',        description: 'Digital transformation in mining, Industry 4.0 adoption, and smart extraction - DTMI sector intelligence.' },
+  'Farming 4.0':       { title: 'Farming 4.0',       description: 'AgriTech, precision farming, and digital agriculture transformation - DTMI sector intelligence.' },
+  'Logistics 4.0':     { title: 'Logistics 4.0',     description: 'Supply chain digitization, smart logistics, and last-mile innovation - DTMI sector intelligence.' },
 
   // ── Technology platforms ──
   Technology: {
     title: 'Technology Platforms',
-    description: 'DTMI intelligence on DXP, DWS, DIA, and SDO digital platforms — architecture, adoption, and strategic deployment for enterprise leaders.',
+    description: 'DTMI intelligence on DXP, DWS, DIA, and SDO digital platforms - architecture, adoption, and strategic deployment for enterprise leaders.',
   },
 };
 

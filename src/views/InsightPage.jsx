@@ -392,7 +392,7 @@ export default function InsightPage() {
                 Structured editorial analysis for digital strategists
               </h1>
               <p className="text-[14px] leading-relaxed" style={{ color: '#94a3b8' }}>
-                Explaining emerging concepts, frameworks, and transformation dynamics — curated for digital strategists and transformation leaders.
+                Explaining emerging concepts, frameworks, and transformation dynamics - curated for digital strategists and transformation leaders.
               </p>
             </div>
             {/* Insight stack preview */}

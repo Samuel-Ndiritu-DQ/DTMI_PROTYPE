@@ -2,7 +2,7 @@ import { Zap } from 'lucide-react';
 
 const footerLinks = {
   'Intelligence': ['Signal', 'Insight', 'Deep Analysis', 'DTMB Books', 'Trend Radar'],
-  '6xD Domains':  ['D1 — Digital Economy', 'D2 — DCO', 'D3 — DBP', 'D4 — DT2.0', 'D5 — Digital Worker', 'D6 — Accelerators'],
+  '6xD Domains':  ['D1 - Digital Economy', 'D2 - DCO', 'D3 - DBP', 'D4 - DT2.0', 'D5 - Digital Worker', 'D6 - Accelerators'],
   'Technology':   ['DXP Platform', 'DWS Platform', 'DIA Platform', 'SDO Platform'],
   'Company':      ['About DTMI', 'Research Team', 'DigitalQatalyst', 'Careers', 'Contact'],
 };

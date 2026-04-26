@@ -226,7 +226,7 @@ function Block({ block, contentStyle, category, contentType }) {
           </p>
           {block.author && (
             <cite className="text-[14px] not-italic font-bold" style={{ color: accentColor }}>
-              — {block.author}
+              - {block.author}
             </cite>
           )}
         </blockquote>
@@ -421,7 +421,7 @@ export default function ArticlePage() {
 
   const body = getArticleBody(item.id, headline, summary, itemCategory);
 
-  // Related stories — pick 4 from pool excluding current
+  // Related stories - pick 4 from pool excluding current
   const pool = [...topStories, ...emergingTech, ...insightCards].filter(s => s.id !== item.id);
   const related = pool.slice(0, 4);
 
@@ -1008,7 +1008,7 @@ export default function ArticlePage() {
                 color: contentStyle === 'signal' ? '#94a3b8' : 'var(--brand-muted)',
                 fontFamily: contentStyle === 'signal' ? "'SF Mono', 'Monaco', 'Inconsolata', monospace" : 'inherit'
               }}>
-                DTMI is the primary knowledge platform of DigitalQatalyst — a global think-tank examining how organizations are adapting to the Digital Economy.
+                DTMI is the primary knowledge platform of DigitalQatalyst - a global think-tank examining how organizations are adapting to the Digital Economy.
               </p>
             </div>
           </aside>

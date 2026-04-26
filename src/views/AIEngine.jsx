@@ -18,8 +18,8 @@ const aiResponses = {
     actions: [],
   },
   ai: {
-    title: 'AI Adoption Intelligence — Q2 2026',
-    summary: 'AI adoption reached 61% in Q1 2026 — the highest level ever recorded. Generative AI is now integrated in 78% of Fortune 500 workflows. Organizations with AI governance frameworks report 3.2x better outcomes.',
+    title: 'AI Adoption Intelligence - Q2 2026',
+    summary: 'AI adoption reached 61% in Q1 2026 - the highest level ever recorded. Generative AI is now integrated in 78% of Fortune 500 workflows. Organizations with AI governance frameworks report 3.2x better outcomes.',
     risks: [
       { label: 'AI governance gaps in 42% of enterprises', level: 'High' },
       { label: 'Model hallucination in critical decision workflows', level: 'Medium' },
@@ -30,7 +30,7 @@ const aiResponses = {
     ],
   },
   cloud: {
-    title: 'Cloud Strategy Intelligence — Q2 2026',
+    title: 'Cloud Strategy Intelligence - Q2 2026',
     summary: 'Multi-cloud adoption stands at 67% among enterprises. Organizations using multi-cloud report 18% cost reduction but 22% complexity overhead.',
     risks: [
       { label: 'Cloud cost overruns in 58% of migrations', level: 'High' },
@@ -42,7 +42,7 @@ const aiResponses = {
     ],
   },
   cyber: {
-    title: 'Cybersecurity Posture Intelligence — Q2 2026',
+    title: 'Cybersecurity Posture Intelligence - Q2 2026',
     summary: 'Zero-trust adoption reached 74% among large enterprises. Ransomware attacks increased 34% YoY.',
     risks: [
       { label: 'Ransomware targeting OT/ICS environments', level: 'Critical' },
@@ -54,7 +54,7 @@ const aiResponses = {
     ],
   },
   governance: {
-    title: 'Digital Governance & Compliance Intelligence — Q2 2026',
+    title: 'Digital Governance & Compliance Intelligence - Q2 2026',
     summary: 'EU AI Act compliance deadline is Q3 2026. Only 31% of organizations are fully prepared.',
     risks: [
       { label: 'EU AI Act non-compliance exposure', level: 'Critical' },
@@ -270,7 +270,7 @@ export default function AIEngine({ activeSection, setActiveSection, onAdmin, onS
         onSignIn={onSignIn || (() => {})}
       />
 
-      {/* Chat workspace — fills remaining space, height capped so it scrolls internally */}
+      {/* Chat workspace - fills remaining space, height capped so it scrolls internally */}
       <div style={{ flex: 1, display: 'flex', alignItems: 'stretch', overflow: 'hidden', position: 'relative', background: '#f3f4f6', minHeight: 0 }} className="ai-workspace">
 
         {/* Mobile overlay */}

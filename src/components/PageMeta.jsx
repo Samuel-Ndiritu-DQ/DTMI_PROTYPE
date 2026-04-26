@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 /**
- * PageMeta — sets document.title and meta description for any page/content item.
+ * PageMeta - sets document.title and meta description for any page/content item.
  *
  * Usage:
  *   <PageMeta title="Signal Intelligence" description="Real-time executive awareness..." />
@@ -9,10 +9,10 @@ import { useEffect } from 'react';
  *   <PageMeta title={article.headline} description={article.summary} suffix />
  *
  * Props:
- *   title       — page title string (required unless `meta` is provided)
- *   description — meta description string
- *   meta        — { title, description } object (alternative to individual props)
- *   suffix      — if true, appends " | DTMI" to the title (default: true)
+ *   title       - page title string (required unless `meta` is provided)
+ *   description - meta description string
+ *   meta        - { title, description } object (alternative to individual props)
+ *   suffix      - if true, appends " | DTMI" to the title (default: true)
  */
 const SITE_NAME = 'DTMI · DigitalQatalyst';
 

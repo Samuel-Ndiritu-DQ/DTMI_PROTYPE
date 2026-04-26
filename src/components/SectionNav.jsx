@@ -1,5 +1,5 @@
 /**
- * SectionNav — a secondary nav bar shown on 6xD, Sectors, and Technology pages.
+ * SectionNav - a secondary nav bar shown on 6xD, Sectors, and Technology pages.
  * Provides quick links between related sections and always shows a Glossary link.
  */
 export default function SectionNav({ activeKey, onNavigate }) {

@@ -1,4 +1,4 @@
-﻿import { useState } from "react";
+import { useState } from "react";
 import { Search, Plus, Edit2, Trash2, X, Check, Eye, Ban, RefreshCw } from "lucide-react";
 
 const USERS_SEED = [
@@ -139,7 +139,7 @@ function UserDrawer({ user, onClose, onEdit, onDelete, onToggleStatus }) {
           ].map(([label, value]) => (
             <div key={label} className="flex items-center justify-between">
               <span className="text-[#94a3b8] text-[11px]">{label}</span>
-              <span className="text-[#0d1b3e] text-[11px] font-semibold">{value || "—"}</span>
+              <span className="text-[#0d1b3e] text-[11px] font-semibold">{value || "-"}</span>
             </div>
           ))}
         </div>
@@ -300,7 +300,7 @@ export default function AdminUsers() {
                       </div>
                     </td>
                     <td className="px-4 py-3">
-                      <p className="text-[#475569] text-[11px]">{user.org || "—"}</p>
+                      <p className="text-[#475569] text-[11px]">{user.org || "-"}</p>
                       <p className="text-[#94a3b8] text-[10px]">{user.country || ""}</p>
                     </td>
                     <td className="px-4 py-3">

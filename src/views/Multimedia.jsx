@@ -441,7 +441,7 @@ export default function Multimedia() {
                   onPause={() => setIsPlaying(false)}
                 />
               </div>
-              {/* Episode list — Spotify-style */}
+              {/* Episode list - Spotify-style */}
               <div className="lg:col-span-2 rounded-sm overflow-hidden" style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}>
                 <div className="px-4 py-3 border-b border-white/5">
                   <p className="text-[11px] font-black uppercase tracking-widest" style={{ color: '#64748b' }}>All Episodes</p>
@@ -490,7 +490,7 @@ export default function Multimedia() {
               </div>
             )}
 
-            {/* Video grid — YouTube-style */}
+            {/* Video grid - YouTube-style */}
             {filteredVideos.length > 1 && (
               <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
                 {filteredVideos.slice(1).map(ep => (

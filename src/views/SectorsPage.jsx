@@ -10,7 +10,7 @@ import SectionNav from '../components/SectionNav';
 const SECTORS = {
   'Cross-Sector': {
     color: '#8b5cf6',
-    desc: 'Transformation themes that cut across all industries — from AI adoption to digital governance.',
+    desc: 'Transformation themes that cut across all industries - from AI adoption to digital governance.',
     items: [
       { key: 'Economy 4.0',      label: 'Economy 4.0',      desc: 'Platform economies, digital value chains, and the $4.2T GDP opportunity', keywords: ['economy', 'platform', 'gdp', 'digital economy', 'value chain'] },
       { key: 'Experience 4.0',   label: 'Experience 4.0',   desc: 'Customer and employee experience in the digital age', keywords: ['experience', 'customer', 'employee', 'cx', 'ux'] },
@@ -80,7 +80,7 @@ export default function SectorsPage({ onNavigate }) {
             Sectors
           </h1>
           <p className="text-[14px] leading-relaxed max-w-[600px]" style={{ color: '#94a3b8' }}>
-            How digital transformation is reshaping every industry — from mining floors to government ministries. Explore sector-specific intelligence, trends, and strategic frameworks.
+            How digital transformation is reshaping every industry - from mining floors to government ministries. Explore sector-specific intelligence, trends, and strategic frameworks.
           </p>
         </div>
       </div>
@@ -110,7 +110,7 @@ export default function SectorsPage({ onNavigate }) {
       <div className="max-w-[1280px] mx-auto px-4 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
 
-          {/* Sidebar — sector list */}
+          {/* Sidebar - sector list */}
           <aside className="space-y-4">
             <div className="rounded-sm border bg-white p-4" style={{ borderColor: 'var(--brand-border)' }}>
               <p className="text-[10px] font-black uppercase tracking-widest mb-1" style={{ color: group.color }}>{activeGroup}</p>

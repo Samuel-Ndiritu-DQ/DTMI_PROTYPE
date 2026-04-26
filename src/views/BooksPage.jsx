@@ -5,7 +5,7 @@ import PageSearch from '../components/PageSearch';
 import PageMeta from '../components/PageMeta';
 import { pageMeta } from '../data/mockData';
 
-/* ── CSS book cover — renders like a real physical book ── */
+/* ── CSS book cover - renders like a real physical book ── */
 function BookCover({ book, size = 'md' }) {
   const w = size === 'lg' ? 160 : size === 'sm' ? 90 : 120;
   const h = Math.round(w * 1.5);
@@ -117,7 +117,7 @@ function Block({ block }) {
       return (
         <blockquote className="my-7 pl-5 border-l-4" style={{ borderColor: 'var(--brand-orange)' }}>
           <p className="text-[17px] font-semibold italic leading-relaxed mb-2" style={{ color: 'var(--brand-navy)' }}>"{block.text}"</p>
-          {block.author && <cite className="text-[12px] not-italic font-bold" style={{ color: 'var(--brand-orange)' }}>— {block.author}</cite>}
+          {block.author && <cite className="text-[12px] not-italic font-bold" style={{ color: 'var(--brand-orange)' }}>- {block.author}</cite>}
         </blockquote>
       );
     default: return null;
@@ -182,7 +182,7 @@ function PaywallGate({ book, onSignIn }) {
   );
 }
 
-/* ── Book reader — renders as normal page content (TopBar/Footer come from App) ── */
+/* ── Book reader - renders as normal page content (TopBar/Footer come from App) ── */
 function BookReader({ book, onClose, onSignIn }) {
   return (
     <div style={{ background: 'var(--brand-light)', minHeight: '100vh' }}>
@@ -207,7 +207,7 @@ function BookReader({ book, onClose, onSignIn }) {
 
           {/* ── Main reading area ── */}
           <article className="lg:col-span-3">
-            {/* Book header — Amazon product page style */}
+            {/* Book header - Amazon product page style */}
             <div className="flex gap-6 mb-8 pb-6 border-b" style={{ borderColor: 'var(--brand-border)' }}>
               <div className="shrink-0">
                 <BookCover book={book} size="lg" />
@@ -431,7 +431,7 @@ export default function BooksPage({ onSignIn }) {
                 The essential reading list for digital transformation leaders
               </h1>
               <p className="text-[14px] leading-relaxed" style={{ color: '#94a3b8' }}>
-                Curated books from the world's leading thinkers on digital strategy, AI, and organizational transformation — plus exclusive DTMB research volumes from DigitalQatalyst.
+                Curated books from the world's leading thinkers on digital strategy, AI, and organizational transformation - plus exclusive DTMB research volumes from DigitalQatalyst.
               </p>
             </div>
             {/* Cover stack preview */}

@@ -1,7 +1,7 @@
 import { Search, X } from 'lucide-react';
 
 /**
- * Reusable inline search bar — 70% wide, centred.
+ * Reusable inline search bar - 70% wide, centred.
  * Props:
  *   value        – current query string
  *   onChange     – (string) => void
@@ -27,7 +27,7 @@ export default function PageSearch({
 
   return (
     <div className="w-full flex flex-col items-center gap-2">
-      {/* Input — 70% wide, centred */}
+      {/* Input - 70% wide, centred */}
       <div
         className="flex items-center gap-3 rounded-sm px-4 py-2.5 transition-colors"
         style={{
@@ -63,7 +63,7 @@ export default function PageSearch({
         )}
       </div>
 
-      {/* Result count — centred below input */}
+      {/* Result count - centred below input */}
       {value && resultCount !== undefined && (
         <p className="text-[12px]" style={{ color: countColor }}>
           {resultCount === 0

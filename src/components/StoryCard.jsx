@@ -101,7 +101,7 @@ export default function StoryCard({ story, size = 'md', showImage = true, horizo
         </div>
       )}
       <div>
-        {/* Category + content type inline — McKinsey style */}
+        {/* Category + content type inline - McKinsey style */}
         <div className="flex items-center gap-2 mb-1 flex-wrap">
           {story.category && (
             <p className="text-[10px] font-black uppercase tracking-wider" style={{ color: 'var(--brand-orange)' }}>{story.category}</p>

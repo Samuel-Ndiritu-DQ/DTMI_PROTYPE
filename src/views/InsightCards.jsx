@@ -104,7 +104,7 @@ export default function InsightCards() {
         <div className="max-w-[1280px] mx-auto px-4 py-10">
           <p className="text-[11px] font-black uppercase tracking-widest mb-2" style={{ color: 'var(--brand-orange)' }}>DTMI Intelligence</p>
           <h1 className="text-[30px] sm:text-[38px] font-black leading-tight text-white mb-2">Insight Cards</h1>
-          <p className="text-[14px]" style={{ color: '#94a3b8' }}>Curated intelligence — filtered, personalized, and severity-ranked</p>
+          <p className="text-[14px]" style={{ color: '#94a3b8' }}>Curated intelligence - filtered, personalized, and severity-ranked</p>
         </div>
       </div>
       <div className="max-w-[1280px] mx-auto px-4 py-6">
@@ -131,7 +131,7 @@ export default function InsightCards() {
 
         {/* Controls */}
         <div className="flex flex-col gap-4 mb-4">
-          {/* Search bar — 70% wide, centred */}
+          {/* Search bar - 70% wide, centred */}
           <PageSearch
             value={searchQuery}
             onChange={setSearchQuery}

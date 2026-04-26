@@ -3,7 +3,7 @@ import { Search, Menu, X, Bell, ChevronDown, Zap, ArrowLeft } from 'lucide-react
 import { navItems } from '../data/mockData';
 
 /* ─────────────────────────────────────────────────────────────
-   MegaMenu panel — positioned relative to the full header width.
+   MegaMenu panel - positioned relative to the full header width.
    `offsetLeft` is the left edge of the trigger button (px from
    the header's left padding edge). We try to align the panel's
    left edge there, then clamp so it never overflows the viewport.
@@ -207,7 +207,7 @@ export default function TopBar({ activeSection, setActiveSection, onAdmin, onSig
     if (btn && headerRef.current) {
       const headerRect = headerRef.current.getBoundingClientRect();
       const btnRect    = btn.getBoundingClientRect();
-      // offset from the header's left edge — this is what position:absolute uses
+      // offset from the header's left edge - this is what position:absolute uses
       setMegaOffset(btnRect.left - headerRect.left);
     }
     setOpenMega(key);
@@ -348,7 +348,7 @@ export default function TopBar({ activeSection, setActiveSection, onAdmin, onSig
                       </button>
                     </div>
                   ) : (
-                    /* No dropdown — full button navigates */
+                    /* No dropdown - full button navigates */
                     <button
                       ref={el => { triggerRefs.current[item.key] = el; }}
                       onClick={() => handleNavigate(item.key)}
@@ -366,7 +366,7 @@ export default function TopBar({ activeSection, setActiveSection, onAdmin, onSig
             {/* ── Right controls ── */}
             <div className="flex items-center gap-2 shrink-0">
 
-              {/* Search — expands inline on click */}
+              {/* Search - expands inline on click */}
               {searchOpen ? (
                 <div className="flex items-center gap-2">
                   <div
@@ -426,7 +426,7 @@ export default function TopBar({ activeSection, setActiveSection, onAdmin, onSig
           </div>
         </div>
 
-        {/* ── Mega-menu panel — lives INSIDE header so position:absolute is relative to it ── */}
+        {/* ── Mega-menu panel - lives INSIDE header so position:absolute is relative to it ── */}
         {activeItem && openMega && (
           <div
             /* Invisible hover bridge so mouse can travel from trigger to panel */
@@ -492,7 +492,7 @@ export default function TopBar({ activeSection, setActiveSection, onAdmin, onSig
               </button>
             </div>
 
-            {/* Nav items — scrollable */}
+            {/* Nav items - scrollable */}
             <nav className="flex-1 overflow-y-auto py-1">
               {navItems.map((item) => (
                 <div key={item.key}>
@@ -513,7 +513,7 @@ export default function TopBar({ activeSection, setActiveSection, onAdmin, onSig
                   ) : (
                     <>
                       <div className="flex items-center border-b" style={{ borderColor: 'rgba(255,255,255,0.05)' }}>
-                        {/* Label — navigates to the section */}
+                        {/* Label - navigates to the section */}
                         <button
                           onClick={() => handleNavigate(item.key)}
                           className="flex-1 text-left px-4 py-3.5 text-[13px] font-semibold transition-colors"
@@ -521,7 +521,7 @@ export default function TopBar({ activeSection, setActiveSection, onAdmin, onSig
                         >
                           {item.label}
                         </button>
-                        {/* Chevron — toggles sub-items */}
+                        {/* Chevron - toggles sub-items */}
                         <button
                           onClick={() => setMobileOpen(mobileOpen === item.key ? null : item.key)}
                           className="px-4 py-3.5 text-[#94a3b8] hover:text-white transition-colors"

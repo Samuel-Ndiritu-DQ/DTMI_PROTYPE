@@ -222,7 +222,7 @@ export default function DeepAnalysisPage({ onSignIn }) {
                 Comprehensive strategic depth for senior executives
               </h1>
               <p className="text-[14px] leading-relaxed" style={{ color: '#94a3b8' }}>
-                DigitalQatalyst's highest-value research layer — comprehensive whitepapers, strategic essays, industry briefs, and forecast reports for senior executives, policy leaders, and strategic advisors.
+                DigitalQatalyst's highest-value research layer - comprehensive whitepapers, strategic essays, industry briefs, and forecast reports for senior executives, policy leaders, and strategic advisors.
               </p>
             </div>
             {/* Deep analysis stack preview */}

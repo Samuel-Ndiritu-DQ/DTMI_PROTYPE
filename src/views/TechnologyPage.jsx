@@ -11,7 +11,7 @@ const PLATFORMS = [
   {
     code: 'DXP', name: 'Digital Experience Platform', color: '#8b5cf6', icon: Monitor,
     tagline: 'Every touchpoint. Every channel. One platform.',
-    desc: 'The DXP layer manages all customer and employee-facing digital interactions — web, mobile, IoT, and beyond. It powers personalization, content delivery, and omnichannel experience orchestration.',
+    desc: 'The DXP layer manages all customer and employee-facing digital interactions - web, mobile, IoT, and beyond. It powers personalization, content delivery, and omnichannel experience orchestration.',
     stat: '$180B', statLabel: 'Global DBP market 2026',
     capabilities: ['Digital Channels', 'Digital Experience', 'Digital Services', 'Digital MarCom'],
     keywords: ['experience', 'channel', 'digital', 'customer', 'marcom', 'personalization', 'omnichannel'],
@@ -19,7 +19,7 @@ const PLATFORMS = [
   {
     code: 'DWS', name: 'Digital Workspace Platform', color: '#0a7ea4', icon: Users,
     tagline: 'The operating system of the modern enterprise.',
-    desc: 'The DWS layer powers internal operations, collaboration, and productivity — including ERP, HRMS, collaboration tools, and back-office systems.',
+    desc: 'The DWS layer powers internal operations, collaboration, and productivity - including ERP, HRMS, collaboration tools, and back-office systems.',
     stat: '67%', statLabel: 'Fortune 500 cloud migration complete',
     capabilities: ['Digital Workspace', 'Digital Core (ERP)', 'Digital GPRC', 'Digital Back Office'],
     keywords: ['workspace', 'erp', 'workforce', 'worker', 'talent', 'collaboration', 'productivity', 'cloud'],
@@ -27,7 +27,7 @@ const PLATFORMS = [
   {
     code: 'DIA', name: 'Digital Intelligence & Analytics', color: '#10b981', icon: BarChart2,
     tagline: 'From data lakes to decision engines.',
-    desc: 'The DIA layer transforms raw data into actionable intelligence — covering data architecture, advanced analytics, AI/ML models, and real-time decision engines.',
+    desc: 'The DIA layer transforms raw data into actionable intelligence - covering data architecture, advanced analytics, AI/ML models, and real-time decision engines.',
     stat: '61%', statLabel: 'Enterprise AI adoption rate Q1 2026',
     capabilities: ['Digital Analytics', 'Digital Intelligence (AI)'],
     keywords: ['ai', 'analytics', 'data', 'intelligence', 'automation', 'machine', 'generative', 'adoption'],
@@ -80,7 +80,7 @@ export default function TechnologyPage({ onNavigate }) {
             Digital Business Platforms
           </h1>
           <p className="text-[14px] leading-relaxed max-w-[600px]" style={{ color: '#94a3b8' }}>
-            The four-platform architecture model that powers Economy 4.0 organizations — DXP, DWS, DIA, and SDO. Each layer is distinct, composable, and designed for enterprise scale.
+            The four-platform architecture model that powers Economy 4.0 organizations - DXP, DWS, DIA, and SDO. Each layer is distinct, composable, and designed for enterprise scale.
           </p>
         </div>
       </div>
