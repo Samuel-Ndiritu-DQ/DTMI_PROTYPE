@@ -99,53 +99,6 @@ function Block({ block, contentStyle, category, contentType }) {
     case 'lead':
       return (
         <div className="mb-10">
-          {/* Content type indicator for all types */}
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ 
-              background: `${accentColor}15`,
-              border: `2px solid ${accentColor}30`
-            }}>
-              <span className="text-[12px] font-black" style={{ color: accentColor }}>
-                {isExecutiveBrief ? '⚡' : 
-                 isFrontierWatch || isFrontierBrief ? '👁️' :
-                 isRapidInsight ? '🚀' :
-                 isTrendAlert ? '📈' :
-                 isViewpointBlog ? '💬' :
-                 isConceptIntro ? '📘' :
-                 isExpertPerspective ? '👤' :
-                 isFrameworkExplainer ? '🔧' :
-                 isInsightArticle ? '💡' :
-                 isMicroblog ? '🐦' :
-                 isForecast ? '🔮' :
-                 isIndustryBrief ? '🏢' :
-                 isResearchNote ? '📝' :
-                 isStrategicEssay ? '✍️' :
-                 isWhitepaper ? '📄' :
-                 isBookReview ? '📚' :
-                 isInfographic ? '📊' : '📄'}
-              </span>
-            </div>
-            <span className="text-[12px] font-black uppercase tracking-widest" style={{ color: accentColor }}>
-              {isExecutiveBrief ? 'EXECUTIVE BRIEF' : 
-               isFrontierWatch ? 'FRONTIER WATCH' :
-               isFrontierBrief ? 'FRONTIER BRIEF' :
-               isRapidInsight ? 'RAPID INSIGHT' :
-               isTrendAlert ? 'TREND ALERT' :
-               isViewpointBlog ? 'VIEWPOINT' :
-               isConceptIntro ? 'CONCEPT INTRODUCTION' :
-               isExpertPerspective ? 'EXPERT PERSPECTIVE' :
-               isFrameworkExplainer ? 'FRAMEWORK EXPLAINER' :
-               isInsightArticle ? 'INSIGHT ARTICLE' :
-               isMicroblog ? 'microblogs' :
-               isForecast ? 'FORECAST ANALYSIS' :
-               isIndustryBrief ? 'INDUSTRY BRIEF' :
-               isResearchNote ? 'RESEARCH NOTE' :
-               isStrategicEssay ? 'STRATEGIC ESSAY' :
-               isWhitepaper ? 'white-paper' :
-               isBookReview ? 'BOOK REVIEW' :
-               isInfographic ? 'infographics' : contentType?.name?.toUpperCase()}
-            </span>
-          </div>
           <p className="text-[18px] leading-relaxed font-medium" style={{ 
             color: textColor,
             fontFamily: fontFamily,
@@ -529,57 +482,7 @@ export default function ArticlePage() {
               ))}
             </div>
 
-            {/* Content type indicator */}
-            <div className="flex items-center gap-3 mb-4">
-              <div className="flex items-center gap-2 px-4 py-2 rounded-full" style={{ 
-                background: `${contentType.color}15`,
-                border: `1px solid ${contentType.color}30`
-              }}>
-                <div className="w-6 h-6 rounded-full flex items-center justify-center" style={{ 
-                  background: `${contentType.color}20`
-                }}>
-                  <span className="text-[12px]" style={{ color: contentType.color }}>
-                    {isExecutiveBrief ? '⚡' : 
-                     isFrontierWatch || isFrontierBrief ? '👁️' :
-                     isRapidInsight ? '🚀' :
-                     isTrendAlert ? '📈' :
-                     isViewpointBlog ? '💬' :
-                     isConceptIntro ? '📘' :
-                     isExpertPerspective ? '👤' :
-                     isFrameworkExplainer ? '🔧' :
-                     isInsightArticle ? '💡' :
-                     isMicroblog ? '🐦' :
-                     isForecast ? '🔮' :
-                     isIndustryBrief ? '🏢' :
-                     isResearchNote ? '📝' :
-                     isStrategicEssay ? '✍️' :
-                     isWhitepaper ? '📄' :
-                     isBookReview ? '📚' :
-                     isInfographic ? '📊' : '📄'}
-                  </span>
-                </div>
-                <span className="text-[12px] font-black uppercase tracking-widest" style={{ color: contentType.color }}>
-                  {isExecutiveBrief ? 'EXECUTIVE BRIEF' : 
-                   isFrontierWatch ? 'FRONTIER WATCH' :
-                   isFrontierBrief ? 'FRONTIER BRIEF' :
-                   isRapidInsight ? 'RAPID INSIGHT' :
-                   isTrendAlert ? 'TREND ALERT' :
-                   isViewpointBlog ? 'VIEWPOINT' :
-                   isConceptIntro ? 'CONCEPT INTRODUCTION' :
-                   isExpertPerspective ? 'EXPERT PERSPECTIVE' :
-                   isFrameworkExplainer ? 'FRAMEWORK EXPLAINER' :
-                   isInsightArticle ? 'INSIGHT ARTICLE' :
-                   isMicroblog ? 'microblogs' :
-                   isForecast ? 'FORECAST ANALYSIS' :
-                   isIndustryBrief ? 'INDUSTRY BRIEF' :
-                   isResearchNote ? 'RESEARCH NOTE' :
-                   isStrategicEssay ? 'STRATEGIC ESSAY' :
-                   isWhitepaper ? 'white-paper' :
-                   isBookReview ? 'BOOK REVIEW' :
-                   isInfographic ? 'infographics' : contentType?.name?.toUpperCase()}
-                </span>
-              </div>
-            </div>
+
 
             {/* Headline with style variations */}
             <h1 className="text-[28px] lg:text-[36px] font-black leading-tight mb-6" style={{ 

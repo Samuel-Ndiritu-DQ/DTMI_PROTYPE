@@ -191,12 +191,27 @@ export default function DeepAnalysisPage({ onSignIn }) {
   const [activeContentTypes, setActiveContentTypes] = useState([]);
   const { openArticle } = useNav();
 
+  const typeMapping = {
+    'white-paper': ['White Paper'],
+    'research-notes': ['Research Report', 'Policy Brief', 'Market Intelligence', 'Thought Leadership'],
+    'industry-briefs': ['Industry Analysis']
+  };
+
   const filtered = deepItems.filter(item => {
     const typeOk = activeType === 'All' || item.type === activeType;
     const catOk  = activeCategory === 'All' || item.category === activeCategory;
-    const typeNormalized = item.type ? item.type.toLowerCase().replace(/\s+/g, '-') : '';
-    const contentTypeOk = activeContentTypes.length === 0 || 
-      activeContentTypes.includes(typeNormalized);
+    
+    // If no types selected, show all
+    let contentTypeOk = activeContentTypes.length === 0;
+    
+    // If types are selected, match them using the mapping
+    if (activeContentTypes.length > 0 && item.type) {
+      contentTypeOk = activeContentTypes.some(typeId => {
+        const mappedTypes = typeMapping[typeId] || [];
+        return mappedTypes.includes(item.type);
+      });
+    }
+    
     const q      = searchQuery.toLowerCase();
     const searchOk = !searchQuery ||
       item.title.toLowerCase().includes(q) ||
@@ -267,15 +282,34 @@ export default function DeepAnalysisPage({ onSignIn }) {
 
       <div className="max-w-[1280px] mx-auto px-4 py-8 space-y-10">
 
-        {/* ── Search bar ── */}
-        <div className="w-full">
-          <PageSearch
-            value={searchQuery}
-            onChange={setSearchQuery}
-            placeholder="Search whitepapers, essays, industry briefs..."
-            resultCount={searchQuery ? filtered.length : undefined}
-            totalCount={deepItems.length}
-          />
+        {/* ── Search + Filter bar ── */}
+        <div className="flex flex-col lg:flex-row items-start lg:items-center gap-4 mb-6">
+          {/* Content Type Filter */}
+          <div className="lg:w-72">
+            <ContentFilterV2
+              activeTypes={activeContentTypes}
+              onTypeChange={setActiveContentTypes}
+              showContentTypeFilter={true}
+              showCategoryFilter={false}
+              filterCategory="research"
+              typeMapping={{
+                'white-paper': ['White Paper'],
+                'research-notes': ['Research Report', 'Policy Brief', 'Market Intelligence', 'Thought Leadership'],
+                'industry-briefs': ['Industry Analysis']
+              }}
+            />
+          </div>
+          
+          {/* Search Bar */}
+          <div className="flex-1">
+            <PageSearch
+              value={searchQuery}
+              onChange={setSearchQuery}
+              placeholder="Search whitepapers, essays, industry briefs..."
+              resultCount={searchQuery ? filtered.length : undefined}
+              totalCount={deepItems.length}
+            />
+          </div>
         </div>
 
         {filtered.length > 0 ? (

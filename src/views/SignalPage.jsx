@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { insightCards } from '../data/mockData';
 import { CONTENT_CATEGORIES } from '../data/contentTypes';
-import ContentFilterV2 from '../components/ContentFilterV2';
 import { Clock, Zap, AlertTriangle, TrendingUp, Radio, ChevronRight, Filter, Eye, FileWarning, MessageSquare } from 'lucide-react';
 import { useNav } from '../context/NavContext';
 import PageSearch from '../components/PageSearch';
+import FilterDropdown from '../components/FilterDropdown';
 
 const SEV_META = {
   Critical: { color: '#ef4444', bg: '#fef2f2', border: '#fecaca', icon: AlertTriangle, label: 'CRITICAL' },
@@ -100,11 +100,29 @@ export default function SignalPage() {
 
   const categories = ['All', ...new Set(signals.map(s => s.category))];
 
+  const typeMapping = {
+    'executive-briefs': ['Executive Brief'],
+    'frontier-watch': ['Frontier Watch'],
+    'frontier-brief': ['Frontier Brief'],
+    'rapid-insights': ['Rapid Insight'],
+    'trend-alerts': ['Trend Alert']
+  };
+
   const filtered = signals.filter(item => {
     const sevOk = activeSev === 'All' || item.severity === activeSev;
     const catOk = activeCategory === 'All' || item.category === activeCategory;
-    const typeNormalized = item.type ? item.type.toLowerCase().replace(/\s+/g, '-') : '';
-    const typeOk = activeTypes.length === 0 || activeTypes.includes(typeNormalized);
+    
+    // If no types selected, show all
+    let typeOk = activeTypes.length === 0;
+    
+    // If types are selected, match them using the mapping
+    if (activeTypes.length > 0 && item.type) {
+      typeOk = activeTypes.some(typeId => {
+        const mappedTypes = typeMapping[typeId] || [];
+        return mappedTypes.includes(item.type);
+      });
+    }
+    
     const q     = searchQuery.toLowerCase();
     const searchOk = !searchQuery ||
       item.title.toLowerCase().includes(q) ||
@@ -176,15 +194,29 @@ export default function SignalPage() {
 
       <div className="max-w-[1280px] mx-auto px-4 py-8 space-y-10">
 
-        {/* ── Search bar ── */}
-        <div className="w-full">
-          <PageSearch
-            value={searchQuery}
-            onChange={setSearchQuery}
-            placeholder="Scan signals, categories, topics..."
-            resultCount={searchQuery ? filtered.length : undefined}
-            totalCount={signals.length}
-          />
+        {/* ── Search + Filter bar ── */}
+        <div className="flex flex-col lg:flex-row items-start lg:items-center gap-4 mb-6">
+          {/* Content Type Filter */}
+          <div className="lg:w-72">
+            <ContentFilterV2
+              activeTypes={activeTypes}
+              onTypeChange={setActiveTypes}
+              showContentTypeFilter={true}
+              showCategoryFilter={false}
+              filterCategory="executive"
+            />
+          </div>
+          
+          {/* Search Bar */}
+          <div className="flex-1">
+            <PageSearch
+              value={searchQuery}
+              onChange={setSearchQuery}
+              placeholder="Scan signals, categories, topics..."
+              resultCount={searchQuery ? filtered.length : undefined}
+              totalCount={signals.length}
+            />
+          </div>
         </div>
 
         {/* Signal feed */}

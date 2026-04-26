@@ -361,10 +361,26 @@ export default function InsightPage() {
 
   const insights = insightCards.filter(c => c.severity === 'Medium' || c.severity === 'Low');
 
+  const typeMapping = {
+    'concept-introduction': ['Concept Introduction'],
+    'framework-explainer': ['Framework Explainer'],
+    'expert-perspective': ['Expert Perspective']
+  };
+
   const filtered = insights.filter(item => {
     const catOk = activeCategory === 'All' || item.category === activeCategory;
-    const typeNormalized = item.type ? item.type.toLowerCase().replace(/\s+/g, '-') : '';
-    const typeOk = activeTypes.length === 0 || activeTypes.includes(typeNormalized);
+    
+    // If no types selected, show all
+    let typeOk = activeTypes.length === 0;
+    
+    // If types are selected, match them using the mapping
+    if (activeTypes.length > 0 && item.type) {
+      typeOk = activeTypes.some(typeId => {
+        const mappedTypes = typeMapping[typeId] || [];
+        return mappedTypes.includes(item.type);
+      });
+    }
+    
     const q     = searchQuery.toLowerCase();
     const searchOk = !searchQuery ||
       item.title.toLowerCase().includes(q) ||
@@ -437,15 +453,29 @@ export default function InsightPage() {
 
       <div className="max-w-[1280px] mx-auto px-4 py-8 space-y-10">
 
-        {/* ── Search bar ── */}
-        <div className="w-full">
-          <PageSearch
-            value={searchQuery}
-            onChange={setSearchQuery}
-            placeholder="Search insights, frameworks, concepts..."
-            resultCount={searchQuery ? filtered.length : undefined}
-            totalCount={insights.length}
-          />
+        {/* ── Search + Filter bar ── */}
+        <div className="flex flex-col lg:flex-row items-start lg:items-center gap-4 mb-6">
+          {/* Content Type Filter */}
+          <div className="lg:w-72">
+            <ContentFilterV2
+              activeTypes={activeTypes}
+              onTypeChange={setActiveTypes}
+              showContentTypeFilter={true}
+              showCategoryFilter={false}
+              filterCategory="educational"
+            />
+          </div>
+          
+          {/* Search Bar */}
+          <div className="flex-1">
+            <PageSearch
+              value={searchQuery}
+              onChange={setSearchQuery}
+              placeholder="Search insights, frameworks, concepts..."
+              resultCount={searchQuery ? filtered.length : undefined}
+              totalCount={insights.length}
+            />
+          </div>
         </div>
 
         {filtered.length === 0 ? (

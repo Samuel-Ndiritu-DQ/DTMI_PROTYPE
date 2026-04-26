@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import { NavProvider, useNav } from './context/NavContext';
 
 import TopBar from './components/TopBar';
@@ -417,12 +417,12 @@ function IntelligenceLayerPage({ layer }) {
 
 function DomainPage({ domain }) {
   const domains = {
-    D1: { title: 'D1 Ã¢â‚¬â€ Digital Economy',              subtitle: 'Economy 4.0 & platform models' },
-    D2: { title: 'D2 Ã¢â‚¬â€ Digital Cognitive Organizations', subtitle: 'DCO framework, adoption, and maturity' },
-    D3: { title: 'D3 Ã¢â‚¬â€ Digital Business Platforms',   subtitle: 'DBP architecture, ecosystems, and deployment' },
-    D4: { title: 'D4 Ã¢â‚¬â€ Digital Transformation 2.0',   subtitle: 'DT2.0 strategy, execution, and measurement' },
-    D5: { title: 'D5 Ã¢â‚¬â€ Digital Worker & Workspace',   subtitle: 'Future of work, digital talent, and workspace psychology' },
-    D6: { title: 'D6 Ã¢â‚¬â€ Digital Accelerators',         subtitle: 'AI, automation, and emerging technology accelerators' },
+    D1: { title: 'D1 – Digital Economy',              subtitle: 'Economy 4.0 & platform models' },
+    D2: { title: 'D2 – Digital Cognitive Organizations', subtitle: 'DCO framework, adoption, and maturity' },
+    D3: { title: 'D3 – Digital Business Platforms',   subtitle: 'DBP architecture, ecosystems, and deployment' },
+    D4: { title: 'D4 – Digital Transformation 2.0',   subtitle: 'DT2.0 strategy, execution, and measurement' },
+    D5: { title: 'D5 – Digital Worker & Workspace',   subtitle: 'Future of work, digital talent, and workspace psychology' },
+    D6: { title: 'D6 – Digital Accelerators',         subtitle: 'AI, automation, and emerging technology accelerators' },
   };
   const cfg = domains[domain] || { title: domain, subtitle: '' };
   return <GenericPage title={cfg.title} subtitle={cfg.subtitle} stories={[]} />;
@@ -430,20 +430,15 @@ function DomainPage({ domain }) {
 
 const SECTION_ROUTES = {
   'Latest':            (p) => <Homepage />,
-  // Intelligence parent Ã¢â€ â€™ defaults to Signal
   'intelligence':      (p) => <IntelligenceLayerPage layer="Signal" />,
-  // 6xD parent Ã¢â€ â€™ defaults to D1
   '6xd':               (p) => <DomainPage domain="D1" />,
   '6xD Framework':     (p) => <SixDFramework onNavigate={p.onNavigate} />,
-  // Sectors parent Ã¢â€ â€™ defaults to Economy 4.0 (GenericPage)
   'sectors':           (p) => <GenericPage title="Economy 4.0" subtitle="Platform economies, digital value chains, and the $4.2T GDP opportunity" stories={[]} />,
   'Sectors':           (p) => <GenericPage title="Economy 4.0" subtitle="Platform economies, digital value chains, and the $4.2T GDP opportunity" stories={[]} />,
-  // Technology parent Ã¢â€ â€™ defaults to DXP-Channels (GenericPage)
-  'technology':        (p) => <GenericPage title="Digital Channels" subtitle="DXP Ã‚Â· Digital Experience Platform" stories={[]} />,
-  'Technology':        (p) => <GenericPage title="Digital Channels" subtitle="DXP Ã‚Â· Digital Experience Platform" stories={[]} />,
+  'technology':        (p) => <GenericPage title="Digital Channels" subtitle="DXP - Digital Experience Platform" stories={[]} />,
+  'Technology':        (p) => <GenericPage title="Digital Channels" subtitle="DXP - Digital Experience Platform" stories={[]} />,
   'Multimedia':        (p) => <Multimedia />,
   'About':             (p) => <About />,
-  // Intelligence sub-pages
   'Signal':            (p) => <IntelligenceLayerPage layer="Signal" />,
   'Insight':           (p) => <IntelligenceLayerPage layer="Insight" />,
   'Deep Analysis':     (p) => <IntelligenceLayerPage layer="Deep Analysis" />,
@@ -453,13 +448,39 @@ const SECTION_ROUTES = {
   'Insight Cards':     (p) => <InsightCards />,
   'Trend Radar':       (p) => <TrendRadar />,
   'AI Engine':         (p) => <AIEngine />,
-  // 6xD domain sub-pages
   'D1': (p) => <DomainPage domain="D1" />,
   'D2': (p) => <DomainPage domain="D2" />,
   'D3': (p) => <DomainPage domain="D3" />,
   'D4': (p) => <DomainPage domain="D4" />,
   'D5': (p) => <DomainPage domain="D5" />,
   'D6': (p) => <DomainPage domain="D6" />,
+  'Economy 4.0':        (p) => <GenericPage title="Economy 4.0"         subtitle="Platform economies, digital value chains, and the $4.2T GDP opportunity" stories={[]} />,
+  'Experience 4.0':     (p) => <GenericPage title="Experience 4.0"      subtitle="Digital customer experience, CX transformation, and experience-led growth" stories={[]} />,
+  'Intelligence 4.0':   (p) => <GenericPage title="Intelligence 4.0"    subtitle="AI-driven intelligence, data strategy, and analytics transformation" stories={[]} />,
+  'Workspace 4.0':      (p) => <GenericPage title="Workspace 4.0"       subtitle="Digital workspace transformation, hybrid work, and the future of the office" stories={[]} />,
+  'Mining 4.0':         (p) => <GenericPage title="Mining 4.0"          subtitle="Digital transformation in mining, Industry 4.0 adoption, and smart extraction" stories={[]} />,
+  'Farming 4.0':        (p) => <GenericPage title="Farming 4.0"         subtitle="AgriTech, precision farming, and digital agriculture transformation" stories={[]} />,
+  'Plant 4.0':          (p) => <GenericPage title="Plant 4.0"           subtitle="Smart manufacturing, industrial IoT, and plant digitization" stories={[]} />,
+  'Logistics 4.0':      (p) => <GenericPage title="Logistics 4.0"       subtitle="Supply chain digitization, smart logistics, and last-mile innovation" stories={[]} />,
+  'Infrastructure 4.0': (p) => <GenericPage title="Infrastructure 4.0"  subtitle="Digital infrastructure, smart cities, and connected systems" stories={[]} />,
+  'Government 4.0':     (p) => <GenericPage title="Government 4.0"      subtitle="Digital government transformation, public sector AI, and e-governance" stories={[]} />,
+  'Services 4.0':       (p) => <GenericPage title="Services 4.0"        subtitle="Digital services transformation, platform-based service delivery" stories={[]} />,
+  'Retail 4.0':         (p) => <GenericPage title="Retail 4.0"          subtitle="Digital retail transformation, omnichannel strategy, and commerce innovation" stories={[]} />,
+  'Hospitality 4.0':    (p) => <GenericPage title="Hospitality 4.0"     subtitle="Digital hospitality, smart hotels, and guest experience transformation" stories={[]} />,
+  'Wellness 4.0':       (p) => <GenericPage title="Wellness 4.0"        subtitle="Digital health transformation, AI in healthcare, and wellness technology" stories={[]} />,
+  'DXP-Channels':    (p) => <GenericPage title="Digital Channels"         subtitle="DXP Platform - Digital Experience Platform channels and touchpoints" stories={[]} />,
+  'DXP-Experience':  (p) => <GenericPage title="Digital Experience"       subtitle="DXP Platform - Customer experience design and delivery" stories={[]} />,
+  'DXP-Services':    (p) => <GenericPage title="Digital Services"         subtitle="DXP Platform - Digital service architecture and APIs" stories={[]} />,
+  'DXP-MarCom':      (p) => <GenericPage title="Digital MarCom"           subtitle="DXP Platform - Marketing communications and digital campaigns" stories={[]} />,
+  'DWS-Workspace':   (p) => <GenericPage title="Digital Workspace"        subtitle="DWS Platform - Collaborative workspace and productivity tools" stories={[]} />,
+  'DWS-Core':        (p) => <GenericPage title="Digital Core (ERP)"       subtitle="DWS Platform - Enterprise resource planning and core systems" stories={[]} />,
+  'DWS-GPRC':        (p) => <GenericPage title="Digital GPRC"             subtitle="DWS Platform - Governance, performance, risk, and compliance" stories={[]} />,
+  'DWS-BackOffice':  (p) => <GenericPage title="Digital Back Office"      subtitle="DWS Platform - Back-office automation and operations" stories={[]} />,
+  'DIA-Analytics':   (p) => <GenericPage title="Digital Analytics"        subtitle="DIA Platform - Data analytics, BI, and performance intelligence" stories={[]} />,
+  'DIA-AI':          (p) => <GenericPage title="Digital Intelligence (AI)" subtitle="DIA Platform - AI, machine learning, and cognitive automation" stories={[]} />,
+  'SDO-IT':          (p) => <GenericPage title="Digital IT (Cloud)"       subtitle="SDO Platform - Cloud infrastructure, DevOps, and IT modernization" stories={[]} />,
+  'SDO-Interop':     (p) => <GenericPage title="Digital Interoperability"  subtitle="SDO Platform - Integration, APIs, and system interoperability" stories={[]} />,
+  'SDO-Security':    (p) => <GenericPage title="Digital Security"         subtitle="SDO Platform - Cybersecurity, zero-trust, and digital risk management" stories={[]} />,
 };
 
 // auth modal states
@@ -483,12 +504,18 @@ function AppInner() {
     } else {
       document.body.classList.remove('admin-active');
     }
-    
-    // Cleanup on unmount
-    return () => {
-      document.body.classList.remove('admin-active');
-    };
+    return () => { document.body.classList.remove('admin-active'); };
   }, [showAdmin]);
+
+  // Listen for footer/external navigation events
+  useEffect(() => {
+    const handler = (e) => {
+      const key = e.detail?.key;
+      if (key) setActiveSection(key);
+    };
+    window.addEventListener('dtmi:navigate', handler);
+    return () => window.removeEventListener('dtmi:navigate', handler);
+  }, []);
 
   // Admin dashboard Ã¢â‚¬â€ full screen, no nav/footer
   if (showAdmin) {

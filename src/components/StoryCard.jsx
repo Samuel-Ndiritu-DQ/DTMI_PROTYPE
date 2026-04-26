@@ -72,7 +72,7 @@ export default function StoryCard({ story, size = 'md', showImage = true, horizo
           />
           {/* CNN-style content type badge top-left */}
           <div className="absolute top-2 left-2 flex items-center gap-1.5">
-            <ContentTypeBadge label={story.label} isVideo={isVideo} isPodcast={isPodcast} />
+            <ContentTypeBadge label={isVideo ? 'VIDEO' : isPodcast ? 'PODCAST' : null} isVideo={isVideo} isPodcast={isPodcast} />
             {story.tag && !story.label && (
               <span className="text-white text-[9px] font-black px-2 py-0.5 uppercase tracking-wider rounded-sm" style={{ background: 'var(--brand-orange)' }}>
                 {story.tag}

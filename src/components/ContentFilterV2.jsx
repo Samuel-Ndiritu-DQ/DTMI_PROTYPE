@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Filter, X, ChevronDown } from 'lucide-react';
-import { ALL_CONTENT_TYPES, CONTENT_CATEGORIES } from '../data/contentTypes';
+import { CONTENT_CATEGORIES } from '../data/contentTypes';
 import FilterDropdown from './FilterDropdown';
 
 export default function ContentFilterV2({ 
@@ -10,31 +10,27 @@ export default function ContentFilterV2({
   onCategoryChange,
   categories = [],
   showContentTypeFilter = true,
-  showCategoryFilter = true
+  showCategoryFilter = true,
+  filterCategory = null,
+  typeMapping = null
 }) {
   const [showAllTypes, setShowAllTypes] = useState(false);
   
-  // Group content types by category for the dropdown
-  const groupedTypes = ALL_CONTENT_TYPES.reduce((acc, type) => {
-    if (!acc[type.category]) {
-      acc[type.category] = [];
-    }
-    acc[type.category].push({
-      id: type.id,
-      name: type.name,
-      desc: type.categoryName,
-      color: type.color
-    });
-    return acc;
-  }, {});
+  // Get content types based on filterCategory (e.g., 'research', 'executive', etc.)
+  const categoryKey = filterCategory ? filterCategory.toUpperCase() : null;
+  const contentTypeOptions = categoryKey && CONTENT_CATEGORIES[categoryKey]
+    ? CONTENT_CATEGORIES[categoryKey].types.map(type => ({
+        id: type.id,
+        name: type.name,
+        desc: type.description,
+        color: type.cardColor
+      }))
+    : [];
 
-  // Prepare content type options for dropdown
-  const contentTypeOptions = ALL_CONTENT_TYPES.map(type => ({
-    id: type.id,
-    name: type.name,
-    desc: type.categoryName,
-    color: type.color
-  }));
+  // Debug logging
+  if (filterCategory) {
+    console.log('filterCategory:', filterCategory, 'categoryKey:', categoryKey, 'found:', !!CONTENT_CATEGORIES[categoryKey], 'options:', contentTypeOptions.length);
+  }
 
   // Prepare category options for dropdown
   const categoryOptions = categories.map(cat => ({
@@ -46,7 +42,7 @@ export default function ContentFilterV2({
   // Get selected content type names for display
   const getSelectedTypeNames = () => {
     return activeTypes.map(typeId => {
-      const type = ALL_CONTENT_TYPES.find(t => t.id === typeId);
+      const type = contentTypeOptions.find(t => t.id === typeId);
       return type ? type.name : typeId;
     });
   };
@@ -57,10 +53,10 @@ export default function ContentFilterV2({
   };
 
   return (
-    <div>
-      {/* Content Type Filter Dropdown - Professional version */}
+    <div className="w-full">
+      {/* Content Type Filter */}
       {showContentTypeFilter && (
-        <div className="flex items-center gap-3">
+        contentTypeOptions.length > 0 ? (
           <FilterDropdown
             title="CONTENT TYPE"
             options={contentTypeOptions}
@@ -70,7 +66,11 @@ export default function ContentFilterV2({
             placeholder="Select content types..."
             showCount={false}
           />
-        </div>
+        ) : (
+          <div style={{ padding: '8px', color: '#999', fontSize: '12px' }}>
+            No content types available
+          </div>
+        )
       )}
     </div>
   );

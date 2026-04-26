@@ -1,4 +1,4 @@
-import { useState } from 'react';
+﻿import { useState } from 'react';
 import { researchReports, researchCategories } from '../data/researchData';
 import { CONTENT_CATEGORIES, getContentType } from '../data/contentTypes';
 import ContentFilterV2 from '../components/ContentFilterV2';
@@ -141,10 +141,26 @@ export default function ResearchPage({ onSignIn }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [openResearch, setOpenResearch] = useState(null);
 
+  const typeMapping = {
+    'white-paper': ['White Paper'],
+    'research-notes': ['Research Report', 'Policy Brief', 'Market Intelligence', 'Thought Leadership'],
+    'industry-briefs': ['Industry Analysis']
+  };
+
   const filtered = researchReports.filter(report => {
     const catOk = activeCategory === 'All' || report.category === activeCategory;
-    const typeNormalized = report.type ? report.type.toLowerCase().replace(/\s+/g, '-') : '';
-    const typeOk = activeTypes.length === 0 || activeTypes.includes(typeNormalized);
+    
+    // If no types selected, show all
+    let typeOk = activeTypes.length === 0;
+    
+    // If types are selected, match them using the mapping
+    if (activeTypes.length > 0 && report.type) {
+      typeOk = activeTypes.some(typeId => {
+        const mappedTypes = typeMapping[typeId] || [];
+        return mappedTypes.includes(report.type);
+      });
+    }
+    
     const q = searchQuery.toLowerCase();
     const searchOk = !searchQuery || (
       report.title.toLowerCase().includes(q) ||
@@ -239,6 +255,12 @@ export default function ResearchPage({ onSignIn }) {
                 categories={researchCategories}
                 showContentTypeFilter={true}
                 showCategoryFilter={false}
+                filterCategory="research"
+                typeMapping={{
+                  'white-paper': 'White Paper',
+                  'research-notes': ['Research Report', 'Policy Brief', 'Market Intelligence', 'Thought Leadership'],
+                  'industry-briefs': 'Industry Analysis'
+                }}
               />
             </div>
             
@@ -280,7 +302,7 @@ export default function ResearchPage({ onSignIn }) {
         </div>
 
         {/* Featured research */}
-        {featured.length > 0 && (
+        {featured.length > 0 && filtered.length > 0 && (
           <section className="mb-10">
             <div className="flex items-center gap-3 mb-6">
               <div>
@@ -298,27 +320,29 @@ export default function ResearchPage({ onSignIn }) {
           </section>
         )}
 
-        {/* All research */}
-        <div className="flex items-center gap-3 mb-6">
-          <div>
-            <h2 className="text-[16px] font-black font-source-code" style={{ color: '#1f2937' }}>
-              All Research {activeCategory !== 'All' && <span style={{ color: '#0a7ea4' }}>· {activeCategory}</span>}
-            </h2>
-            <p className="text-[12px] mt-1 font-source-serif" style={{ color: '#6b7280' }}>Browse our complete research library</p>
-          </div>
-          <div className="flex-1 h-px" style={{ background: '#f3f4f6' }} />
-          <div className="text-right">
-            <span className="text-[13px] font-black font-source-code" style={{ color: '#0a7ea4' }}>{filtered.length}</span>
-            <span className="text-[11px] font-source-code ml-1" style={{ color: '#6b7280' }}>reports</span>
-          </div>
-        </div>
-
         {filtered.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filtered.map(report => (
-              <ResearchCard key={report.id} report={report} onOpen={setOpenResearch} />
-            ))}
-          </div>
+          <>
+            {/* All research */}
+            <div className="flex items-center gap-3 mb-6">
+              <div>
+                <h2 className="text-[16px] font-black font-source-code" style={{ color: '#1f2937' }}>
+                  All Research {activeCategory !== 'All' && <span style={{ color: '#0a7ea4' }}>· {activeCategory}</span>}
+                </h2>
+                <p className="text-[12px] mt-1 font-source-serif" style={{ color: '#6b7280' }}>Browse our complete research library</p>
+              </div>
+              <div className="flex-1 h-px" style={{ background: '#f3f4f6' }} />
+              <div className="text-right">
+                <span className="text-[13px] font-black font-source-code" style={{ color: '#0a7ea4' }}>{filtered.length}</span>
+                <span className="text-[11px] font-source-code ml-1" style={{ color: '#6b7280' }}>reports</span>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {filtered.map(report => (
+                <ResearchCard key={report.id} report={report} onOpen={setOpenResearch} />
+              ))}
+            </div>
+          </>
         ) : (
           <div className="text-center py-16">
             <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ 

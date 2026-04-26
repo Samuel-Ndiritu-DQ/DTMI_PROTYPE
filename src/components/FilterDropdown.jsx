@@ -42,10 +42,10 @@ export default function FilterDropdown({
   };
 
   const getSelectedLabels = () => {
-    if (selected.length === 0) return placeholder;
+    if (selected.length === 0) return '';
     if (selected.length === 1) {
       const option = options.find(opt => opt.id === selected[0]);
-      return option ? option.name : placeholder;
+      return option ? option.name : '';
     }
     return `${selected.length} types selected`;
   };
@@ -54,28 +54,28 @@ export default function FilterDropdown({
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-between w-full px-4 py-2.5 border rounded-lg bg-white hover:bg-gray-50 transition-colors"
+        className="flex items-center justify-between w-full px-4 py-2.5 border rounded-lg bg-white hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
         style={{ 
-          borderColor: '#e5e7eb',
+          borderColor: '#cbd5e1',
           minWidth: '200px'
         }}
       >
         <div className="flex flex-col items-start">
-          <span className="text-[10px] font-black uppercase tracking-widest" style={{ color: '#6b7280' }}>
+          <span className="text-[10px] font-bold uppercase tracking-wider" style={{ color: '#0f766e' }}>
             {title}
           </span>
-          <span className="text-[12px] font-medium truncate max-w-[180px]" style={{ color: '#374151' }}>
+          <span className="text-[13px] font-medium truncate max-w-[180px]" style={{ color: '#0f766e' }}>
             {getSelectedLabels()}
           </span>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 flex-shrink-0">
           {selected.length > 0 && (
             <button
               onClick={(e) => {
                 e.stopPropagation();
                 clearSelection();
               }}
-              className="text-[#6b7280] hover:text-[#ef4444] transition-colors"
+              className="text-slate-400 hover:text-red-500 transition-colors"
             >
               <X size={14} />
             </button>
@@ -83,7 +83,7 @@ export default function FilterDropdown({
           <ChevronDown 
             size={16} 
             className={`transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
-            style={{ color: '#6b7280' }}
+            style={{ color: '#94a3b8' }}
           />
         </div>
       </button>
@@ -121,33 +121,27 @@ export default function FilterDropdown({
                 <button
                   key={option.id}
                   onClick={() => handleOptionClick(option.id)}
-                  className="flex items-center justify-between w-full px-3 py-2.5 rounded-lg hover:bg-gray-50 transition-colors text-left"
+                  className={`flex items-center justify-between w-full px-3 py-2.5 rounded-md hover:bg-slate-100 transition-colors text-left ${isSelected ? 'bg-blue-50 border-l-2 border-blue-600' : ''}`}
                 >
-                  <div className="flex items-center gap-3">
-                    <div 
-                      className={`w-4 h-4 rounded border flex items-center justify-center ${isSelected ? 'bg-blue-600 border-blue-600' : 'border-gray-300'}`}
-                    >
-                      {isSelected && (
-                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                          <path d="M8.33333 2.5L3.75 7.08333L1.66667 5" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                      )}
-                    </div>
-                    <div className="flex flex-col">
-                      <span className="text-[13px] font-medium" style={{ color: '#374151' }}>
+                  <div className="flex items-center gap-3 flex-1">
+                    {isSelected && (
+                      <div className="w-2 h-2 rounded-full bg-blue-600 flex-shrink-0" />
+                    )}
+                    <div className="flex flex-col flex-1">
+                      <span className="text-[13px] font-medium" style={{ color: '#1e293b' }}>
                         {option.name}
                       </span>
                       {option.desc && (
-                        <span className="text-[11px] mt-0.5" style={{ color: '#6b7280' }}>
+                        <span className="text-[11px] mt-0.5" style={{ color: '#64748b' }}>
                           {option.desc}
                         </span>
                       )}
                     </div>
                   </div>
                   {option.count !== undefined && (
-                    <span className="text-[10px] px-2 py-0.5 rounded-full" style={{ 
-                      background: '#f3f4f6',
-                      color: '#6b7280'
+                    <span className="text-[10px] px-2 py-0.5 rounded-full flex-shrink-0" style={{ 
+                      background: '#f1f5f9',
+                      color: '#64748b'
                     }}>
                       {option.count}
                     </span>

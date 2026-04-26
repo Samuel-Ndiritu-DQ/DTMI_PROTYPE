@@ -26,20 +26,19 @@ export default function PageSearch({
   const countColor   = dark ? '#64748b'                : 'var(--brand-muted)';
 
   return (
-    <div className="w-full flex flex-col items-center gap-2">
-      {/* Input - 70% wide, centred */}
+    <div className="w-full flex flex-col items-stretch gap-2">
+      {/* Input - Full width with professional styling */}
       <div
-        className="flex items-center gap-3 rounded-sm px-4 py-2.5 transition-colors"
+        className="flex items-center gap-3 rounded-lg px-4 py-2.5 transition-all border-2"
         style={{
-          width: '70%',
           background: bg,
-          border: `1.5px solid ${borderIdle}`,
+          borderColor: borderIdle,
         }}
         onFocusCapture={e => (e.currentTarget.style.borderColor = 'var(--brand-orange)')}
         onBlurCapture={e  => (e.currentTarget.style.borderColor = borderIdle)}
       >
         <Search
-          size={16}
+          size={18}
           className="shrink-0"
           style={{ color: value ? 'var(--brand-orange)' : iconColor }}
         />
@@ -48,7 +47,7 @@ export default function PageSearch({
           value={value}
           onChange={e => onChange(e.target.value)}
           placeholder={placeholder}
-          className={`flex-1 bg-transparent text-[14px] focus:outline-none ${phClass}`}
+          className={`flex-1 bg-transparent text-[15px] font-medium focus:outline-none ${phClass}`}
           style={{ color: textColor }}
         />
         {value && (
@@ -58,14 +57,14 @@ export default function PageSearch({
             style={{ color: iconColor }}
             aria-label="Clear search"
           >
-            <X size={14} />
+            <X size={18} />
           </button>
         )}
       </div>
 
-      {/* Result count - centred below input */}
+      {/* Result count - below input */}
       {value && resultCount !== undefined && (
-        <p className="text-[12px]" style={{ color: countColor }}>
+        <p className="text-[12px] px-4" style={{ color: countColor }}>
           {resultCount === 0
             ? `No results for "${value}"`
             : `${resultCount}${totalCount !== undefined ? ` of ${totalCount}` : ''} result${resultCount !== 1 ? 's' : ''}`}
