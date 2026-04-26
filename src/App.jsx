@@ -417,12 +417,12 @@ function IntelligenceLayerPage({ layer }) {
 
 function DomainPage({ domain }) {
   const domains = {
-    D1: { title: 'D1 — Digital Economy',              subtitle: 'Economy 4.0 & platform models' },
-    D2: { title: 'D2 — Digital Cognitive Organizations', subtitle: 'DCO framework, adoption, and maturity' },
-    D3: { title: 'D3 — Digital Business Platforms',   subtitle: 'DBP architecture, ecosystems, and deployment' },
-    D4: { title: 'D4 — Digital Transformation 2.0',   subtitle: 'DT2.0 strategy, execution, and measurement' },
-    D5: { title: 'D5 — Digital Worker & Workspace',   subtitle: 'Future of work, digital talent, and workspace psychology' },
-    D6: { title: 'D6 — Digital Accelerators',         subtitle: 'AI, automation, and emerging technology accelerators' },
+    D1: { title: 'D1 Ã¢â‚¬â€ Digital Economy',              subtitle: 'Economy 4.0 & platform models' },
+    D2: { title: 'D2 Ã¢â‚¬â€ Digital Cognitive Organizations', subtitle: 'DCO framework, adoption, and maturity' },
+    D3: { title: 'D3 Ã¢â‚¬â€ Digital Business Platforms',   subtitle: 'DBP architecture, ecosystems, and deployment' },
+    D4: { title: 'D4 Ã¢â‚¬â€ Digital Transformation 2.0',   subtitle: 'DT2.0 strategy, execution, and measurement' },
+    D5: { title: 'D5 Ã¢â‚¬â€ Digital Worker & Workspace',   subtitle: 'Future of work, digital talent, and workspace psychology' },
+    D6: { title: 'D6 Ã¢â‚¬â€ Digital Accelerators',         subtitle: 'AI, automation, and emerging technology accelerators' },
   };
   const cfg = domains[domain] || { title: domain, subtitle: '' };
   return <GenericPage title={cfg.title} subtitle={cfg.subtitle} stories={[]} />;
@@ -430,17 +430,17 @@ function DomainPage({ domain }) {
 
 const SECTION_ROUTES = {
   'Latest':            (p) => <Homepage />,
-  // Intelligence parent → defaults to Signal
+  // Intelligence parent Ã¢â€ â€™ defaults to Signal
   'intelligence':      (p) => <IntelligenceLayerPage layer="Signal" />,
-  // 6xD parent → defaults to D1
+  // 6xD parent Ã¢â€ â€™ defaults to D1
   '6xd':               (p) => <DomainPage domain="D1" />,
   '6xD Framework':     (p) => <SixDFramework onNavigate={p.onNavigate} />,
-  // Sectors parent → defaults to Economy 4.0 (GenericPage)
+  // Sectors parent Ã¢â€ â€™ defaults to Economy 4.0 (GenericPage)
   'sectors':           (p) => <GenericPage title="Economy 4.0" subtitle="Platform economies, digital value chains, and the $4.2T GDP opportunity" stories={[]} />,
   'Sectors':           (p) => <GenericPage title="Economy 4.0" subtitle="Platform economies, digital value chains, and the $4.2T GDP opportunity" stories={[]} />,
-  // Technology parent → defaults to DXP-Channels (GenericPage)
-  'technology':        (p) => <GenericPage title="Digital Channels" subtitle="DXP · Digital Experience Platform" stories={[]} />,
-  'Technology':        (p) => <GenericPage title="Digital Channels" subtitle="DXP · Digital Experience Platform" stories={[]} />,
+  // Technology parent Ã¢â€ â€™ defaults to DXP-Channels (GenericPage)
+  'technology':        (p) => <GenericPage title="Digital Channels" subtitle="DXP Ã‚Â· Digital Experience Platform" stories={[]} />,
+  'Technology':        (p) => <GenericPage title="Digital Channels" subtitle="DXP Ã‚Â· Digital Experience Platform" stories={[]} />,
   'Multimedia':        (p) => <Multimedia />,
   'About':             (p) => <About />,
   // Intelligence sub-pages
@@ -490,73 +490,80 @@ function AppInner() {
     };
   }, [showAdmin]);
 
-  // Admin dashboard — full screen, no nav/footer
+  // Admin dashboard Ã¢â‚¬â€ full screen, no nav/footer
   if (showAdmin) {
     return <AdminDashboard onExit={() => setShowAdmin(false)} />;
   }
 
-  const AIFab = activeSection !== 'AI Engine' && (
+  // FABs Ã¢â‚¬â€ shown on all pages except admin
+  // On AI Engine page: hide the AI FAB (already there), show multimedia FAB
+  // On Multimedia page: hide multimedia FAB (already there), show AI FAB
+  const Fabs = (
     <div style={{ position: 'fixed', bottom: 28, right: 24, zIndex: 999, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10 }}>
-      {/* Multimedia FAB */}
-      <button
-        onClick={() => setActiveSection('Multimedia')}
-        title="Open Multimedia"
-        style={{
-          width: 56, height: 56, borderRadius: '50%',
-          background: 'linear-gradient(135deg, #7c3aed, #6d28d9)',
-          border: 'none', cursor: 'pointer',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          boxShadow: '0 4px 20px rgba(124,58,237,0.5)',
-          transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-        }}
-        onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.1)'; e.currentTarget.style.boxShadow = '0 6px 28px rgba(124,58,237,0.7)'; }}
-        onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 4px 20px rgba(124,58,237,0.5)'; }}
-      >
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          {/* Headphones */}
-          <path d="M3 12a9 9 0 0 1 18 0" stroke="white" strokeWidth="1.8" strokeLinecap="round" fill="none"/>
-          <rect x="2" y="12" width="4" height="6" rx="2" fill="white" fillOpacity="0.9"/>
-          <rect x="18" y="12" width="4" height="6" rx="2" fill="white" fillOpacity="0.9"/>
-          {/* Play triangle */}
-          <path d="M10 9.5l5 3-5 3V9.5z" fill="white" fillOpacity="0.7"/>
-        </svg>
-      </button>
+      {/* Multimedia FAB Ã¢â‚¬â€ hidden when already on Multimedia */}
+      {activeSection !== 'Multimedia' && (
+        <button
+          onClick={() => { setActiveSection('Multimedia'); }}
+          title="Open Multimedia"
+          style={{
+            width: 56, height: 56, borderRadius: '50%',
+            background: 'linear-gradient(135deg, #7c3aed, #6d28d9)',
+            border: 'none', cursor: 'pointer',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            boxShadow: '0 4px 20px rgba(124,58,237,0.5)',
+            transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+          }}
+          onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.1)'; e.currentTarget.style.boxShadow = '0 6px 28px rgba(124,58,237,0.7)'; }}
+          onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 4px 20px rgba(124,58,237,0.5)'; }}
+        >
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 12a9 9 0 0 1 18 0" stroke="white" strokeWidth="1.8" strokeLinecap="round" fill="none"/>
+            <rect x="2" y="12" width="4" height="6" rx="2" fill="white" fillOpacity="0.9"/>
+            <rect x="18" y="12" width="4" height="6" rx="2" fill="white" fillOpacity="0.9"/>
+            <path d="M10 9.5l5 3-5 3V9.5z" fill="white" fillOpacity="0.7"/>
+          </svg>
+        </button>
+      )}
 
-      {/* AI FAB */}
-      <button
-        onClick={() => setActiveSection('AI Engine')}
-        title="Open DTMI AI Assistant"
-        style={{
-          width: 56, height: 56, borderRadius: '50%',
-          background: 'linear-gradient(135deg, var(--brand-orange), #ff6b35)',
-          border: 'none', cursor: 'pointer',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          boxShadow: '0 4px 20px rgba(232,80,10,0.45)',
-          transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-        }}
-        onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.1)'; e.currentTarget.style.boxShadow = '0 6px 28px rgba(232,80,10,0.6)'; }}
-        onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 4px 20px rgba(232,80,10,0.45)'; }}
-      >
-        <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M16 4C10.48 4 6 8.48 6 14c0 2.2.76 4.22 2.02 5.82L7 25l5.4-1.42A9.93 9.93 0 0 0 16 24c5.52 0 10-4.48 10-10S21.52 4 16 4z" fill="white" fillOpacity="0.15" stroke="white" strokeWidth="1.4"/>
-          <line x1="11" y1="13" x2="15" y2="13" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-          <line x1="17" y1="13" x2="21" y2="13" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-          <line x1="13" y1="17" x2="19" y2="17" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-          <circle cx="11" cy="13" r="1.5" fill="white"/>
-          <circle cx="21" cy="13" r="1.5" fill="white"/>
-          <circle cx="16" cy="13" r="1.5" fill="white"/>
-          <circle cx="13" cy="17" r="1.5" fill="white" fillOpacity="0.8"/>
-          <circle cx="19" cy="17" r="1.5" fill="white" fillOpacity="0.8"/>
-          <path d="M24 6l1 2.5L27 9l-2 1-1 2.5-1-2.5-2-1 2-1z" fill="white" fillOpacity="0.9"/>
-        </svg>
-      </button>
+      {/* AI FAB Ã¢â‚¬â€ hidden when already on AI Engine */}
+      {activeSection !== 'AI Engine' && (
+        <button
+          onClick={() => setActiveSection('AI Engine')}
+          title="Open DTMI AI Assistant"
+          style={{
+            width: 56, height: 56, borderRadius: '50%',
+            background: 'linear-gradient(135deg, var(--brand-orange), #ff6b35)',
+            border: 'none', cursor: 'pointer',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            boxShadow: '0 4px 20px rgba(232,80,10,0.45)',
+            transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+          }}
+          onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.1)'; e.currentTarget.style.boxShadow = '0 6px 28px rgba(232,80,10,0.6)'; }}
+          onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 4px 20px rgba(232,80,10,0.45)'; }}
+        >
+          <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 4C10.48 4 6 8.48 6 14c0 2.2.76 4.22 2.02 5.82L7 25l5.4-1.42A9.93 9.93 0 0 0 16 24c5.52 0 10-4.48 10-10S21.52 4 16 4z" fill="white" fillOpacity="0.15" stroke="white" strokeWidth="1.4"/>
+            <line x1="11" y1="13" x2="15" y2="13" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+            <line x1="17" y1="13" x2="21" y2="13" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+            <line x1="13" y1="17" x2="19" y2="17" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+            <circle cx="11" cy="13" r="1.5" fill="white"/>
+            <circle cx="21" cy="13" r="1.5" fill="white"/>
+            <circle cx="16" cy="13" r="1.5" fill="white"/>
+            <circle cx="13" cy="17" r="1.5" fill="white" fillOpacity="0.8"/>
+            <circle cx="19" cy="17" r="1.5" fill="white" fillOpacity="0.8"/>
+            <path d="M24 6l1 2.5L27 9l-2 1-1 2.5-1-2.5-2-1 2-1z" fill="white" fillOpacity="0.9"/>
+          </svg>
+        </button>
+      )}
     </div>
   );
-
-  // AI Engine — self-contained with its own TopBar and Footer
+  // AI Engine Ã¢â‚¬â€ self-contained with its own TopBar and Footer
   if (activeSection === 'AI Engine') {
     return (
-      <AIEngine activeSection={activeSection} setActiveSection={setActiveSection} onAdmin={() => setShowAdmin(true)} onSignIn={() => setAuthModal(AUTH_LOGIN)} />
+      <>
+        <AIEngine activeSection={activeSection} setActiveSection={setActiveSection} onAdmin={() => setShowAdmin(true)} onSignIn={() => setAuthModal(AUTH_LOGIN)} />
+        {Fabs}
+      </>
     );
   }
 
@@ -576,7 +583,7 @@ function AppInner() {
       {authModal === AUTH_LOGIN    && <LoginPage        onClose={closeAuth} onGoRegister={() => setAuthModal(AUTH_REGISTER)} onGoForgot={() => setAuthModal(AUTH_FORGOT)} />}
       {authModal === AUTH_REGISTER && <RegisterPage     onClose={closeAuth} onGoLogin={() => setAuthModal(AUTH_LOGIN)} />}
       {authModal === AUTH_FORGOT   && <ForgotPasswordPage onClose={closeAuth} onGoLogin={() => setAuthModal(AUTH_LOGIN)} />}
-      {AIFab}
+      {Fabs}
     </>
   );
   if (page?.type === 'video') return (
@@ -594,7 +601,7 @@ function AppInner() {
       {authModal === AUTH_LOGIN    && <LoginPage        onClose={closeAuth} onGoRegister={() => setAuthModal(AUTH_REGISTER)} onGoForgot={() => setAuthModal(AUTH_FORGOT)} />}
       {authModal === AUTH_REGISTER && <RegisterPage     onClose={closeAuth} onGoLogin={() => setAuthModal(AUTH_LOGIN)} />}
       {authModal === AUTH_FORGOT   && <ForgotPasswordPage onClose={closeAuth} onGoLogin={() => setAuthModal(AUTH_LOGIN)} />}
-      {AIFab}
+      {Fabs}
     </>
   );
   if (page?.type === 'podcast') return (
@@ -612,7 +619,7 @@ function AppInner() {
       {authModal === AUTH_LOGIN    && <LoginPage        onClose={closeAuth} onGoRegister={() => setAuthModal(AUTH_REGISTER)} onGoForgot={() => setAuthModal(AUTH_FORGOT)} />}
       {authModal === AUTH_REGISTER && <RegisterPage     onClose={closeAuth} onGoLogin={() => setAuthModal(AUTH_LOGIN)} />}
       {authModal === AUTH_FORGOT   && <ForgotPasswordPage onClose={closeAuth} onGoLogin={() => setAuthModal(AUTH_LOGIN)} />}
-      {AIFab}
+      {Fabs}
     </>
   );
 
@@ -640,7 +647,7 @@ function AppInner() {
       {authModal === AUTH_LOGIN    && <LoginPage        onClose={closeAuth} onGoRegister={() => setAuthModal(AUTH_REGISTER)} onGoForgot={() => setAuthModal(AUTH_FORGOT)} />}
       {authModal === AUTH_REGISTER && <RegisterPage     onClose={closeAuth} onGoLogin={() => setAuthModal(AUTH_LOGIN)} />}
       {authModal === AUTH_FORGOT   && <ForgotPasswordPage onClose={closeAuth} onGoLogin={() => setAuthModal(AUTH_LOGIN)} />}
-      {AIFab}
+      {Fabs}
     </div>
   );
 }
