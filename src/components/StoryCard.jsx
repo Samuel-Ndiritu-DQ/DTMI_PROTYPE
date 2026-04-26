@@ -2,9 +2,9 @@ import { Clock, Play, BarChart2, Mic } from 'lucide-react';
 import { useNav } from '../context/NavContext';
 
 /* CNN-style content type badge */
-function ContentTypeBadge({ label, isVideo }) {
-  if (!label && !isVideo) return null;
-  const type = label || (isVideo ? 'VIDEO' : null);
+function ContentTypeBadge({ label, isVideo, isPodcast }) {
+  if (!label && !isVideo && !isPodcast) return null;
+  const type = label || (isVideo ? 'VIDEO' : isPodcast ? 'PODCAST' : null);
   if (!type) return null;
 
   const styles = {
@@ -24,13 +24,15 @@ function ContentTypeBadge({ label, isVideo }) {
 }
 
 export default function StoryCard({ story, size = 'md', showImage = true, horizontal = false }) {
-  const { openArticle, openVideo } = useNav();
+  const { openArticle, openVideo, openPodcast } = useNav();
 
-  const isVideo = story.label === 'VIDEO' || (story.duration && story.views);
+  const isVideo   = story.label === 'VIDEO'   || (story.duration && story.views);
+  const isPodcast = story.label === 'PODCAST' || (story.duration && story.plays);
 
   const handleClick = () => {
-    if (isVideo) openVideo(story);
-    else openArticle(story);
+    if (isVideo)        openVideo(story);
+    else if (isPodcast) openPodcast(story);
+    else                openArticle(story);
   };
 
   if (horizontal) {
@@ -70,7 +72,7 @@ export default function StoryCard({ story, size = 'md', showImage = true, horizo
           />
           {/* CNN-style content type badge top-left */}
           <div className="absolute top-2 left-2 flex items-center gap-1.5">
-            <ContentTypeBadge label={story.label} isVideo={isVideo} />
+            <ContentTypeBadge label={story.label} isVideo={isVideo} isPodcast={isPodcast} />
             {story.tag && !story.label && (
               <span className="text-white text-[9px] font-black px-2 py-0.5 uppercase tracking-wider rounded-sm" style={{ background: 'var(--brand-orange)' }}>
                 {story.tag}
@@ -86,6 +88,13 @@ export default function StoryCard({ story, size = 'md', showImage = true, horizo
             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/20">
               <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: 'var(--brand-orange)' }}>
                 <Play size={16} className="text-white ml-0.5" fill="white" />
+              </div>
+            </div>
+          )}
+          {isPodcast && (
+            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/20">
+              <div className="w-10 h-10 rounded-full flex items-center justify-center" style={{ background: '#7c3aed' }}>
+                <Mic size={14} className="text-white" />
               </div>
             </div>
           )}

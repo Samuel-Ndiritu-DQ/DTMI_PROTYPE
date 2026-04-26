@@ -496,39 +496,61 @@ function AppInner() {
   }
 
   const AIFab = activeSection !== 'AI Engine' && (
-    <button
-      onClick={() => setActiveSection('AI Engine')}
-      title="Open DTMI AI Assistant"
-      style={{
-        position: 'fixed', bottom: 28, right: 24,
-        width: 56, height: 56, borderRadius: '50%',
-        background: 'linear-gradient(135deg, var(--brand-orange), #ff6b35)',
-        border: 'none', cursor: 'pointer',
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        boxShadow: '0 4px 20px rgba(232,80,10,0.45)',
-        zIndex: 999, transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-      }}
-      onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.1)'; e.currentTarget.style.boxShadow = '0 6px 28px rgba(232,80,10,0.6)'; }}
-      onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 4px 20px rgba(232,80,10,0.45)'; }}
-    >
-      {/* DTMI AI icon */}
-      <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-        {/* Brain outline */}
-        <path d="M16 4C10.48 4 6 8.48 6 14c0 2.2.76 4.22 2.02 5.82L7 25l5.4-1.42A9.93 9.93 0 0 0 16 24c5.52 0 10-4.48 10-10S21.52 4 16 4z" fill="white" fillOpacity="0.15" stroke="white" strokeWidth="1.4"/>
-        {/* Circuit lines */}
-        <line x1="11" y1="13" x2="15" y2="13" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="17" y1="13" x2="21" y2="13" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-        <line x1="13" y1="17" x2="19" y2="17" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
-        {/* Nodes */}
-        <circle cx="11" cy="13" r="1.5" fill="white"/>
-        <circle cx="21" cy="13" r="1.5" fill="white"/>
-        <circle cx="16" cy="13" r="1.5" fill="white"/>
-        <circle cx="13" cy="17" r="1.5" fill="white" fillOpacity="0.8"/>
-        <circle cx="19" cy="17" r="1.5" fill="white" fillOpacity="0.8"/>
-        {/* Spark top-right */}
-        <path d="M24 6l1 2.5L27 9l-2 1-1 2.5-1-2.5-2-1 2-1z" fill="white" fillOpacity="0.9"/>
-      </svg>
-    </button>
+    <div style={{ position: 'fixed', bottom: 28, right: 24, zIndex: 999, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10 }}>
+      {/* Multimedia FAB */}
+      <button
+        onClick={() => setActiveSection('Multimedia')}
+        title="Open Multimedia"
+        style={{
+          width: 56, height: 56, borderRadius: '50%',
+          background: 'linear-gradient(135deg, #7c3aed, #6d28d9)',
+          border: 'none', cursor: 'pointer',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          boxShadow: '0 4px 20px rgba(124,58,237,0.5)',
+          transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+        }}
+        onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.1)'; e.currentTarget.style.boxShadow = '0 6px 28px rgba(124,58,237,0.7)'; }}
+        onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 4px 20px rgba(124,58,237,0.5)'; }}
+      >
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          {/* Headphones */}
+          <path d="M3 12a9 9 0 0 1 18 0" stroke="white" strokeWidth="1.8" strokeLinecap="round" fill="none"/>
+          <rect x="2" y="12" width="4" height="6" rx="2" fill="white" fillOpacity="0.9"/>
+          <rect x="18" y="12" width="4" height="6" rx="2" fill="white" fillOpacity="0.9"/>
+          {/* Play triangle */}
+          <path d="M10 9.5l5 3-5 3V9.5z" fill="white" fillOpacity="0.7"/>
+        </svg>
+      </button>
+
+      {/* AI FAB */}
+      <button
+        onClick={() => setActiveSection('AI Engine')}
+        title="Open DTMI AI Assistant"
+        style={{
+          width: 56, height: 56, borderRadius: '50%',
+          background: 'linear-gradient(135deg, var(--brand-orange), #ff6b35)',
+          border: 'none', cursor: 'pointer',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          boxShadow: '0 4px 20px rgba(232,80,10,0.45)',
+          transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+        }}
+        onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.1)'; e.currentTarget.style.boxShadow = '0 6px 28px rgba(232,80,10,0.6)'; }}
+        onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = '0 4px 20px rgba(232,80,10,0.45)'; }}
+      >
+        <svg width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M16 4C10.48 4 6 8.48 6 14c0 2.2.76 4.22 2.02 5.82L7 25l5.4-1.42A9.93 9.93 0 0 0 16 24c5.52 0 10-4.48 10-10S21.52 4 16 4z" fill="white" fillOpacity="0.15" stroke="white" strokeWidth="1.4"/>
+          <line x1="11" y1="13" x2="15" y2="13" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+          <line x1="17" y1="13" x2="21" y2="13" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+          <line x1="13" y1="17" x2="19" y2="17" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+          <circle cx="11" cy="13" r="1.5" fill="white"/>
+          <circle cx="21" cy="13" r="1.5" fill="white"/>
+          <circle cx="16" cy="13" r="1.5" fill="white"/>
+          <circle cx="13" cy="17" r="1.5" fill="white" fillOpacity="0.8"/>
+          <circle cx="19" cy="17" r="1.5" fill="white" fillOpacity="0.8"/>
+          <path d="M24 6l1 2.5L27 9l-2 1-1 2.5-1-2.5-2-1 2-1z" fill="white" fillOpacity="0.9"/>
+        </svg>
+      </button>
+    </div>
   );
 
   // AI Engine — self-contained with its own TopBar and Footer
