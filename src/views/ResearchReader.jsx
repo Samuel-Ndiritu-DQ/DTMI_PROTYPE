@@ -162,22 +162,21 @@ export default function ResearchReader({ report, onClose, onSignIn }) {
           {/* ── Main reading area ── */}
           <article className="lg:col-span-3">
             {/* Research header */}
-            <div className="flex gap-6 mb-8 pb-6 border-b" style={{ borderColor: 'var(--brand-border)' }}>
-              <div className="shrink-0">
+            <div className="flex flex-col sm:flex-row gap-5 sm:gap-6 mb-8 pb-6 border-b" style={{ borderColor: 'var(--brand-border)' }}>
+              {/* Cover — centered on mobile */}
+              <div className="shrink-0 flex justify-center sm:block">
                 <div className="relative rounded-lg overflow-hidden border" style={{
-                  width: '120px',
-                  height: '160px',
+                  width: '100px',
+                  height: '134px',
                   background: 'linear-gradient(135deg, #0a7ea4 0%, #06b6d4 100%)',
                   borderColor: 'rgba(10, 126, 164, 0.3)',
                   boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
                 }}>
-                  {/* Research icon */}
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <FileText size={32} className="text-white/80" />
+                    <FileText size={28} className="text-white/80" />
                   </div>
-                  {/* Research label */}
                   <div className="absolute bottom-3 left-0 right-0 text-center">
-                    <span className="text-[10px] font-black uppercase tracking-widest text-white/90">
+                    <span className="text-[9px] font-black uppercase tracking-widest text-white/90">
                       {typeName.split(' ')[0]}
                     </span>
                   </div>
@@ -185,45 +184,35 @@ export default function ResearchReader({ report, onClose, onSignIn }) {
               </div>
               <div className="flex-1 min-w-0">
                 <div className="flex flex-wrap items-center gap-2 mb-2">
-                  <span className="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-sm" style={{ 
-                    background: '#f1f5f9', 
-                    color: '#475569' 
-                  }}>
+                  <span className="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-sm" style={{ background: '#f1f5f9', color: '#475569' }}>
                     {report.category}
                   </span>
                   {report.premium && (
-                    <span className="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-sm text-white" style={{ 
-                      background: 'var(--brand-orange)' 
-                    }}>
+                    <span className="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-sm text-white" style={{ background: 'var(--brand-orange)' }}>
                       PREMIUM
                     </span>
                   )}
                 </div>
-                <h1 className="text-[22px] sm:text-[26px] font-black leading-tight mb-1" style={{ color: 'var(--brand-navy)' }}>
+                <h1 className="text-[20px] sm:text-[26px] font-black leading-tight mb-1" style={{ color: 'var(--brand-navy)' }}>
                   {report.title}
                 </h1>
                 {report.subtitle && (
-                  <p className="text-[14px] mb-3" style={{ color: 'var(--brand-muted)' }}>
+                  <p className="text-[13px] sm:text-[14px] mb-3" style={{ color: 'var(--brand-muted)' }}>
                     {report.subtitle}
                   </p>
                 )}
                 <p className="text-[13px] mb-2" style={{ color: '#475569' }}>
                   by <span className="font-semibold" style={{ color: 'var(--brand-navy)' }}>{report.author}</span>
-                  {report.authorRole && <span style={{ color: '#94a3b8' }}> · {report.authorRole}</span>}
+                  {report.authorRole && <span className="hidden sm:inline" style={{ color: '#94a3b8' }}> · {report.authorRole}</span>}
                 </p>
-                <div className="flex flex-wrap items-center gap-4 text-[12px] mb-3" style={{ color: 'var(--brand-muted)' }}>
+                <div className="flex flex-wrap items-center gap-3 text-[12px] mb-3" style={{ color: 'var(--brand-muted)' }}>
                   <span className="flex items-center gap-1.5"><FileText size={12} /> {report.pages} pages</span>
                   <span className="flex items-center gap-1.5"><Clock size={12} /> {report.readTime}</span>
-                  <span>{report.publishDate}</span>
+                  <span className="hidden sm:inline">{report.publishDate}</span>
                 </div>
-                
-                {/* Hook/Summary */}
                 {report.summary && (
-                  <div className="rounded-sm border p-4 mb-4" style={{ 
-                    background: 'white', 
-                    borderColor: 'var(--brand-border)' 
-                  }}>
-                    <p className="text-[14px] leading-relaxed" style={{ color: '#374151' }}>
+                  <div className="rounded-sm border p-3 sm:p-4" style={{ background: 'white', borderColor: 'var(--brand-border)' }}>
+                    <p className="text-[13px] sm:text-[14px] leading-relaxed" style={{ color: '#374151' }}>
                       {report.summary}
                     </p>
                   </div>
@@ -257,26 +246,7 @@ export default function ResearchReader({ report, onClose, onSignIn }) {
           </article>
 
           {/* ── Sidebar ── */}
-          <aside className="space-y-5">
-            {/* Tags */}
-            {report.tags && report.tags.length > 0 && (
-              <div className="rounded-sm border bg-white p-4" style={{ borderColor: 'var(--brand-border)' }}>
-                <p className="text-[11px] font-black uppercase tracking-widest mb-3" style={{ color: 'var(--brand-muted)' }}>
-                  Topics
-                </p>
-                <div className="flex flex-wrap gap-1.5">
-                  {report.tags.map(tag => (
-                    <span key={tag} className="text-[11px] px-2 py-0.5 rounded-sm border" style={{ 
-                      borderColor: 'var(--brand-border)', 
-                      color: 'var(--brand-muted)' 
-                    }}>
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            )}
-
+          <aside className="space-y-4">
             {/* Subscribe CTA */}
             <div className="rounded-sm p-4" style={{ background: 'var(--brand-navy)' }}>
               <p className="text-[10px] font-black uppercase tracking-widest mb-1" style={{ color: 'var(--brand-orange)' }}>
@@ -286,31 +256,39 @@ export default function ResearchReader({ report, onClose, onSignIn }) {
               <p className="text-[12px] mb-3" style={{ color: '#94a3b8' }}>
                 Subscribe to unlock every research report, whitepaper, and intelligence feed.
               </p>
-              <button className="w-full py-2.5 rounded-sm text-white font-black text-[12px] uppercase tracking-wide hover:opacity-90 transition-opacity" style={{ 
-                background: 'var(--brand-orange)' 
-              }}>
+              <button className="w-full py-2.5 rounded-sm text-white font-black text-[12px] uppercase tracking-wide hover:opacity-90 transition-opacity" style={{ background: 'var(--brand-orange)' }}>
                 Subscribe Now
               </button>
             </div>
 
-            {/* Related research suggestion */}
+            {/* Tags */}
+            {report.tags && report.tags.length > 0 && (
+              <div className="rounded-sm border bg-white p-4" style={{ borderColor: 'var(--brand-border)' }}>
+                <p className="text-[11px] font-black uppercase tracking-widest mb-3" style={{ color: 'var(--brand-muted)' }}>
+                  Topics
+                </p>
+                <div className="flex flex-wrap gap-1.5">
+                  {report.tags.map(tag => (
+                    <span key={tag} className="text-[11px] px-2 py-0.5 rounded-sm border" style={{ borderColor: 'var(--brand-border)', color: 'var(--brand-muted)' }}>
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Related research */}
             <div className="rounded-sm border bg-white p-4" style={{ borderColor: 'var(--brand-border)' }}>
               <p className="text-[11px] font-black uppercase tracking-widest mb-3" style={{ color: 'var(--brand-muted)' }}>
                 More Research
               </p>
-              <div className="space-y-2">
-                <div className="flex items-center gap-2 text-[12px] p-2 rounded-sm hover:bg-gray-50 cursor-pointer transition-colors">
-                  <ChevronRight size={12} style={{ color: '#0a7ea4' }} />
-                  <span style={{ color: '#374151' }}>AI Governance Frameworks</span>
-                </div>
-                <div className="flex items-center gap-2 text-[12px] p-2 rounded-sm hover:bg-gray-50 cursor-pointer transition-colors">
-                  <ChevronRight size={12} style={{ color: '#0a7ea4' }} />
-                  <span style={{ color: '#374151' }}>Digital Talent Strategy</span>
-                </div>
-                <div className="flex items-center gap-2 text-[12px] p-2 rounded-sm hover:bg-gray-50 cursor-pointer transition-colors">
-                  <ChevronRight size={12} style={{ color: '#0a7ea4' }} />
-                  <span style={{ color: '#374151' }}>Cloud Transformation ROI</span>
-                </div>
+              <div className="space-y-1">
+                {['AI Governance Frameworks', 'Digital Talent Strategy', 'Cloud Transformation ROI'].map(item => (
+                  <div key={item} className="flex items-center gap-2 text-[12px] p-2 rounded-sm hover:bg-gray-50 cursor-pointer transition-colors">
+                    <ChevronRight size={12} style={{ color: '#0a7ea4' }} />
+                    <span style={{ color: '#374151' }}>{item}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </aside>
