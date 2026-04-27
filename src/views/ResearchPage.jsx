@@ -240,11 +240,11 @@ export default function ResearchPage({ onSignIn }) {
       </div>
 
       <div className="max-w-[1280px] mx-auto px-4 py-8">
-        {/* Search + filters - Improved professional layout */}
+        {/* Search + filters */}
         <div className="mb-8">
-          <div className="flex flex-col lg:flex-row items-start lg:items-center gap-4 mb-6">
-            {/* Content Type Filter */}
-            <div className="lg:w-72">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mb-6">
+            {/* Content Type Filter — fixed width, dropdown is absolute so won't push search */}
+            <div className="w-full sm:w-64 shrink-0">
               <ContentFilterV2
                 activeTypes={activeTypes}
                 onTypeChange={(typeIds) => {
@@ -265,7 +265,7 @@ export default function ResearchPage({ onSignIn }) {
             </div>
             
             {/* Search Bar */}
-            <div className="flex-1">
+            <div className="flex-1 min-w-0">
               <PageSearch
                 value={searchQuery}
                 onChange={setSearchQuery}

@@ -90,10 +90,11 @@ export default function FilterDropdown({
 
       {isOpen && (
         <div 
-          className="absolute top-full left-0 mt-1 w-full max-w-xs bg-white border rounded-lg shadow-xl z-50 max-h-80 overflow-y-auto"
+          className="absolute top-full left-0 mt-1 min-w-full w-max max-w-xs bg-white border rounded-lg shadow-xl z-50 max-h-80 overflow-y-auto"
           style={{ 
             borderColor: '#e5e7eb',
-            boxShadow: '0 10px 40px rgba(0,0,0,0.1)'
+            boxShadow: '0 10px 40px rgba(0,0,0,0.1)',
+            willChange: 'transform'
           }}
         >
           {/* Header */}
@@ -121,12 +122,11 @@ export default function FilterDropdown({
                 <button
                   key={option.id}
                   onClick={() => handleOptionClick(option.id)}
-                  className={`flex items-center justify-between w-full px-3 py-2.5 rounded-md hover:bg-slate-100 transition-colors text-left ${isSelected ? 'bg-blue-50 border-l-2 border-blue-600' : ''}`}
+                  className={`flex items-center justify-between w-full px-3 py-2.5 rounded-md hover:bg-slate-100 transition-colors text-left ${isSelected ? 'bg-blue-50 border-l-2 border-blue-600' : 'border-l-2 border-transparent'}`}
                 >
                   <div className="flex items-center gap-3 flex-1">
-                    {isSelected && (
-                      <div className="w-2 h-2 rounded-full bg-blue-600 flex-shrink-0" />
-                    )}
+                    {/* Always reserve space for the dot to prevent layout shift */}
+                    <div className={`w-2 h-2 rounded-full flex-shrink-0 transition-colors ${isSelected ? 'bg-blue-600' : 'bg-transparent'}`} />
                     <div className="flex flex-col flex-1">
                       <span className="text-[13px] font-medium" style={{ color: '#1e293b' }}>
                         {option.name}
