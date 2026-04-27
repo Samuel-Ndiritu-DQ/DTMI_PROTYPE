@@ -199,16 +199,13 @@ export default function ResearchPage({ onSignIn }) {
                 Exclusive whitepapers, confidential research reports, policy briefs, and industry analyses from the DigitalQatalyst think-tank - delivering actionable intelligence for digital transformation leaders worldwide.
               </p>
             </div>
-            {/* Research stack preview */}
-            <div className="flex items-end gap-2 shrink-0">
+            {/* Research stack preview — hidden on mobile to prevent overflow */}
+            <div className="hidden md:flex items-end gap-2 shrink-0">
               {[1, 2, 3, 4, 5].map((i) => (
-                <div 
+                <div
                   key={i}
-                  className="cursor-pointer hover:scale-105 transition-transform" 
-                  style={{ 
-                    transform: `rotate(${(i - 2) * 3}deg)`, 
-                    zIndex: i 
-                  }}
+                  className="cursor-pointer hover:scale-105 transition-transform"
+                  style={{ transform: `rotate(${(i - 2) * 3}deg)`, zIndex: i }}
                 >
                   <div className="relative rounded-lg overflow-hidden border" style={{
                     width: '60px',
@@ -217,7 +214,6 @@ export default function ResearchPage({ onSignIn }) {
                     borderColor: 'rgba(10, 126, 164, 0.3)',
                     boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
                   }}>
-                    {/* Research icon */}
                     <div className="absolute inset-0 flex items-center justify-center">
                       {i % 2 === 0 ? (
                         <BarChart size={20} className="text-white/80" />
@@ -225,7 +221,6 @@ export default function ResearchPage({ onSignIn }) {
                         <FileText size={20} className="text-white/80" />
                       )}
                     </div>
-                    {/* Research label */}
                     <div className="absolute bottom-2 left-0 right-0 text-center">
                       <span className="text-[8px] font-black uppercase tracking-widest text-white/90">
                         {i % 2 === 0 ? 'REPORT' : 'RESEARCH'}
