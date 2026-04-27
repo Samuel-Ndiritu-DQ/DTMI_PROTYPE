@@ -208,8 +208,9 @@ function BookReader({ book, onClose, onSignIn }) {
           {/* ── Main reading area ── */}
           <article className="lg:col-span-3">
             {/* Book header - Amazon product page style */}
-            <div className="flex gap-6 mb-8 pb-6 border-b" style={{ borderColor: 'var(--brand-border)' }}>
-              <div className="shrink-0">
+            <div className="flex flex-col sm:flex-row gap-5 sm:gap-6 mb-8 pb-6 border-b" style={{ borderColor: 'var(--brand-border)' }}>
+              {/* Cover — centered on mobile, left-aligned on sm+ */}
+              <div className="shrink-0 flex justify-center sm:block">
                 <BookCover book={book} size="lg" />
               </div>
               <div className="flex-1 min-w-0">
@@ -217,8 +218,8 @@ function BookReader({ book, onClose, onSignIn }) {
                   <span className="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-sm" style={{ background: '#f1f5f9', color: '#475569' }}>{book.category}</span>
                   {book.type === 'dtmb' && <span className="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-sm text-white" style={{ background: 'var(--brand-orange)' }}>DTMB Exclusive</span>}
                 </div>
-                <h1 className="text-[22px] sm:text-[26px] font-black leading-tight mb-1" style={{ color: 'var(--brand-navy)' }}>{book.title}</h1>
-                <p className="text-[14px] mb-3" style={{ color: 'var(--brand-muted)' }}>{book.subtitle}</p>
+                <h1 className="text-[20px] sm:text-[26px] font-black leading-tight mb-1" style={{ color: 'var(--brand-navy)' }}>{book.title}</h1>
+                <p className="text-[13px] sm:text-[14px] mb-3" style={{ color: 'var(--brand-muted)' }}>{book.subtitle}</p>
                 <p className="text-[13px] mb-2" style={{ color: '#475569' }}>
                   by <span className="font-semibold" style={{ color: 'var(--brand-navy)' }}>{book.author}</span>
                 </p>
@@ -228,17 +229,17 @@ function BookReader({ book, onClose, onSignIn }) {
                     {book.reviews && <span className="text-[12px]" style={{ color: 'var(--brand-muted)' }}>({book.reviews.toLocaleString()} ratings)</span>}
                   </div>
                 )}
-                <div className="flex flex-wrap items-center gap-4 text-[12px] mb-3" style={{ color: 'var(--brand-muted)' }}>
+                <div className="flex flex-wrap items-center gap-3 text-[12px] mb-3" style={{ color: 'var(--brand-muted)' }}>
                   <span className="flex items-center gap-1.5"><BookOpen size={12} /> {book.pages} pages</span>
                   <span className="flex items-center gap-1.5"><Clock size={12} /> {book.readTime}</span>
-                  <span>{book.publishDate}</span>
-                  {book.publisher && <span>{book.publisher}</span>}
+                  <span className="hidden sm:inline">{book.publishDate}</span>
+                  {book.publisher && <span className="hidden sm:inline">{book.publisher}</span>}
                 </div>
                 {/* Stats */}
-                <div className="flex flex-wrap gap-3">
+                <div className="flex flex-wrap gap-2 sm:gap-3">
                   {book.stats.map(s => (
-                    <div key={s.label} className="rounded-sm border px-3 py-1.5 text-center" style={{ borderColor: 'var(--brand-border)', background: 'white' }}>
-                      <p className="text-[14px] font-black leading-none" style={{ color: book.coverAccent }}>{s.value}</p>
+                    <div key={s.label} className="rounded-sm border px-2.5 py-1.5 text-center" style={{ borderColor: 'var(--brand-border)', background: 'white' }}>
+                      <p className="text-[13px] sm:text-[14px] font-black leading-none" style={{ color: book.coverAccent }}>{s.value}</p>
                       <p className="text-[9px] font-semibold uppercase tracking-wide mt-0.5" style={{ color: 'var(--brand-muted)' }}>{s.label}</p>
                     </div>
                   ))}
@@ -310,7 +311,7 @@ function BookCard({ book, onOpen }) {
   return (
     <div
       onClick={() => onOpen(book)}
-      className="group cursor-pointer bg-white border rounded-sm card-hover flex gap-5 p-5"
+      className="group cursor-pointer bg-white border rounded-sm card-hover flex gap-4 p-4 sm:gap-5 sm:p-5"
       style={{ borderColor: 'var(--brand-border)' }}
     >
       {/* Book cover */}
@@ -320,20 +321,26 @@ function BookCard({ book, onOpen }) {
 
       {/* Details */}
       <div className="flex-1 min-w-0 flex flex-col">
-        {/* Badges */}
-        <div className="flex flex-wrap items-center gap-1.5 mb-2">
-          {isDTMB && (
-            <span className="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-sm text-white" style={{ background: 'var(--brand-orange)' }}>
-              DTMB Exclusive
+        {/* Badges + CTA badge on mobile (top row) */}
+        <div className="flex items-start justify-between gap-2 mb-2">
+          <div className="flex flex-wrap items-center gap-1.5">
+            {isDTMB && (
+              <span className="text-[10px] font-black uppercase tracking-wider px-2 py-0.5 rounded-sm text-white" style={{ background: 'var(--brand-orange)' }}>
+                DTMB Exclusive
+              </span>
+            )}
+            <span className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-sm" style={{ background: '#f1f5f9', color: '#475569' }}>
+              {book.category}
             </span>
-          )}
-          <span className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-sm" style={{ background: '#f1f5f9', color: '#475569' }}>
-            {book.category}
+          </div>
+          {/* Access badge — always visible, no separate right column */}
+          <span className="shrink-0 text-[10px] font-semibold px-2 py-1 rounded-sm whitespace-nowrap" style={{ background: isDTMB ? '#fff7ed' : '#f0fdf4', color: isDTMB ? 'var(--brand-orange)' : '#16a34a' }}>
+            {isDTMB ? 'Subscribers only' : 'Free preview'}
           </span>
         </div>
 
         {/* Title */}
-        <h3 className="text-[15px] font-black leading-snug mb-0.5 group-hover:opacity-80 transition-opacity" style={{ color: 'var(--brand-navy)' }}>
+        <h3 className="text-[14px] sm:text-[15px] font-black leading-snug mb-0.5 group-hover:opacity-80 transition-opacity" style={{ color: 'var(--brand-navy)' }}>
           {book.title}
         </h3>
         <p className="text-[12px] mb-1.5 line-clamp-1" style={{ color: 'var(--brand-muted)' }}>{book.subtitle}</p>
@@ -341,45 +348,45 @@ function BookCard({ book, onOpen }) {
         {/* Author + publisher */}
         <p className="text-[12px] mb-2" style={{ color: '#475569' }}>
           by <span className="font-semibold">{book.author}</span>
-          {book.publisher && <span style={{ color: '#94a3b8' }}> · {book.publisher}</span>}
+          {book.publisher && <span className="hidden sm:inline" style={{ color: '#94a3b8' }}> · {book.publisher}</span>}
         </p>
 
         {/* Rating */}
         {book.rating && (
           <div className="flex items-center gap-2 mb-2">
             <Stars rating={book.rating} />
-            {book.reviews && <span className="text-[11px]" style={{ color: 'var(--brand-muted)' }}>({book.reviews.toLocaleString()} reviews)</span>}
+            {book.reviews && <span className="text-[11px] hidden sm:inline" style={{ color: 'var(--brand-muted)' }}>({book.reviews.toLocaleString()} reviews)</span>}
           </div>
         )}
 
-        {/* Hook */}
-        <p className="text-[12px] leading-relaxed mb-3 line-clamp-2 flex-1" style={{ color: 'var(--brand-muted)' }}>
+        {/* Hook — hidden on very small screens to save space */}
+        <p className="hidden sm:block text-[12px] leading-relaxed mb-3 line-clamp-2 flex-1" style={{ color: 'var(--brand-muted)' }}>
           {book.hook}
         </p>
 
         {/* Meta row */}
-        <div className="flex flex-wrap items-center gap-3 text-[11px]" style={{ color: '#94a3b8' }}>
-          <span className="flex items-center gap-1"><BookOpen size={10} /> {book.pages} pages</span>
+        <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-[11px] mt-auto" style={{ color: '#94a3b8' }}>
+          <span className="flex items-center gap-1"><BookOpen size={10} /> {book.pages}p</span>
           <span className="flex items-center gap-1"><Clock size={10} /> {book.readTime}</span>
-          <span>{book.publishDate}</span>
+          <span className="hidden sm:inline">{book.publishDate}</span>
         </div>
 
-        {/* Tags */}
+        {/* Tags — fewer on mobile */}
         <div className="flex flex-wrap gap-1 mt-2">
+          {book.tags.slice(0, 2).map(tag => (
+            <span key={tag} className="text-[10px] px-1.5 py-0.5 rounded-sm border sm:hidden" style={{ borderColor: 'var(--brand-border)', color: '#64748b' }}>
+              {tag}
+            </span>
+          ))}
           {book.tags.slice(0, 4).map(tag => (
-            <span key={tag} className="text-[10px] px-1.5 py-0.5 rounded-sm border" style={{ borderColor: 'var(--brand-border)', color: '#64748b' }}>
+            <span key={tag} className="hidden sm:inline text-[10px] px-1.5 py-0.5 rounded-sm border" style={{ borderColor: 'var(--brand-border)', color: '#64748b' }}>
               {tag}
             </span>
           ))}
         </div>
-      </div>
 
-      {/* Right CTA */}
-      <div className="shrink-0 flex flex-col items-end justify-between">
-        <span className="text-[11px] font-semibold px-2 py-1 rounded-sm" style={{ background: isDTMB ? '#fff7ed' : '#f0fdf4', color: isDTMB ? 'var(--brand-orange)' : '#16a34a' }}>
-          {isDTMB ? 'Subscribers only' : 'Free preview'}
-        </span>
-        <span className="text-[12px] font-black flex items-center gap-1 group-hover:gap-2 transition-all mt-auto" style={{ color: 'var(--brand-orange)' }}>
+        {/* Read CTA */}
+        <span className="text-[12px] font-black flex items-center gap-1 group-hover:gap-2 transition-all mt-2" style={{ color: 'var(--brand-orange)' }}>
           Read <ChevronRight size={13} />
         </span>
       </div>
@@ -434,8 +441,8 @@ export default function BooksPage({ onSignIn }) {
                 Curated books from the world's leading thinkers on digital strategy, AI, and organizational transformation - plus exclusive DTMB research volumes from DigitalQatalyst.
               </p>
             </div>
-            {/* Cover stack preview */}
-            <div className="flex items-end gap-2 shrink-0">
+            {/* Cover stack preview — hidden on xs, visible from sm */}
+            <div className="hidden sm:flex items-end gap-2 shrink-0">
               {validBooks.slice(0, 5).map((b, i) => (
                 <div key={b.id} onClick={() => setOpenBook(b)} className="cursor-pointer hover:scale-105 transition-transform" style={{ transform: `rotate(${(i - 2) * 3}deg)`, zIndex: i }}>
                   <BookCover book={b} size="sm" />
@@ -495,22 +502,22 @@ export default function BooksPage({ onSignIn }) {
         {/* ── Subscribe banner ── */}
         <div className="rounded-sm overflow-hidden border" style={{ borderColor: 'var(--brand-border)' }}>
           <div className="grid grid-cols-1 md:grid-cols-3">
-            <div className="md:col-span-2 p-8" style={{ background: 'var(--brand-navy)' }}>
+            <div className="md:col-span-2 p-6 sm:p-8" style={{ background: 'var(--brand-navy)' }}>
               <p className="text-[11px] font-black uppercase tracking-widest mb-2" style={{ color: 'var(--brand-orange)' }}>DTMI Intelligence Subscription</p>
-              <h3 className="text-white text-[20px] font-black mb-2">Unlock every DTMB volume and research report</h3>
-              <p className="text-[14px] leading-relaxed mb-5" style={{ color: '#94a3b8' }}>
+              <h3 className="text-white text-[18px] sm:text-[20px] font-black mb-2">Unlock every DTMB volume and research report</h3>
+              <p className="text-[13px] sm:text-[14px] leading-relaxed mb-5" style={{ color: '#94a3b8' }}>
                 Subscribe to DTMI Intelligence for full access to all DTMB exclusive volumes, 50+ research reports, the Intelligence Feed, and the AI Insight Engine.
               </p>
               <div className="flex flex-wrap gap-3">
-                <button className="px-6 py-3 rounded-sm text-white font-black text-[13px] uppercase tracking-wide hover:opacity-90 transition-opacity" style={{ background: 'var(--brand-orange)' }}>
+                <button className="px-5 py-2.5 sm:px-6 sm:py-3 rounded-sm text-white font-black text-[13px] uppercase tracking-wide hover:opacity-90 transition-opacity" style={{ background: 'var(--brand-orange)' }}>
                   Subscribe Now
                 </button>
-                <button onClick={onSignIn} className="px-6 py-3 rounded-sm font-black text-[13px] uppercase tracking-wide border border-white/20 text-white hover:bg-white/5 transition-colors">
+                <button onClick={onSignIn} className="px-5 py-2.5 sm:px-6 sm:py-3 rounded-sm font-black text-[13px] uppercase tracking-wide border border-white/20 text-white hover:bg-white/5 transition-colors">
                   Sign In
                 </button>
               </div>
             </div>
-            <div className="p-8 flex flex-col justify-center gap-3" style={{ background: '#0a1628' }}>
+            <div className="p-6 sm:p-8 flex flex-col justify-center gap-3" style={{ background: '#0a1628' }}>
               {['All DTMB exclusive volumes', '50+ research reports & whitepapers', 'Real-time Intelligence Feed', 'AI Insight Engine access', 'Weekly executive briefing'].map(f => (
                 <div key={f} className="flex items-center gap-2.5 text-[13px]" style={{ color: '#e2e8f0' }}>
                   <span className="w-4 h-4 rounded-full flex items-center justify-center shrink-0 text-[9px] font-black text-white" style={{ background: 'var(--brand-orange)' }}>✓</span>
